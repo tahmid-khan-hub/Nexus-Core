@@ -12,7 +12,7 @@ const Footer = () => {
               <img src={icon} class="h-8 me-3" alt="course Logo" />
               <div>
                 <span class="self-center text-2xl font-semibold whitespace-nowrap ">
-                  Course Management
+                  EduNova
                 </span>
                 <p class="text-sm text-gray-700 mt-1">
                   Empowering learning through technology
@@ -23,7 +23,7 @@ const Footer = () => {
 
           <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2">
             <div className="mr-0 md:mr-11">
-              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase ">
+              <h2 class="mb-6 text-sm font-bold text-gray-900 uppercase ">
                 Resources
               </h2>
               <ul class="text-gray-600 font-medium">
@@ -40,7 +40,7 @@ const Footer = () => {
               </ul>
             </div>
             <div className="mr-0 md:mr-5">
-              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase ">
+              <h2 class="mb-6 text-sm font-bold text-gray-900 uppercase ">
                 Company
               </h2>
               <ul class="text-gray-600 font-medium">
@@ -68,7 +68,7 @@ const Footer = () => {
           <span class="text-sm text-gray-700 sm:text-center ">
             © {new Date().getFullYear()}{" "}
             <a href="https://flowbite.com/" class="hover:underline">
-              Flowbite™
+              EduNova™
             </a>
             . All Rights Reserved.
           </span>
