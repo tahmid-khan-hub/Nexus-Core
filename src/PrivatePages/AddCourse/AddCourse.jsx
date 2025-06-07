@@ -1,24 +1,56 @@
 import React from "react";
 import Lottie from "lottie-react";
 import addCourseLotties from "../../assets/lotties/addCourse.json";
+import axios from "axios";
 
 const AddCourse = () => {
+  const handleNewCourses = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+    const NewCourseData = Object.fromEntries(formData.entries());
+
+    console.log(NewCourseData);
+
+    
+    axios.post("http://localhost:3000/courses", NewCourseData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((res) => {
+      console.log(res.data);
+      if(res.data.insertedId){
+        alert('course added')
+      }
+    });
+
+  };
+
   return (
     <div className="card bg-base-100 w-11/12 max-w-2xl mx-auto shrink-0 shadow-xl shadow-gray-500 mt-16 mb-24 border-1 border-blue-600">
       <div className="card-body text-blue-900">
         {/* Lottie Animation */}
         <div className="flex justify-center ">
-          <Lottie animationData={addCourseLotties} loop={true} className="w-[200px] h-[200px]" />
+          <Lottie
+            animationData={addCourseLotties}
+            loop={true}
+            className="w-[200px] h-[200px]"
+          />
         </div>
 
         <h1 className="text-3xl font-bold text-center">Add Course</h1>
         <p className="text-center mt-3 mb-9">
-          Fill in the course details to add a new learning opportunity. Include a title,
-          description, category, and other key info to help learners find and enroll in
-          your course easily.
+          Fill in the course details to add a new learning opportunity. Include
+          a title, description, category, and other key info to help learners
+          find and enroll in your course easily.
         </p>
 
-        <form className="grid grid-cols-1 md:grid-cols-2 gap-y-4 md:gap-x-6 md:gap-y-5">
+        <form
+          onSubmit={handleNewCourses}
+          className="grid grid-cols-1 md:grid-cols-2 gap-y-4 md:gap-x-6 md:gap-y-5"
+        >
           <div>
             <label className="label block font-bold mb-1">PhotoURL:</label>
             <input
@@ -57,12 +89,7 @@ const AddCourse = () => {
 
           <div>
             <label className="label block font-bold mb-1">Date:</label>
-            <input
-              className="input w-full"
-              type="date"
-              name="date"
-              required
-            />
+            <input className="input w-full" type="date" name="date" required />
           </div>
 
           <div className="col-span-1 md:col-span-2">
@@ -76,7 +103,9 @@ const AddCourse = () => {
           </div>
 
           <div className="col-span-1 md:col-span-2">
-            <label className="label block font-bold mb-2">Certificate Included:</label>
+            <label className="label block font-bold mb-2">
+              Certificate Included:
+            </label>
             <div className="flex flex-col md:flex-row flex-wrap gap-2 md:gap-3">
               <label className="label cursor-pointer">
                 <input
@@ -100,7 +129,9 @@ const AddCourse = () => {
           </div>
 
           <div>
-            <label className="label block font-bold mb-1">Duration: (weeks)</label>
+            <label className="label block font-bold mb-1">
+              Duration: (weeks)
+            </label>
             <input
               className="input w-full"
               type="number"
@@ -111,7 +142,9 @@ const AddCourse = () => {
           </div>
 
           <div>
-            <label className="label block font-bold mb-1">Course Language:</label>
+            <label className="label block font-bold mb-1">
+              Course Language:
+            </label>
             <select className="select w-full" name="language" required>
               <option value="Bangla">Bangla</option>
               <option value="English">English</option>
@@ -120,7 +153,9 @@ const AddCourse = () => {
           </div>
 
           <div>
-            <label className="label block font-bold mb-1">Enrolled Student:</label>
+            <label className="label block font-bold mb-1">
+              Enrolled Student:
+            </label>
             <input className="input w-full" type="number" value="0" readOnly />
           </div>
 
