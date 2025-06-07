@@ -1,10 +1,27 @@
 import React from "react";
 import { Link } from "react-router";
+import Lottie from "lottie-react";
+import registerLottie from "../../assets/lotties/register.json";
 
 const Register = () => {
+
+    const handleRegister = e =>{
+        e.preventDefault();
+
+        const form = e.target;
+        const fromData = new FormData(form);
+        const NewUserData = Object.fromEntries(fromData.entries());
+
+        console.log(NewUserData);
+    }
+
   return (
     <div className="max-w-sm w-11/12 mx-auto text-black p-4 border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 bg-white my-24">
-      <form className="space-y-6">
+      {/* Lottie Animation */}
+      <div className="w-40 mx-auto mb-4">
+        <Lottie animationData={registerLottie} loop={true} />
+      </div>
+      <form onSubmit={handleRegister} className="space-y-6">
         <h5 className="text-2xl text-center font-semibold text-gray-900">
           Welcome To EduNova!
         </h5>
