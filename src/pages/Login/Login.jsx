@@ -20,7 +20,7 @@ const Login = () => {
         {/* Email */}
         <div>
           <label className="block mb-2 text-sm font-medium text-gray-900">
-            Your email
+            Your Email
           </label>
           <input
             type="email"
@@ -35,7 +35,7 @@ const Login = () => {
         {/* Password */}
         <div>
           <label className="block mb-2 text-sm font-medium text-gray-900">
-            Your password
+            Your Password
           </label>
           <input
             type="password"
