@@ -1,8 +1,12 @@
 import React from "react";
 import icon from "../../assets/icons/course icon.png";
 import { Link, NavLink } from "react-router";
+import UseAuth from "../../Hooks/UseAuth";
 
 const Navbar = () => {
+
+  const {user} = UseAuth();
+
   const links = (
     <>
       <NavLink to="/">
@@ -65,6 +69,9 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
+        {
+          user ? user.displayName : "user"
+        }
         <Link to="/login"><a className="btn mr-2">Login</a></Link>
         <Link className="hidden lg:block" to="/register"><a className="btn ">Register</a></Link>
       </div>

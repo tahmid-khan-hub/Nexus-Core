@@ -1,34 +1,67 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import Lottie from "lottie-react";
 import registerLottie from "../../assets/lotties/register.json";
 import UseAuth from "../../Hooks/UseAuth";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
 
-  const {signUp} = UseAuth();
+  const {signUp, signWithGoogle} = UseAuth();
+
+  const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
 
     const form = e.target;
-    const fromData = new FormData(form);
-    const NewUserData = Object.fromEntries(fromData.entries());
-
+    const name = form.name.value;
+    const photo = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
 
-    console.log(NewUserData);
+    console.log(name, photo, email, password, confirmPassword);
 
     signUp(email, password)
       .then(res =>{
         console.log(res);
+
+        const newUser = res.user;
+
+        updateProfile(newUser, {
+          displayName: name,
+          photoURL: photo
+        })
+          .then(() =>{
+            navigate("/");
+
+          })
+          .catch(err =>{
+            console.log(err);
+
+          })
+
+
       })
       .catch(err =>{
         console.log(err);
+        
       })
 
   };
+
+  const handleGoogle = () =>{
+    signWithGoogle()
+      .then(res =>{
+        console.log(res.user);
+        
+      })
+      .catch(err =>{
+        console.log(err);
+
+      })
+  }
 
   return (
     <div className="max-w-sm w-11/12 mx-auto text-black p-4 border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 bg-white my-24">
@@ -141,7 +174,7 @@ const Register = () => {
         </button>
 
         {/* google */}
-        <button className="btn w-full -mt-2 bg-white text-black border-2 border-blue-500">
+        <button onClick={handleGoogle} className="btn w-full -mt-2 bg-white text-black border-2 border-blue-500">
           <svg
             aria-label="Google logo"
             width="16"
