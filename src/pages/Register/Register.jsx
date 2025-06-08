@@ -4,10 +4,15 @@ import Lottie from "lottie-react";
 import registerLottie from "../../assets/lotties/register.json";
 import UseAuth from "../../Hooks/UseAuth";
 import { updateProfile } from "firebase/auth";
+import GoogleSignIn from "../../Hooks/GoogleSignIn";
+import GitHubSignIn from "../../Hooks/GitHubSignIn";
 
 const Register = () => {
 
-  const {signUp, signWithGoogle} = UseAuth();
+  const {signUp} = UseAuth();
+
+  const handleGoogle = GoogleSignIn();
+  const handleGitHub = GitHubSignIn();
 
   const navigate = useNavigate();
 
@@ -51,17 +56,6 @@ const Register = () => {
 
   };
 
-  const handleGoogle = () =>{
-    signWithGoogle()
-      .then(res =>{
-        console.log(res.user);
-        
-      })
-      .catch(err =>{
-        console.log(err);
-
-      })
-  }
 
   return (
     <div className="max-w-sm w-11/12 mx-auto text-black p-4 border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 bg-white my-24">
@@ -157,7 +151,7 @@ const Register = () => {
 
         {/* social buttons */}
         {/* GitHub */}
-        <button className="btn w-full bg-black text-white border-black">
+        <button onClick={handleGitHub} className="btn w-full bg-black text-white border-black">
           <svg
             aria-label="GitHub logo"
             width="16"
