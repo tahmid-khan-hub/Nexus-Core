@@ -88,8 +88,8 @@ const AddCourse = () => {
           </div>
 
           <div>
-            <label className="label block font-bold mb-1">Date:</label>
-            <input className="input w-full" type="date" name="date" required />
+            <label className="label block font-bold mb-1">Date & Time:</label>
+            <input className="input w-full" type="datetime-local" name="date" required />
           </div>
 
           <div className="col-span-1 md:col-span-2">
@@ -109,16 +109,17 @@ const AddCourse = () => {
             <div className="flex flex-col md:flex-row flex-wrap gap-2 md:gap-3">
               <label className="label cursor-pointer">
                 <input
-                  type="checkbox"
+                  type="radio"
                   name="certificateIncluded"
                   value="Yes"
                   className="checkbox"
+                  required
                 />
                 <span className="label-text ml-2">Yes</span>
               </label>
               <label className="label cursor-pointer">
                 <input
-                  type="checkbox"
+                  type="radio"
                   name="certificateIncluded"
                   value="No"
                   className="checkbox"

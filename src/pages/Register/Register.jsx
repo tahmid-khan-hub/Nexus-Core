@@ -2,18 +2,33 @@ import React from "react";
 import { Link } from "react-router";
 import Lottie from "lottie-react";
 import registerLottie from "../../assets/lotties/register.json";
+import UseAuth from "../../Hooks/UseAuth";
 
 const Register = () => {
 
-    const handleRegister = e =>{
-        e.preventDefault();
+  const {signUp} = UseAuth();
 
-        const form = e.target;
-        const fromData = new FormData(form);
-        const NewUserData = Object.fromEntries(fromData.entries());
+  const handleRegister = (e) => {
+    e.preventDefault();
 
-        console.log(NewUserData);
-    }
+    const form = e.target;
+    const fromData = new FormData(form);
+    const NewUserData = Object.fromEntries(fromData.entries());
+
+    const email = form.email.value;
+    const password = form.password.value;
+
+    console.log(NewUserData);
+
+    signUp(email, password)
+      .then(res =>{
+        console.log(res);
+      })
+      .catch(err =>{
+        console.log(err);
+      })
+
+  };
 
   return (
     <div className="max-w-sm w-11/12 mx-auto text-black p-4 border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 bg-white my-24">
