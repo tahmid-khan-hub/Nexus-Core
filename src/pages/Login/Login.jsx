@@ -1,9 +1,44 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import Lottie from "lottie-react";
 import loginLottie from "../../assets/lotties/login.json";
+import UseAuth from "../../Hooks/UseAuth";
+import GitHubSignIn from "../../Hooks/GitHubSignIn";
+import GoogleSignIn from "../../Hooks/GoogleSignIn";
 
 const Login = () => {
+
+  const {signIn} = UseAuth();
+
+  const handleGitHub = GitHubSignIn();
+  const handleGoogle = GoogleSignIn();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleSignIn = e =>{
+    e.preventDefault();
+
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    console.log(email, password);
+
+    signIn(email, password)
+      .then(res => {
+        console.log(res);
+        const User = res.user;
+        navigate(`${location.state ? location.state : "/"}`)
+
+      })
+      .catch(err =>{
+        console.log(err);
+
+      })
+
+  }
+
   return (
     <div className="max-w-sm w-11/12 mx-auto text-black p-4 border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 bg-white my-24">
       {/* Lottie Animation */}
@@ -11,7 +46,7 @@ const Login = () => {
         <Lottie animationData={loginLottie} loop={true} />
       </div>
 
-      <form className="space-y-6">
+      <form onSubmit={handleSignIn} className="space-y-6">
         <h5 className="text-2xl text-center font-semibold text-gray-900">
           Welcome Again!
         </h5>
@@ -66,7 +101,7 @@ const Login = () => {
 
         {/* social buttons */}
         {/* GitHub */}
-        <button className="btn w-full bg-black text-white border-black">
+        <button onClick={handleGitHub} className="btn w-full bg-black text-white border-black">
           <svg
             aria-label="GitHub logo"
             width="16"
@@ -83,7 +118,7 @@ const Login = () => {
         </button>
 
         {/* google */}
-        <button className="btn w-full -mt-2 bg-white text-black border-2 border-blue-500">
+        <button onClick={handleGoogle} className="btn w-full -mt-2 bg-white text-black border-2 border-blue-500">
           <svg
             aria-label="Google logo"
             width="16"
