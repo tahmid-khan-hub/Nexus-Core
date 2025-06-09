@@ -9,6 +9,7 @@ import MyEnrolledCourses from "../PrivatePages/MyEnrolledCourses/MyEnrolledCours
 import ManageCourses from "../PrivatePages/ManageCourses/ManageCourses"
 import PrivateRoute from "../routes/PrivateRoute"
 import CategoryDetails from "../pages/CategoryDetails/CategoryDetails";
+import Category from "../pages/Category/Category";
 
 const Router = createBrowserRouter([
   {
@@ -47,8 +48,14 @@ const Router = createBrowserRouter([
         </PrivateRoute>
       },
       {
+        path:"/Category/:category",
+        element: <Category></Category>,
+        loader: ()=> fetch("http://localhost:3000/courses"),
+      },
+      {
         path: "/categoryDetails",
-        element: <CategoryDetails></CategoryDetails>
+        element: <CategoryDetails></CategoryDetails>,
+        loader: ()=> fetch("http://localhost:3000/courses"),
       }
     ],
   },
