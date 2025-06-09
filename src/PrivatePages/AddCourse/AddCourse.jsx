@@ -14,11 +14,7 @@ const AddCourse = () => {
     console.log(NewCourseData);
 
     
-    axios.post("http://localhost:3000/courses", NewCourseData, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    axios.post("http://localhost:3000/courses", NewCourseData)
     .then((res) => {
       console.log(res.data);
       if(res.data.insertedId){

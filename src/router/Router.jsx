@@ -7,6 +7,7 @@ import Register from "../pages/Register/Register";
 import AddCourse from "../PrivatePages/AddCourse/AddCourse"
 import MyEnrolledCourses from "../PrivatePages/MyEnrolledCourses/MyEnrolledCourses";
 import ManageCourses from "../PrivatePages/ManageCourses/ManageCourses"
+import PrivateRoute from "../routes/PrivateRoute"
 
 const Router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const Router = createBrowserRouter([
       {
         path: "",
         element: <Home></Home>,
+        loader: ()=> fetch("http://localhost:3000/courses"),
       },
       {
         path: "/login",
@@ -27,15 +29,21 @@ const Router = createBrowserRouter([
       },
       {
         path: "/addCourse",
-        element: <AddCourse></AddCourse>
+        element: <PrivateRoute>
+          <AddCourse></AddCourse>
+        </PrivateRoute>
       },
       {
         path: "/myEnrolledCourses",
-        element: <MyEnrolledCourses></MyEnrolledCourses>
+        element: <PrivateRoute>
+          <MyEnrolledCourses></MyEnrolledCourses>
+        </PrivateRoute>
       },
       {
         path: "/manageCourses",
-        element: <ManageCourses></ManageCourses>
+        element: <PrivateRoute>
+          <ManageCourses></ManageCourses>
+        </PrivateRoute>
       }
     ],
   },
