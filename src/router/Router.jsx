@@ -8,6 +8,7 @@ import AddCourse from "../PrivatePages/AddCourse/AddCourse"
 import MyEnrolledCourses from "../PrivatePages/MyEnrolledCourses/MyEnrolledCourses";
 import ManageCourses from "../PrivatePages/ManageCourses/ManageCourses"
 import PrivateRoute from "../routes/PrivateRoute"
+import CategoryDetails from "../pages/CategoryDetails/CategoryDetails";
 
 const Router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const Router = createBrowserRouter([
         element: <PrivateRoute>
           <ManageCourses></ManageCourses>
         </PrivateRoute>
+      },
+      {
+        path: "/categoryDetails",
+        element: <CategoryDetails></CategoryDetails>
       }
     ],
   },

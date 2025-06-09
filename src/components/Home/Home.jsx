@@ -9,7 +9,6 @@ import { useLoaderData } from 'react-router';
 const Home = () => {
 
     const coursesData = useLoaderData();
-    console.log(coursesData); 
 
     useEffect(() =>{
         window.scrollTo(0,0);
@@ -20,7 +19,7 @@ const Home = () => {
             <Banner></Banner>
             <CourseSection></CourseSection>
             <PopularSection></PopularSection>
-            <Categories></Categories>
+            <Categories coursesData={coursesData}></Categories>
             <HallOfFame></HallOfFame>
         </div>
     );
