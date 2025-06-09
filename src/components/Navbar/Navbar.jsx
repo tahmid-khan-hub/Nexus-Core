@@ -80,7 +80,8 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {
-          user && <img className="w-9 h-9 rounded-full" src={user.photoURL}></img>
+          // user && <img className="w-9 h-9 rounded-full" src={user.photoURL}></img>
+          (user && user.photoURL) ? <a><img className="w-9 h-9 rounded-full" src={user.photoURL}></img></a> : <a><img className="w-12 h-12 rounded-full" src="https://i.ibb.co/Kxsnfc4C/image.png"></img></a>
         }
         {
           user ? <a onClick={handleSignOut} className="btn ml-2">Sign Out</a> : <>
