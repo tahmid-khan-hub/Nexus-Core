@@ -19,7 +19,7 @@ const CategoryDetails = ({ category }) => {
     <img
       src={photoURL}
       alt={title}
-      className="w-full md:w-1/3 h-60 object-cover"
+      className="w-full md:w-1/3 object-cover"
     />
     <div className="p-6 md:w-2/3">
       <h2 className="text-2xl font-semibold text-gray-900">{title}</h2>
@@ -29,7 +29,7 @@ const CategoryDetails = ({ category }) => {
         <p>🌍 {language}</p>
         <p>📅 {date}</p>
         <p>🎓 {certificateIncluded ? "Certificate included" : "No certificate"}</p>
-        <button className="btn mt-16">Enroll Now</button>
+        <button className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mt-16">Enroll Now</button>
       </div>
     </div>
   </div>
