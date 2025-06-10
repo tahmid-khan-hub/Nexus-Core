@@ -7,11 +7,11 @@ const Categories = () => {
         'Technology',
         'Business',
         'Marketing',
-        'UI/UX Design',
+        'UiUxDesign',
         'Finance',
         'Photography',
         'Communication',
-        'Career Development'
+        'CareerDevelopment'
     ];
 
     return (
