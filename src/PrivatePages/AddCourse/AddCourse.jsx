@@ -2,14 +2,22 @@ import React from "react";
 import Lottie from "lottie-react";
 import addCourseLotties from "../../assets/lotties/addCourse.json";
 import axios from "axios";
+import UseAuth from "../../Hooks/UseAuth";
 
 const AddCourse = () => {
+
+  const {user} = UseAuth();
+
+  const Email = user.email;
+
   const handleNewCourses = (e) => {
     e.preventDefault();
 
     const form = e.target;
     const formData = new FormData(form);
     const NewCourseData = Object.fromEntries(formData.entries());
+
+    NewCourseData.UserEmail = Email;
 
     console.log(NewCourseData);
 
