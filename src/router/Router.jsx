@@ -45,7 +45,8 @@ const Router = createBrowserRouter([
         path: "/manageCourses",
         element: <PrivateRoute>
           <ManageCourses></ManageCourses>
-        </PrivateRoute>
+        </PrivateRoute>,
+        loader: ()=> fetch("http://localhost:3000/courses"),
       },
       {
         path:"/Category/:category",
