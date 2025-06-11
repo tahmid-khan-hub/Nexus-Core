@@ -3,6 +3,7 @@ import { useLoaderData, useNavigate, useParams } from "react-router";
 import Lottie from "lottie-react";
 import updateCourseLottie from "../../assets/lotties/updateCourse.json";
 import Swal from "sweetalert2";
+  import axios from "axios";
 
 const UpdateCourse = () => {
   const data = useLoaderData();
@@ -35,17 +36,11 @@ const UpdateCourse = () => {
 
     console.log(courseData);
 
-    fetch(`http://localhost:3000/courses/${_id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(courseData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.modifiedCount) {
+    axios
+      .put(`http://localhost:3000/courses/${_id}`, courseData)
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.modifiedCount) {
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -53,8 +48,11 @@ const UpdateCourse = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          navigate("/manageCourses")
+          navigate("/manageCourses");
         }
+      })
+      .catch((error) => {
+        console.error("Error updating course:", error);
       });
   };
 

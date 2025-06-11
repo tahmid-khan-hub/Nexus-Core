@@ -66,6 +66,10 @@ const CourseDetails = () => {
                 <span className="font-semibold">🎓 Certificate:</span>
                 <p>{course.certificateIncluded}</p>
               </div>
+              <div>
+                <span className="font-semibold">👥 Enrolled:</span>
+                <p>{course.enrolled}</p>
+              </div>
             </div>
 
             <div className="pt-4 text-sm text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700">
