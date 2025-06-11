@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
+import * as motion from "motion/react-client";
 
 const PopularSection = ({ coursesData }) => {
   const [popularCourses, setPopularCourses] = useState([]);
@@ -15,7 +16,7 @@ const PopularSection = ({ coursesData }) => {
   }, [coursesData]);
 
   return (
-    <div className="pt-5 pb-24 bg-blue-200 my-12">
+    <div className="pt-5 pb-24 bg-gray-100 my-12">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-4 mt-16 text-gray-800">
           Our Most Popular Courses
@@ -28,9 +29,10 @@ const PopularSection = ({ coursesData }) => {
         {popularCourses.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {popularCourses.map((course) => (
-              <div
+              <motion.div
+                whileHover={{ scale: 1.05 }}
                 key={course._id}
-                className="max-w-sm bg-gray-50 border-2 border-blue-300 rounded-lg shadow-xl mx-auto"
+                className="max-w-sm bg-[#eef6ff] border-2 border-blue-300 rounded-lg shadow-xl mx-auto"
               >
                 <Link to={`/courses/${course._id}`}>
                   <img
@@ -82,7 +84,7 @@ const PopularSection = ({ coursesData }) => {
                     </Link>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         )}

@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
-import { motion } from "framer-motion";
+import * as motion from "motion/react-client";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -26,8 +26,7 @@ const Banner = () => {
     },
     {
       id: 2,
-      image:
-        "https://i.ibb.co/cczPpgcF/image.png",
+      image: "https://i.ibb.co/cczPpgcF/image.png",
       heading: "Your Enrolled Courses",
       paragraph:
         "Easily track your enrolled courses, manage your progress, and continue learning where you left off—on any device.",
@@ -75,19 +74,37 @@ const Banner = () => {
               {/* Motion Content */}
               <motion.div
                 key={slide.id}
-                initial={{ opacity: 0, x: -100, y: 50 }}
-                animate={{ opacity: 1, x: 0, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 1, ease: "easeOut" }}
                 style={{
                   color: "#fff",
                   textAlign: "center",
                   maxWidth: "800px",
                 }}
               >
-                <h1 style={{ fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem" }}>
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+                  style={{
+                    fontSize: "3rem",
+                    fontWeight: "bold",
+                    marginBottom: "1rem",
+                  }}
+                >
                   {slide.heading}
-                </h1>
-                <p style={{ fontSize: "1.2rem", color: "#a0a0a0" }}>{slide.paragraph}</p>
+                </motion.h1>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
+                  style={{ fontSize: "1.2rem", color: "#a0a0a0" }}
+                >
+                  {slide.paragraph}
+                </motion.p>
               </motion.div>
             </div>
           </div>

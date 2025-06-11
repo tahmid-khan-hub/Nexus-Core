@@ -31,7 +31,9 @@ const Categories = () => {
     UiUxDesign: <FaPencilRuler size={40} className="mb-2 text-purple-600" />,
     Finance: <FaChartLine size={40} className="mb-2 text-yellow-600" />,
     Photography: <FaCamera size={40} className="mb-2 text-orange-600" />,
-    Communication: <FaMicrophoneAlt size={40} className="mb-2 text-indigo-600" />,
+    Communication: (
+      <FaMicrophoneAlt size={40} className="mb-2 text-indigo-600" />
+    ),
     CareerDevelopment: <FaBriefcase size={40} className="mb-2 text-teal-600" />,
     Default: <FaLightbulb size={40} className="mb-2 text-gray-500" />,
   };
@@ -51,6 +53,13 @@ const Categories = () => {
             className="overflow-hidden border-2 rounded-xl border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-600 transition-colors duration-200"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            animate={{ y: [0, -10] }} // Move up and back to original
+            transition={{
+              duration: 1.5, // 1.5 seconds for smooth bounce
+              repeat: Infinity, // repeat forever
+              repeatType: "reverse", // reverse direction (up and down)
+              ease: "easeInOut", // smooth easing
+            }}
             key={cat}
           >
             <Link to={`Category/${cat}`}>

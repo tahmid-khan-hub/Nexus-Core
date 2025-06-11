@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router";
+import * as motion from "motion/react-client";
 
 const CourseSection = ({ coursesData }) => {
   const limit = 6;
@@ -32,7 +33,8 @@ const CourseSection = ({ coursesData }) => {
         {latestCourses.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {latestCourses.map((course) => (
-              <div
+              <motion.div
+                whileHover={{ scale: 1.05 }}
                 key={course._id}
                 className="max-w-sm bg-gray-50 border-2 border-blue-300 rounded-lg shadow-xl mx-auto"
               >
@@ -86,7 +88,7 @@ const CourseSection = ({ coursesData }) => {
                     </Link>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         )}
