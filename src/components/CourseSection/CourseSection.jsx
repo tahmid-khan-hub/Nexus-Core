@@ -9,9 +9,9 @@ const CourseSection = ({ coursesData }) => {
   useEffect(() => {
     if (coursesData && coursesData.length > 0) {
       const sortedCourses = [...coursesData].sort((a, b) => {
-        const dateA = new Date(a.createdAt);
-        const dateB = new Date(b.createdAt);
-        return dateB.getTime() - dateA.getTime();
+        const timeA = new Date(a.date).getTime();
+        const timeB = new Date(b.date).getTime();
+        return timeB - timeA;
       });
 
       setLatestCourses(sortedCourses.slice(0, limit));
@@ -19,12 +19,12 @@ const CourseSection = ({ coursesData }) => {
   }, [coursesData, limit]);
 
   return (
-    <div className="py-12 bg-gray-50 dark:bg-gray-800">
+    <div className="py-12 ">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-4 text-gray-800 dark:text-white">
+        <h2 className="text-3xl font-bold text-center mb-4 mt-16 text-gray-800 ">
           Our Latest Courses
         </h2>
-        <p className="text-lg text-center text-gray-600 dark:text-gray-300 mb-10">
+        <p className="text-lg text-center text-gray-500 mb-12">
           Discover new opportunities with our recently added courses, designed
           to keep you ahead.
         </p>
@@ -34,37 +34,40 @@ const CourseSection = ({ coursesData }) => {
             {latestCourses.map((course) => (
               <div
                 key={course._id}
-                className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700"
+                className="max-w-sm bg-gray-50 border-2 border-blue-300 rounded-lg shadow-xl mx-auto"
               >
                 <Link to={`/courses/${course._id}`}>
                   <img
-                    className="rounded-t-lg w-full h-48 object-cover"
+                    className="rounded-xl w-full p-2 h-48 object-cover"
                     src={course.photoURL}
                   />
                 </Link>
                 <div className="p-5">
                   <Link to={`/courses/${course._id}`}>
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    <h5 className="mb-4 text-2xl font-semibold tracking-tight text-gray-900 ">
                       {course.title}
                     </h5>
                   </Link>
-                  <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  <p className="mb-3 font-normal text-gray-500 ">
                     {course.description && course.description.length > 150
                       ? course.description.slice(0, 150) + "..."
                       : course.description || "No description available."}
                   </p>
                   {course.date && (
-                    <p className="mb-3 text-sm font-normal text-gray-500 dark:text-gray-400">
-                      Added on: {new Date(course.date).toLocaleDateString()}
+                    <p className="mb-3 mt-4 text-sm font-normal text-gray-600 ">
+                      Added on :{" "}
+                      <span className="font-semibold">
+                        {new Date(course.date).toLocaleDateString()}
+                      </span>
                     </p>
                   )}
                   <div className="text-right mt-auto">
                     {" "}
                     <Link
                       to={`/courses/${course._id}`}
-                      className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-5"
+                      className="inline-flex items-center text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mt-5"
                     >
-                      Read more
+                      View Details
                       <svg
                         className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
                         aria-hidden="true"
