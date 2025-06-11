@@ -18,7 +18,7 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <CourseSection coursesData={coursesData}></CourseSection>
-            <PopularSection></PopularSection>
+            <PopularSection coursesData={coursesData}></PopularSection>
             <Categories coursesData={coursesData}></Categories>
             <HallOfFame></HallOfFame>
         </div>
