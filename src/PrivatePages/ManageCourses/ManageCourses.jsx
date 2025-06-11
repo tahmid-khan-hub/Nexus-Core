@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import UseAuth from "../../Hooks/UseAuth";
 import Swal from "sweetalert2";
 
@@ -48,7 +48,7 @@ const ManageCourses = () => {
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-       <h2 className="text-3xl font-bold text-center mt-11 text-black mb-2">
+      <h2 className="text-3xl font-bold text-center mt-11 text-black mb-2">
         Manage Your Courses
       </h2>
       <p className="text-gray-500 text-center mb-8">
@@ -92,10 +92,14 @@ const ManageCourses = () => {
               </td>
 
               <td className="px-6 py-4">
-                <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                <Link
+                  to={`/updateCourse/${course._id}`}
+                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                >
                   Edit
-                </a>
+                </Link>
               </td>
+
               <td className="px-6 py-4">
                 <a
                   onClick={() => handleCourseDelete(course._id)}
