@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useLoaderData } from "react-router";
 import UseAuth from "../../Hooks/UseAuth";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const ManageCourses = () => {
   const { user } = UseAuth();
@@ -15,7 +16,6 @@ const ManageCourses = () => {
   );
 
   const [courses, setCourses] = useState(userAddedCourses);
-
   const handleCourseDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -27,11 +27,10 @@ const ManageCourses = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/courses/${id}`, {
-          method: "DELETE",
-        })
+        axios
+          .delete(`http://localhost:3000/courses/${id}`)
           .then((res) => {
-            console.log(res);
+            console.log(res.data);
             setCourses((prevCourses) =>
               prevCourses.filter((course) => course._id !== id)
             );
@@ -41,7 +40,14 @@ const ManageCourses = () => {
               icon: "success",
             });
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            console.error(err);
+            Swal.fire({
+              title: "Error!",
+              text: "Something went wrong while deleting.",
+              icon: "error",
+            });
+          });
       }
     });
   };

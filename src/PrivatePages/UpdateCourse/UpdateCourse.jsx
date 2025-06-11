@@ -1,7 +1,8 @@
 import React from "react";
-import { useLoaderData, useParams } from "react-router";
+import { useLoaderData, useNavigate, useParams } from "react-router";
 import Lottie from "lottie-react";
 import updateCourseLottie from "../../assets/lotties/updateCourse.json";
+import Swal from "sweetalert2";
 
 const UpdateCourse = () => {
   const data = useLoaderData();
@@ -11,7 +12,51 @@ const UpdateCourse = () => {
 
   console.log(EditCourse);
 
-  const {photoURL, categories, certificateIncluded, date, description, duration, language, title} = EditCourse;
+  const {
+    photoURL,
+    categories,
+    certificateIncluded,
+    date,
+    description,
+    duration,
+    language,
+    title,
+    _id,
+  } = EditCourse;
+
+  const navigate = useNavigate();
+
+  const handleUpateCourse = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+    const courseData = Object.fromEntries(formData.entries());
+
+    console.log(courseData);
+
+    fetch(`http://localhost:3000/courses/${_id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(courseData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your selected course has been updated successfully!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/manageCourses")
+        }
+      });
+  };
 
   return (
     <div className="card bg-base-100 w-11/12 max-w-2xl mx-auto shrink-0 shadow-xl shadow-gray-500 mt-16 mb-24 border-1 border-blue-600">
@@ -32,7 +77,10 @@ const UpdateCourse = () => {
           course accurate and up to date for learners.
         </p>
 
-        <form className="grid grid-cols-1 md:grid-cols-2 gap-y-4 md:gap-x-6 md:gap-y-5">
+        <form
+          onSubmit={handleUpateCourse}
+          className="grid grid-cols-1 md:grid-cols-2 gap-y-4 md:gap-x-6 md:gap-y-5"
+        >
           <div>
             <label className="label block font-bold mb-1">PhotoURL:</label>
             <input
@@ -59,7 +107,12 @@ const UpdateCourse = () => {
 
           <div>
             <label className="label block font-bold mb-1">Categories:</label>
-            <select className="select w-full" name="categories" required defaultValue={categories}>
+            <select
+              className="select w-full"
+              name="categories"
+              required
+              defaultValue={categories}
+            >
               <option value="Technology">Technology</option>
               <option value="Marketing">Marketing</option>
               <option value="UiUxDesign">UI/UX Design</option>
@@ -105,7 +158,7 @@ const UpdateCourse = () => {
                   value="Yes"
                   className="checkbox"
                   required
-                  defaultChecked={certificateIncluded}
+                  defaultChecked={certificateIncluded === "Yes"}
                 />
                 <span className="label-text ml-2">Yes</span>
               </label>
@@ -115,7 +168,8 @@ const UpdateCourse = () => {
                   name="certificateIncluded"
                   value="No"
                   className="checkbox"
-                  defaultChecked={certificateIncluded}
+                  required
+                  defaultChecked={certificateIncluded === "No"}
                 />
                 <span className="label-text ml-2">No</span>
               </label>
@@ -140,7 +194,12 @@ const UpdateCourse = () => {
             <label className="label block font-bold mb-1">
               Course Language:
             </label>
-            <select className="select w-full" name="language" required defaultValue={language}>
+            <select
+              className="select w-full"
+              name="language"
+              required
+              defaultValue={language}
+            >
               <option value="Bangla">Bangla</option>
               <option value="English">English</option>
               <option value="Others">Others</option>
