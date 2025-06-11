@@ -10,6 +10,7 @@ import ManageCourses from "../PrivatePages/ManageCourses/ManageCourses"
 import PrivateRoute from "../routes/PrivateRoute"
 import CategoryDetails from "../pages/CategoryDetails/CategoryDetails";
 import Category from "../pages/Category/Category";
+import CourseDetails from "../pages/CourseDetails/CourseDetails";
 
 const Router = createBrowserRouter([
   {
@@ -56,6 +57,11 @@ const Router = createBrowserRouter([
       {
         path: "/categoryDetails",
         element: <CategoryDetails></CategoryDetails>,
+        loader: ()=> fetch("http://localhost:3000/courses"),
+      },
+      {
+        path: "/courseDetails/:id",
+        element: <CourseDetails></CourseDetails>,
         loader: ()=> fetch("http://localhost:3000/courses"),
       }
     ],

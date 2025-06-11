@@ -34,18 +34,14 @@ const PopularSection = ({ coursesData }) => {
                 key={course._id}
                 className="max-w-sm bg-[#eef6ff] border-2 border-blue-300 rounded-lg shadow-xl mx-auto"
               >
-                <Link to={`/courses/${course._id}`}>
                   <img
                     className="rounded-xl w-full p-2 h-48 object-cover"
                     src={course.photoURL}
                   />
-                </Link>
                 <div className="p-5">
-                  <Link to={`/courses/${course._id}`}>
                     <h5 className="mb-4 text-2xl font-semibold tracking-tight text-gray-900 ">
                       {course.title}
                     </h5>
-                  </Link>
                   <p className="mb-3 font-normal text-gray-500 ">
                     {course.description && course.description.length > 150
                       ? course.description.slice(0, 150) + "..."
@@ -62,7 +58,7 @@ const PopularSection = ({ coursesData }) => {
                   <div className="text-right mt-auto">
                     {" "}
                     <Link
-                      to={`/courses/${course._id}`}
+                      to={`/courseDetails/${course._id}`}
                       className="inline-flex items-center text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mt-5"
                     >
                       View Details

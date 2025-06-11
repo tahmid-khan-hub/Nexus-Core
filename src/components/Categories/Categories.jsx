@@ -53,12 +53,12 @@ const Categories = () => {
             className="overflow-hidden border-2 rounded-xl border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-600 transition-colors duration-200"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            animate={{ y: [0, -10] }} // Move up and back to original
+            animate={{ y: [0, -10] }} 
             transition={{
-              duration: 1.5, // 1.5 seconds for smooth bounce
-              repeat: Infinity, // repeat forever
-              repeatType: "reverse", // reverse direction (up and down)
-              ease: "easeInOut", // smooth easing
+              duration: 1.5,
+              repeat: Infinity, 
+              repeatType: "reverse", 
+              ease: "easeInOut", 
             }}
             key={cat}
           >
