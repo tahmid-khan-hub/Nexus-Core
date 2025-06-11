@@ -54,9 +54,9 @@ const Categories = () => {
             key={cat}
           >
             <Link to={`Category/${cat}`}>
-              <div className="bg-white p-5 rounded-xl shadow-md text-center flex flex-col items-center justify-center h-full">
+              <div className="bg-white p-5 rounded-xl shadow-md text-center flex flex-col items-center justify-center h-full ">
                 {categoryIcons[cat] || categoryIcons.Default}
-                <h2 className="text-lg font-semibold text-gray-700 ">{cat}</h2>
+                <h2 className="text-lg font-semibold  text-gray-700 ">{cat}</h2>
               </div>
             </Link>
           </motion.div>

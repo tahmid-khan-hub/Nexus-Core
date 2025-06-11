@@ -18,6 +18,7 @@ const AddCourse = () => {
     const NewCourseData = Object.fromEntries(formData.entries());
 
     NewCourseData.UserEmail = Email;
+    NewCourseData.enrolled = "0";
 
     console.log(NewCourseData);
 
