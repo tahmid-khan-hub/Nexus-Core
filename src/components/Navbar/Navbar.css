@@ -3,7 +3,7 @@ a.active {
   color: white;
   font-weight: 500;
   font-size: 0.75rem;
-  padding: 0.25rem 0.6rem;
+  padding: 0.1rem 0.3rem;
   border-radius: 13px;
   box-shadow: 0 1px 6px rgba(37, 99, 235, 0.15);
   transition: all 0.2s ease;

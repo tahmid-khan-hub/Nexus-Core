@@ -4,7 +4,7 @@ import icon from "../../assets/icons/course icon.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-white text-black py-10 border-1 border-gray-400 rounded-2xl">
+    <footer className="bg-[#afd1f3] text-black py-10 border-1 border-gray-400 rounded-2xl">
       <div class="mx-auto w-full text-black max-w-screen-xl p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
           <div class="mb-16 md:mb-0">

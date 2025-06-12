@@ -41,76 +41,89 @@ const Banner = () => {
   ];
 
   return (
-    <Slider {...settings}>
-      {slides.map((slide) => (
-        <div key={slide.id}>
-          <div style={{ position: "relative" }}>
-            {/* Background Image */}
-            <img
-              src={slide.image}
-              alt={slide.heading}
-              style={{
-                width: "100%",
-                height: "500px",
-                objectFit: "cover",
-              }}
-            />
-
-            {/* Black Overlay */}
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                backgroundColor: "rgba(0, 0, 0, 0.5)",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                padding: "20px",
-              }}
-            >
-              {/* Motion Content */}
-              <motion.div
-                key={slide.id}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 1, ease: "easeOut" }}
+    <div
+      style={{
+        maxWidth: "1350px",
+        marginLeft: "auto",
+        marginRight: "auto",
+        overflow: "hidden",
+      }}
+    >
+      <Slider {...settings}>
+        {slides.map((slide) => (
+          <div key={slide.id}>
+            <div style={{ position: "relative" }}>
+              {/* Background Image */}
+              <img
+                src={slide.image}
+                alt={slide.heading}
                 style={{
-                  color: "#fff",
-                  textAlign: "center",
-                  maxWidth: "800px",
+                  width: "100%",
+                  height: "90vh",
+                  maxHeight: "500px",
+                  objectFit: "cover",
+                  display: "block", // prevent inline image whitespace issues
+                }}
+              />
+
+              {/* Overlay */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: "1rem",
                 }}
               >
-                <motion.h1
-                  initial={{ opacity: 0, y: 20 }}
+                <motion.div
+                  key={slide.id}
+                  initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ duration: 1, ease: "easeOut" }}
                   style={{
-                    fontSize: "3rem",
-                    fontWeight: "bold",
-                    marginBottom: "1rem",
+                    color: "#fff",
+                    textAlign: "center",
+                    maxWidth: "95%",
                   }}
                 >
-                  {slide.heading}
-                </motion.h1>
+                  <motion.h1
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+                    style={{
+                      fontSize: "clamp(1.5rem, 5vw, 2.5rem)",
+                      fontWeight: "bold",
+                      marginBottom: "1rem",
+                    }}
+                  >
+                    {slide.heading}
+                  </motion.h1>
 
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
-                  style={{ fontSize: "1.2rem", color: "#a0a0a0" }}
-                >
-                  {slide.paragraph}
-                </motion.p>
-              </motion.div>
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
+                    style={{
+                      fontSize: "clamp(0.9rem, 3vw, 1.2rem)",
+                      color: "#ccc",
+                    }}
+                  >
+                    {slide.paragraph}
+                  </motion.p>
+                </motion.div>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-    </Slider>
+        ))}
+      </Slider>
+    </div>
   );
 };
 
