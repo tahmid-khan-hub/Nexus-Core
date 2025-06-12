@@ -40,7 +40,7 @@ const Categories = () => {
 
   return (
     <div className="p-6 bg-blue-100 ">
-      <h2 className="text-2xl font-bold mb-2 text-center text-gray-800 ">
+      <h2 className="text-3xl font-bold mb-2 text-center text-gray-800 ">
         Categories
       </h2>
       <p className="text-gray-500 text-center mb-11 dark:text-gray-400">

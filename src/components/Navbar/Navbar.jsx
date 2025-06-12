@@ -43,7 +43,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-[#d9e9f9] border-b-2 border-blue-400 shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -80,7 +80,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {
-          // user && <img className="w-9 h-9 rounded-full" src={user.photoURL}></img>
+          
           (user && user.photoURL) ? <a><img className="w-9 h-9 rounded-full" src={user.photoURL}></img></a> : <a><img className="w-12 h-12 rounded-full" src="https://i.ibb.co/Kxsnfc4C/image.png"></img></a>
         }
         {

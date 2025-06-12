@@ -9,9 +9,7 @@ const ErrorPage = () => {
 
   return (
     <>
-      <div>
-        <Navbar></Navbar>
-      </div>
+      
       <div className="bg-[#d9e9f9]">
         <div className="flex flex-col items-center justify-center h-screen">
           <div className="w-72 h-72">
