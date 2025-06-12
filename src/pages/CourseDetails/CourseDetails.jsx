@@ -1,17 +1,67 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router";
 import * as motion from "motion/react-client";
+import UseAuth from "../../Hooks/UseAuth";
+import axios from "axios";
 
 const CourseDetails = () => {
+  const { user } = UseAuth();
   const { id } = useParams();
   const data = useLoaderData();
 
+  const [alreadyEnrolled, setAlreadyEnrolled] = useState(false);
+
   const course = data.find((c) => c._id.toString() === id);
-  console.log(course);
+  const userEmail = user?.email || "";
+
+  const userCourseData = {
+    email: userEmail,
+    courseId: course._id,
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (!userEmail || !course?._id) return;
+
+    axios
+      .get("http://localhost:3000/userCourses/check", {
+        params: { email: userEmail, courseId: course._id },
+      })
+      .then((res) => {
+        if (res.data.enrolled === true) {
+          setAlreadyEnrolled(true);
+        }
+      });
+      
+  }, [userEmail, course?._id]);
+
+  useEffect(() => {
+    if (!userEmail) {
+      setAlreadyEnrolled(false);
+    }
+  }, [userEmail]);
+
+  const handleUserCourses = () => {
+    if (!userEmail || alreadyEnrolled) return;
+
+    fetch("http://localhost:3000/userCourses", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(userCourseData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          setAlreadyEnrolled(true);
+          alert("Enrolled successfully!");
+        }
+      });
+  };
 
   return (
     <>
@@ -24,6 +74,7 @@ const CourseDetails = () => {
           right fit for your learning journey.
         </p>
       </div>
+
       <motion.div
         animate={{ y: [0, -20] }}
         transition={{
@@ -78,8 +129,20 @@ const CourseDetails = () => {
             </div>
 
             <div className="pt-5">
-              <button className="w-full text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 transition duration-200">
-                Enroll Now
+              <button
+                onClick={handleUserCourses}
+                disabled={!userEmail || alreadyEnrolled}
+                className={`w-full text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center transition duration-200 ${
+                  !userEmail || alreadyEnrolled
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl"
+                }`}
+              >
+                {alreadyEnrolled
+                  ? "Already Enrolled"
+                  : !userEmail
+                  ? "Login to Enroll"
+                  : "Enroll Now"}
               </button>
             </div>
           </div>
