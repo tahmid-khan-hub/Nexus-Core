@@ -12,6 +12,7 @@ import CategoryDetails from "../pages/CategoryDetails/CategoryDetails";
 import Category from "../pages/Category/Category";
 import CourseDetails from "../pages/CourseDetails/CourseDetails";
 import UpdateCourse from "../PrivatePages/UpdateCourse/UpdateCourse";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const Router = createBrowserRouter([
   {
@@ -82,6 +83,10 @@ const Router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "*",
+    element: <ErrorPage></ErrorPage>
+  }
 ]);
 
 export default Router;
