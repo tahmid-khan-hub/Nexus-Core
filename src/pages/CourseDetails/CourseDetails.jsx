@@ -17,6 +17,8 @@ const CourseDetails = () => {
   const userCourseData = {
     email: userEmail,
     courseId: course._id,
+    title: course.title,
+    description: course.description,
   };
 
   useEffect(() => {

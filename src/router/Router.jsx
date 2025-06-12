@@ -47,6 +47,7 @@ const Router = createBrowserRouter([
             <MyEnrolledCourses></MyEnrolledCourses>
           </PrivateRoute>
         ),
+        loader: ()=> fetch("http://localhost:3000/userCourses")
       },
       {
         path: "/manageCourses",

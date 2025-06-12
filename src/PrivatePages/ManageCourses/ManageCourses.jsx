@@ -45,7 +45,7 @@ const ManageCourses = () => {
             console.error(err);
             Swal.fire({
               title: "Error!",
-              text: "Something went wrong while deleting.",
+              text: "Failed to remove course",
               icon: "error",
             });
           });
