@@ -2,6 +2,7 @@ import React from "react";
 import icon from "../../assets/icons/course icon.png";
 import { Link, NavLink } from "react-router";
 import UseAuth from "../../Hooks/UseAuth";
+import './Navbar.css'
 
 const Navbar = () => {
 
