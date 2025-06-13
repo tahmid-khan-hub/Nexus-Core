@@ -13,6 +13,7 @@ import Category from "../pages/Category/Category";
 import CourseDetails from "../pages/CourseDetails/CourseDetails";
 import UpdateCourse from "../PrivatePages/UpdateCourse/UpdateCourse";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import Faq from "../pages/Faq/Faq";
 
 const Router = createBrowserRouter([
   {
@@ -82,6 +83,10 @@ const Router = createBrowserRouter([
         element: <CourseDetails></CourseDetails>,
         loader: () => fetch("http://localhost:3000/courses"),
       },
+      {
+        path: "/faq",
+        element: <Faq></Faq>
+      }
     ],
   },
   {

@@ -40,6 +40,11 @@ const Navbar = () => {
           <a>MyEnrolledCourses</a>
         </li>
       </NavLink>
+      <NavLink to="/faq">
+        <li>
+          <a>FaQ</a>
+        </li>
+      </NavLink>
     </>
   );
 
@@ -47,7 +52,7 @@ const Navbar = () => {
     <div className="navbar bg-[#d9e9f9] border-b-2 border-blue-400 shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div tabIndex={0} role="button" className=" btn-ghost mr-3 lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -71,8 +76,8 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <img src={icon} className="ml-2 md:ml-1 lg:ml-0" alt="" />
-        <a className="btn btn-ghost text-xl">EduNova</a>
+        <img src={icon} className="-ml-1 md:ml-1 lg:ml-0" alt="" />
+        <a className=" text-2xl font-semibold ml-1">EduNova</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
