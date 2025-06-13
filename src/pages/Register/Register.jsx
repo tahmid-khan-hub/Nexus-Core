@@ -6,10 +6,10 @@ import UseAuth from "../../Hooks/UseAuth";
 import { updateProfile } from "firebase/auth";
 import GoogleSignIn from "../../Hooks/GoogleSignIn";
 import GitHubSignIn from "../../Hooks/GitHubSignIn";
+import Swal from "sweetalert2";
 
 const Register = () => {
-
-  const {signUp} = UseAuth();
+  const { signUp } = UseAuth();
 
   const handleGoogle = GoogleSignIn();
   const handleGitHub = GitHubSignIn();
@@ -28,34 +28,84 @@ const Register = () => {
 
     console.log(name, photo, email, password, confirmPassword);
 
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+    if (!passwordRegex.test(password)) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title:
+          "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Password and Confirm Password do not match!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
+
+    if (email && password.toLowerCase().includes(email.toLowerCase())) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Password should not contain the email address!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
+
     signUp(email, password)
-      .then(res =>{
+      .then((res) => {
         console.log(res);
 
         const newUser = res.user;
 
         updateProfile(newUser, {
           displayName: name,
-          photoURL: photo
+          photoURL: photo,
         })
-          .then(() =>{
+          .then(() => {
             navigate("/");
-
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Successfully Registered! Welcome to our Platform",
+              showConfirmButton: false,
+              timer: 1500,
+            });
           })
-          .catch(err =>{
+          .catch((err) => {
             console.log(err);
-
-          })
-
-
+            Swal.fire({
+              position: "top-end",
+              icon: "error",
+              title: "Something went wrong! Please try again.",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          });
       })
-      .catch(err =>{
+      .catch((err) => {
         console.log(err);
-        
-      })
-
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Something went wrong! Please try again.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
   };
-
 
   return (
     <div className="max-w-sm w-11/12 mx-auto text-black p-4 border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 bg-white my-24">
@@ -151,7 +201,10 @@ const Register = () => {
 
         {/* social buttons */}
         {/* GitHub */}
-        <button onClick={handleGitHub} className="btn w-full bg-black text-white border-black">
+        <button
+          onClick={handleGitHub}
+          className="btn w-full bg-black text-white border-black"
+        >
           <svg
             aria-label="GitHub logo"
             width="16"
@@ -168,7 +221,10 @@ const Register = () => {
         </button>
 
         {/* google */}
-        <button onClick={handleGoogle} className="btn w-full -mt-2 bg-white text-black border-2 border-blue-500">
+        <button
+          onClick={handleGoogle}
+          className="btn w-full -mt-2 bg-white text-black border-2 border-blue-500"
+        >
           <svg
             aria-label="Google logo"
             width="16"

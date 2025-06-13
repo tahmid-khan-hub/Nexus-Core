@@ -5,10 +5,10 @@ import loginLottie from "../../assets/lotties/login.json";
 import UseAuth from "../../Hooks/UseAuth";
 import GitHubSignIn from "../../Hooks/GitHubSignIn";
 import GoogleSignIn from "../../Hooks/GoogleSignIn";
+import Swal from "sweetalert2";
 
 const Login = () => {
-
-  const {signIn} = UseAuth();
+  const { signIn } = UseAuth();
 
   const handleGitHub = GitHubSignIn();
   const handleGoogle = GoogleSignIn();
@@ -16,7 +16,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleSignIn = e =>{
+  const handleSignIn = (e) => {
     e.preventDefault();
 
     const form = e.target;
@@ -26,18 +26,29 @@ const Login = () => {
     console.log(email, password);
 
     signIn(email, password)
-      .then(res => {
+      .then((res) => {
         console.log(res);
         const User = res.user;
-        navigate(`${location.state ? location.state : "/"}`)
-
+        navigate(`${location.state ? location.state : "/"}`);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Sucessfully Login! Welcome Back",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
-      .catch(err =>{
+      .catch((err) => {
         console.log(err);
-
-      })
-
-  }
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Something went wrong! Please try again.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+  };
 
   return (
     <div className="max-w-sm w-11/12 mx-auto text-black p-4 border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 bg-white my-24">
@@ -101,7 +112,10 @@ const Login = () => {
 
         {/* social buttons */}
         {/* GitHub */}
-        <button onClick={handleGitHub} className="btn w-full bg-black text-white border-black">
+        <button
+          onClick={handleGitHub}
+          className="btn w-full bg-black text-white border-black"
+        >
           <svg
             aria-label="GitHub logo"
             width="16"
@@ -118,7 +132,10 @@ const Login = () => {
         </button>
 
         {/* google */}
-        <button onClick={handleGoogle} className="btn w-full -mt-2 bg-white text-black border-2 border-blue-500">
+        <button
+          onClick={handleGoogle}
+          className="btn w-full -mt-2 bg-white text-black border-2 border-blue-500"
+        >
           <svg
             aria-label="Google logo"
             width="16"
