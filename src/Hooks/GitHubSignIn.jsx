@@ -16,7 +16,7 @@ const GitHubSignIn = () => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Successfully Registered! Welcome to our Platform",
+          title: "Welcome! You’re now signed in",
           showConfirmButton: false,
           timer: 1500,
         });

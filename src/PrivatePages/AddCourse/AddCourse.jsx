@@ -8,8 +8,6 @@ const AddCourse = () => {
 
   const {user} = UseAuth();
 
-  const Email = user.email;
-
   const handleNewCourses = (e) => {
     e.preventDefault();
 
@@ -17,8 +15,10 @@ const AddCourse = () => {
     const formData = new FormData(form);
     const NewCourseData = Object.fromEntries(formData.entries());
 
-    NewCourseData.UserEmail = Email;
+    NewCourseData.UserEmail = user.email;
+    NewCourseData.userName = user.displayName;
     NewCourseData.enrolled = "0";
+    NewCourseData.createdAt = new Date().toISOString();
 
     console.log(NewCourseData);
 
@@ -163,6 +163,12 @@ const AddCourse = () => {
               Enrolled Student:
             </label>
             <input className="input w-full" type="number" value="0" readOnly />
+          </div>
+          <div>
+            <label className="label block font-bold mb-1">
+              Seat Limit:
+            </label>
+            <input placeholder="Enter Seat Limit" className="input w-full" type="number" required />
           </div>
 
           <div className="mt-8 col-span-1 md:col-span-2 flex justify-center">
