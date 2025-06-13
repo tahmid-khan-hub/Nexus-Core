@@ -8,6 +8,7 @@ import GoogleSignIn from "../../Hooks/GoogleSignIn";
 import GitHubSignIn from "../../Hooks/GitHubSignIn";
 import Swal from "sweetalert2";
 import PageLoading from "../../Hooks/PageLoading";
+import Animation from "../../Hooks/Animation";
 
 const Register = () => {
   const { signUp } = UseAuth();
@@ -109,8 +110,9 @@ const Register = () => {
   };
 
   return (
-    <PageLoading>
-      <div className="max-w-sm w-11/12 mx-auto text-black p-4 border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 bg-white my-24">
+   <Animation>
+     <PageLoading>
+      <div data-aos="fade-up" className="max-w-sm w-11/12 mx-auto text-black p-4 border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 bg-white my-24">
       {/* Lottie Animation */}
       <div className="w-40 mx-auto mb-4">
         <Lottie animationData={registerLottie} loop={true} />
@@ -267,6 +269,7 @@ const Register = () => {
       </form>
     </div>
     </PageLoading>
+   </Animation>
   );
 };
 

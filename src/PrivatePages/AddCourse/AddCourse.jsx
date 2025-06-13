@@ -4,6 +4,7 @@ import addCourseLotties from "../../assets/lotties/addCourse.json";
 import axios from "axios";
 import UseAuth from "../../Hooks/UseAuth";
 import Swal from "sweetalert2";
+import Animation from "../../Hooks/Animation";
 
 const AddCourse = () => {
   const { user } = UseAuth();
@@ -37,7 +38,8 @@ const AddCourse = () => {
   };
 
   return (
-    <div className="card bg-base-100 w-11/12 max-w-2xl mx-auto shrink-0 shadow-xl shadow-gray-500 mt-16 mb-24 border-1 border-blue-600">
+    <Animation>
+      <div data-aos="fade-up" className="card bg-base-100 w-11/12 max-w-2xl mx-auto shrink-0 shadow-xl shadow-gray-500 mt-16 mb-24 border-1 border-blue-600">
       <div className="card-body text-blue-900">
         {/* Lottie Animation */}
         <div className="flex justify-center ">
@@ -194,6 +196,7 @@ const AddCourse = () => {
         </form>
       </div>
     </div>
+    </Animation>
   );
 };
 

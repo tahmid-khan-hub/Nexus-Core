@@ -5,6 +5,8 @@ import Loader from "../pages/Loader/Loader"
 const PageLoading = ({children}) => {
   const [loading, setLoading] = useState(true);
 
+  useEffect(()=>{window.scrollTo(0,0)},[])
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       setLoading(false);
