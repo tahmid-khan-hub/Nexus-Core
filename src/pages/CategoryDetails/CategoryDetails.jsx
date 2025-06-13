@@ -3,6 +3,7 @@ import Lottie from "lottie-react";
 import NoDataFound from "../../assets/lotties/noData.json";
 import { motion } from "framer-motion"; 
 import { Link } from "react-router";
+import PageLoading from "../../Hooks/PageLoading";
 
 const CategoryDetails = ({ category }) => {
 
@@ -19,7 +20,8 @@ const CategoryDetails = ({ category }) => {
   } = category;
 
   return (
-    <motion.div className="p-4 my-11" whileHover={{ scale: 1.05 }}>
+    <PageLoading>
+      <motion.div className="p-4 my-11" whileHover={{ scale: 1.05 }}>
       <div className="backdrop-blur-md bg-white/70 border border-gray-200 rounded-2xl shadow-lg flex flex-col md:flex-row overflow-hidden max-w-5xl mx-auto">
         <img
           src={photoURL}
@@ -50,6 +52,7 @@ const CategoryDetails = ({ category }) => {
         </div>
       </div>
     </motion.div>
+    </PageLoading>
   );
 };
 

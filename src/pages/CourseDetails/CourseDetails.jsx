@@ -3,6 +3,8 @@ import { useLoaderData, useParams } from "react-router";
 import * as motion from "motion/react-client";
 import UseAuth from "../../Hooks/UseAuth";
 import axios from "axios";
+import Swal from "sweetalert2";
+import PageLoading from "../../Hooks/PageLoading";
 
 const CourseDetails = () => {
   const { user } = UseAuth();
@@ -50,24 +52,25 @@ const CourseDetails = () => {
   const handleUserCourses = () => {
     if (!userEmail || alreadyEnrolled) return;
 
-    fetch("http://localhost:3000/userCourses", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(userCourseData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
-          setAlreadyEnrolled(true);
-          alert("Enrolled successfully!");
+    axios
+      .post("http://localhost:3000/userCourses", userCourseData)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Course enrolled successfully!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
       });
   };
 
   return (
-    <>
+    <PageLoading>
+      <>
       <div>
         <h1 className="text-3xl font-bold text-gray-800 text-center mt-11 mb-2">
           Course Details
@@ -121,8 +124,8 @@ const CourseDetails = () => {
                 <p>{course.certificateIncluded}</p>
               </div>
               <div>
-                <span className="font-semibold">👥 Enrolled:</span>
-                <p>{course.enrolled}</p>
+                  <span className="font-semibold">👥 Enrolled:</span>
+                  <p>{course.enrolled}</p>
               </div>
               <div>
                 <span className="font-semibold">🪑 Seat Limit:</span>
@@ -130,27 +133,7 @@ const CourseDetails = () => {
               </div>
             </div>
 
-            <div className="pt-4 text-sm text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700">
-              <span>👤 Uploaded by:</span> <br />
-              <span className="font-medium">{course.UserEmail}</span>
-            </div>
-
             <div className="pt-5">
-              {/* <button
-                onClick={handleUserCourses}
-                disabled={!userEmail || alreadyEnrolled}
-                className={`w-full text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center transition duration-200 ${
-                  !userEmail || alreadyEnrolled
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl"
-                }`}
-              >
-                {alreadyEnrolled
-                  ? "Already Enrolled"
-                  : !userEmail
-                  ? "Login to Enroll"
-                  : "Enroll Now"}
-              </button> */}
               {remainingSeat > 0 ? (
                 <button
                   onClick={handleUserCourses}
@@ -162,7 +145,7 @@ const CourseDetails = () => {
                   }`}
                 >
                   {alreadyEnrolled
-                    ? "Already Enrolled"
+                    ? "Enrolled"
                     : !userEmail
                     ? "Login to Enroll"
                     : "Enroll Now"}
@@ -181,6 +164,7 @@ const CourseDetails = () => {
         </div>
       </motion.div>
     </>
+    </PageLoading>
   );
 };
 

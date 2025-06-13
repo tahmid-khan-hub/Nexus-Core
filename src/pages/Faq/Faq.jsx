@@ -1,6 +1,7 @@
 import React from "react";
 import { ChevronDown } from "lucide-react";
 import * as motion from "motion/react-client";
+import PageLoading from "../../Hooks/PageLoading";
 
 const Faq = () => {
   const faqs = [
@@ -32,7 +33,8 @@ const Faq = () => {
   ];
 
   return (
-    <section className="bg-gradient-to-b from-blue-50 to-white py-12">
+   <PageLoading>
+     <section className="bg-gradient-to-b from-blue-50 to-white py-12">
       <div className="max-w-5xl mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-3 text-black">
           Frequently Asked Questions
@@ -66,6 +68,7 @@ const Faq = () => {
         </div>
       </div>
     </section>
+   </PageLoading>
   );
 };
 
