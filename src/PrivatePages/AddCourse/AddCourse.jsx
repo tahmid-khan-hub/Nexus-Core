@@ -3,10 +3,10 @@ import Lottie from "lottie-react";
 import addCourseLotties from "../../assets/lotties/addCourse.json";
 import axios from "axios";
 import UseAuth from "../../Hooks/UseAuth";
+import Swal from "sweetalert2";
 
 const AddCourse = () => {
-
-  const {user} = UseAuth();
+  const { user } = UseAuth();
 
   const handleNewCourses = (e) => {
     e.preventDefault();
@@ -22,15 +22,18 @@ const AddCourse = () => {
 
     console.log(NewCourseData);
 
-    
-    axios.post("http://localhost:3000/courses", NewCourseData)
-    .then((res) => {
+    axios.post("http://localhost:3000/courses", NewCourseData).then((res) => {
       console.log(res.data);
-      if(res.data.insertedId){
-        alert('course added')
+      if (res.data.insertedId) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Course has been added successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     });
-
   };
 
   return (
@@ -94,7 +97,12 @@ const AddCourse = () => {
 
           <div>
             <label className="label block font-bold mb-1">Date & Time:</label>
-            <input className="input w-full" type="datetime-local" name="date" required />
+            <input
+              className="input w-full"
+              type="datetime-local"
+              name="date"
+              required
+            />
           </div>
 
           <div className="col-span-1 md:col-span-2">
@@ -165,10 +173,14 @@ const AddCourse = () => {
             <input className="input w-full" type="number" value="0" readOnly />
           </div>
           <div>
-            <label className="label block font-bold mb-1">
-              Seat Limit:
-            </label>
-            <input placeholder="Enter Seat Limit" className="input w-full" type="number" required />
+            <label className="label block font-bold mb-1">Seat Limit:</label>
+            <input
+              placeholder="Enter Seat Limit"
+              className="input w-full"
+              type="number"
+              name="seatLimit"
+              required
+            />
           </div>
 
           <div className="mt-8 col-span-1 md:col-span-2 flex justify-center">

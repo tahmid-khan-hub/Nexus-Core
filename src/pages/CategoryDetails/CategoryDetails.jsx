@@ -2,6 +2,7 @@ import React from "react";
 import Lottie from "lottie-react";
 import NoDataFound from "../../assets/lotties/noData.json";
 import { motion } from "framer-motion"; 
+import { Link } from "react-router";
 
 const CategoryDetails = ({ category }) => {
 
@@ -14,6 +15,7 @@ const CategoryDetails = ({ category }) => {
     photoURL,
     title,
     enrolled,
+    _id,
   } = category;
 
   return (
@@ -37,12 +39,14 @@ const CategoryDetails = ({ category }) => {
             </p>
             <p>👥 {enrolled} students enrolled</p>
           </div>
+         <Link to={`/courseDetails/${_id}`}>
           <motion.button
             className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-6"
             whileTap={{ scale: 0.95 }}
           >
-            Enroll Now
+            View Details
           </motion.button>
+         </Link>
         </div>
       </div>
     </motion.div>

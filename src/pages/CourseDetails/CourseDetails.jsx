@@ -14,6 +14,8 @@ const CourseDetails = () => {
   const course = data.find((c) => c._id.toString() === id);
   const userEmail = user?.email || "";
 
+  const remainingSeat = course.seatLimit - course.enrolled;
+
   const userCourseData = {
     email: userEmail,
     courseId: course._id,
@@ -37,7 +39,6 @@ const CourseDetails = () => {
           setAlreadyEnrolled(true);
         }
       });
-      
   }, [userEmail, course?._id]);
 
   useEffect(() => {
@@ -123,6 +124,10 @@ const CourseDetails = () => {
                 <span className="font-semibold">👥 Enrolled:</span>
                 <p>{course.enrolled}</p>
               </div>
+              <div>
+                <span className="font-semibold">🪑 Seat Limit:</span>
+                <p>{course.seatLimit}</p>
+              </div>
             </div>
 
             <div className="pt-4 text-sm text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700">
@@ -131,7 +136,7 @@ const CourseDetails = () => {
             </div>
 
             <div className="pt-5">
-              <button
+              {/* <button
                 onClick={handleUserCourses}
                 disabled={!userEmail || alreadyEnrolled}
                 className={`w-full text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center transition duration-200 ${
@@ -145,7 +150,32 @@ const CourseDetails = () => {
                   : !userEmail
                   ? "Login to Enroll"
                   : "Enroll Now"}
-              </button>
+              </button> */}
+              {remainingSeat > 0 ? (
+                <button
+                  onClick={handleUserCourses}
+                  disabled={!userEmail || alreadyEnrolled}
+                  className={`w-full text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center transition duration-200 ${
+                    !userEmail || alreadyEnrolled
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl"
+                  }`}
+                >
+                  {alreadyEnrolled
+                    ? "Already Enrolled"
+                    : !userEmail
+                    ? "Login to Enroll"
+                    : "Enroll Now"}
+                </button>
+              ) : (
+                <button
+                  disabled
+                  className="w-full bg-gray-400 cursor-not-allowed p-2 rounded-2xl"
+                >
+                  {" "}
+                  No Seat Left
+                </button>
+              )}
             </div>
           </div>
         </div>
