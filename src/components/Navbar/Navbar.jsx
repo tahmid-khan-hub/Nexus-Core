@@ -1,5 +1,4 @@
 import React from "react";
-import icon from "../../assets/icons/course icon.png";
 import { Link, NavLink } from "react-router";
 import UseAuth from "../../Hooks/UseAuth";
 import './Navbar.css'
@@ -76,8 +75,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <img src={icon} className="-ml-1 md:ml-1 lg:ml-0" alt="" />
-        <a className=" text-2xl font-semibold ml-1">EduNova</a>
+        <a className=" text-2xl font-semibold ml-1">NexusCore</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -87,7 +85,7 @@ const Navbar = () => {
       <div className="navbar-end">
         {
           
-          (user && user.photoURL) ? <a><img className="w-10 h-10 rounded-full object-cover" src={user.photoURL}></img></a> : <a><img className="w-12 h-12 rounded-full mr-1 object-cover" src="https://i.ibb.co/Kxsnfc4C/image.png"></img></a>
+          (user && user.photoURL) ? <a><img className="w-9 h-9 rounded-full object-cover ring-2 ring-blue-500 ring-offset-2" src={user.photoURL}></img></a> : <a><img className="w-12 h-12 rounded-full mr-1 object-cover" src="https://i.ibb.co/Kxsnfc4C/image.png"></img></a>
         }
         {
           user ? <a onClick={handleSignOut} className="btn ml-2">Sign Out</a> : <>
