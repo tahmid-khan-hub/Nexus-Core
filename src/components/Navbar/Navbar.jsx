@@ -1,23 +1,22 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
 import UseAuth from "../../Hooks/UseAuth";
-import './Navbar.css'
+import "./Navbar.css";
 
 const Navbar = () => {
+  const { user, logOut } = UseAuth();
 
-  const {user, logOut} = UseAuth();
-
-  const handleSignOut = () =>{
+  const handleSignOut = () => {
     logOut()
-      .then(res =>{
+      .then((res) => {
         console.log(res);
       })
-      .catch(err =>{
+      .catch((err) => {
         console.log(err);
-      })
-  }
+      });
+  };
 
-  const links = (
+  const privateLinks = (
     <>
       <NavLink to="/">
         <li>
@@ -37,6 +36,21 @@ const Navbar = () => {
       <NavLink to="/myEnrolledCourses">
         <li>
           <a>MyEnrolledCourses</a>
+        </li>
+      </NavLink>
+      <NavLink to="/faq">
+        <li>
+          <a>FaQ</a>
+        </li>
+      </NavLink>
+    </>
+  );
+
+  const links = (
+    <>
+      <NavLink to="/">
+        <li>
+          <a>Home</a>
         </li>
       </NavLink>
       <NavLink to="/faq">
@@ -72,28 +86,48 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
-            {links}
+            {user ? privateLinks : links}
           </ul>
         </div>
         <a className=" text-2xl font-semibold ml-1">NexusCore</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          {links}
+          {user ? privateLinks : links}
         </ul>
       </div>
       <div className="navbar-end">
-        {
-          
-          (user && user.photoURL) ? <a><img className="w-9 h-9 rounded-full object-cover ring-2 ring-blue-500 ring-offset-2" src={user.photoURL}></img></a> : <a><img className="w-12 h-12 rounded-full mr-1 object-cover" src="https://i.ibb.co/Kxsnfc4C/image.png"></img></a>
-        }
-        {
-          user ? <a onClick={handleSignOut} className="btn ml-2">Sign Out</a> : <>
-            <Link to="/login"><a className="btn mr-2">Login</a></Link>
-            <Link className="hidden lg:block" to="/register"><a className="btn ">Register</a></Link>
+        {user && user.photoURL ? (
+          <a>
+            <img
+              title={user.displayName || "User"}
+              className="w-9 h-9 rounded-full object-cover ring-2 ring-blue-500 ring-offset-2"
+              src={user.photoURL}
+            ></img>
+            
+          </a>
+        ) : (
+          <a>
+            <img
+              className="w-12 h-12 rounded-full mr-1 object-cover"
+              src="https://i.ibb.co/Kxsnfc4C/image.png"
+            ></img>
+          </a>
+        )}
+        {user ? (
+          <a onClick={handleSignOut} className="btn ml-2">
+            Sign Out
+          </a>
+        ) : (
+          <>
+            <Link to="/login">
+              <a className="btn mr-2">Login</a>
+            </Link>
+            <Link className="hidden lg:block" to="/register">
+              <a className="btn ">Register</a>
+            </Link>
           </>
-        }
-        
+        )}
       </div>
     </div>
   );
