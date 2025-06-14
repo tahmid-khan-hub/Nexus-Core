@@ -21,7 +21,7 @@ const AddCourse = () => {
 
     NewCourseData.UserEmail = user.email;
     NewCourseData.userName = user.displayName;
-    NewCourseData.enrolled = "0";
+    NewCourseData.enrolled = 0;
     NewCourseData.createdAt = new Date().toISOString();
 
     console.log(NewCourseData);

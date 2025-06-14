@@ -15,8 +15,9 @@ const CourseDetails = () => {
 
   const course = data.find((c) => c._id.toString() === id);
   const userEmail = user?.email || "";
+  const [totalEnrolled, setTotalEnrolled] = useState(course.enrolled)
 
-  const remainingSeat = course.seatLimit - course.enrolled;
+  const remainingSeat = Number(course.seatLimit) - course.enrolled;
 
   const userCourseData = {
     email: userEmail,
@@ -58,6 +59,22 @@ const CourseDetails = () => {
       .then((res) => {
         console.log(res.data);
         if (res.data.insertedId) {
+          // axios.patch(`http://localhost:3000/courses/${course._id}`)
+          // .then(res => console.log(res.data))
+          // .catch(err => console.log(err))
+          fetch(`http://localhost:3000/courses/${course._id}`, {
+            method: 'PATCH',
+            headers:{
+              'content-type':'application/json'
+            },
+            body:JSON.stringify({ enrolled: totalEnrolled  + 1 })
+          })
+            .then(res => res.json())
+            .then(data =>{
+              console.log(data);
+            })
+            .catch(err => console.log(err))
+
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -65,6 +82,8 @@ const CourseDetails = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          setTotalEnrolled(prev => Number(prev) + 1)
+          setAlreadyEnrolled(true)
         }
       });
   };
@@ -126,7 +145,7 @@ const CourseDetails = () => {
               </div>
               <div>
                   <span className="font-semibold">👥 Enrolled:</span>
-                  <p>{course.enrolled}</p>
+                  <p>{totalEnrolled}</p>
               </div>
               <div>
                 <span className="font-semibold">🪑 Seat Limit:</span>
