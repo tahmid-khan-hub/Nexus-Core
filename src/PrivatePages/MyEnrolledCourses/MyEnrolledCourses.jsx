@@ -19,7 +19,7 @@ const MyEnrolledCourses = () => {
 
   const [userCourses, setUserCourses] = useState(UserCoursesData);
 
-  const handleRemoveEnrollment = (id) => {
+  const handleRemoveEnrollment = (id, courseId) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You will be unenrolled from this course.",
@@ -33,14 +33,15 @@ const MyEnrolledCourses = () => {
         axios
           .delete(`http://localhost:3000/userCourses/${id}`)
           .then(() => {
-            setUserCourses((prev) =>
-              prev.filter((course) => course._id !== id)
-            );
-            Swal.fire({
-              title: "Removed!",
-              text: "Your enrolled course has been removed",
-              icon: "success",
-            });
+            axios
+            .patch(`http://localhost:3000/courses/${courseId}/unenroll`)
+            .then(() => {
+              setUserCourses((prev) =>
+                prev.filter((course) => course._id !== id)
+              );
+              Swal.fire("Removed!", "Your enrolled course has been removed", "success");
+            })
+            
           })
           .catch((error) => {
             console.error(error);
@@ -94,7 +95,7 @@ const MyEnrolledCourses = () => {
                 </td>
                 <td className="px-6 py-4">
                   <a
-                    onClick={() => handleRemoveEnrollment(course._id)}
+                    onClick={() => handleRemoveEnrollment(course._id, course.courseId)}
                     className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                   >
                     Remove enrollment
