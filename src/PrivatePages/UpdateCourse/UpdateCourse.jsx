@@ -7,14 +7,12 @@ import Swal from "sweetalert2";
 
 const UpdateCourse = () => {
 
-  useEffect(()=>{document.title = "NexusCore | UpdateCourse"},[])
+  useEffect(()=>{document.title = "NexusCore | EditCourse"},[])
 
   const data = useLoaderData();
   const { id } = useParams();
 
   const EditCourse = data.find((c) => c._id.toString() === id);
-
-  console.log(EditCourse);
 
   const {
     photoURL,
@@ -71,7 +69,7 @@ const UpdateCourse = () => {
           />
         </div>
 
-        <h1 className="text-3xl font-bold text-center mt-8">Update Course</h1>
+        <h1 className="text-3xl font-bold text-center mt-8">Edit Course</h1>
         <p className="text-center mt-3 mb-11">
           Make changes to the course details below. You can update the title,
           description, category, and other important information to keep your
