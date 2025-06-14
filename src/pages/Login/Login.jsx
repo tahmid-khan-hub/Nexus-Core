@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import Lottie from "lottie-react";
 import loginLottie from "../../assets/lotties/login.json";
@@ -8,10 +8,13 @@ import GoogleSignIn from "../../Hooks/GoogleSignIn";
 import Swal from "sweetalert2";
 import PageLoading from "../../Hooks/PageLoading";
 import Animation from "../../Hooks/Animation";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
 
   useEffect(()=>{document.title = "NexusCore | Login"},[])
+
+  const [showIcon, setShowIcon] = useState(false)
 
   const { signIn } = UseAuth();
 
@@ -86,18 +89,20 @@ const Login = () => {
         </div>
 
         {/* Password */}
-        <div>
-          <label className="block mb-2 text-sm font-medium text-gray-900">
+        <label className="block mb-2 text-sm font-medium text-gray-900">
             Your Password
           </label>
+        <div className="relative flex">
           <input
-            type="password"
+            type={showIcon ? "text":"password"}
             name="password"
             id="password"
             placeholder="Enter Your Password"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
             required
           />
+          <span onClick={()=> setShowIcon(!showIcon)} className="absolute right-3 top-3 cursor-pointer">{showIcon ? <FaEyeSlash size={20} /> : <FaEye size={20} />}</span>
+          
         </div>
 
         {/* Lost Password */}
