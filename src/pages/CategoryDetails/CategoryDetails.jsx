@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Lottie from "lottie-react";
 import NoDataFound from "../../assets/lotties/noData.json";
 import { motion } from "framer-motion"; 
@@ -6,6 +6,8 @@ import { Link } from "react-router";
 import PageLoading from "../../Hooks/PageLoading";
 
 const CategoryDetails = ({ category }) => {
+
+  useEffect(()=>{document.title = "NexusCore | CategoryDetails"},[])
 
   const {
     certificateIncluded,

@@ -1,6 +1,5 @@
 import React from "react";
 import { FaFacebookF, FaTwitter, FaInstagram, FaGithub } from "react-icons/fa";
-import icon from "../../assets/icons/course icon.png";
 
 const Footer = () => {
   return (
@@ -9,10 +8,10 @@ const Footer = () => {
         <div class="md:flex md:justify-between">
           <div class="mb-16 md:mb-0">
             <a class="flex items-center">
-              <img src={icon} class="h-8 me-3" alt="course Logo" />
+              <img src="https://i.ibb.co/kpFnqYQ/image.png" class="h-8 me-3" alt="course Logo" />
               <div>
                 <span class="self-center text-2xl font-semibold whitespace-nowrap ">
-                  EduNova
+                  NexusCore
                 </span>
                 <p class="text-sm text-gray-700 mt-1">
                   Empowering learning through technology
@@ -68,7 +67,7 @@ const Footer = () => {
           <span class="text-sm text-gray-700 sm:text-center ">
             © {new Date().getFullYear()}{" "}
             <a href="https://flowbite.com/" class="hover:underline">
-              EduNova™
+              NexusCore™
             </a>
             . All Rights Reserved.
           </span>

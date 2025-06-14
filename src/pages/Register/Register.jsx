@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router";
 import Lottie from "lottie-react";
 import registerLottie from "../../assets/lotties/register.json";
@@ -11,6 +11,9 @@ import PageLoading from "../../Hooks/PageLoading";
 import Animation from "../../Hooks/Animation";
 
 const Register = () => {
+
+  useEffect(()=>{document.title = "NexusCore | Register"},[])
+
   const { signUp } = UseAuth();
 
   const handleGoogle = GoogleSignIn();

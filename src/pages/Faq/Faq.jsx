@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import * as motion from "motion/react-client";
 import PageLoading from "../../Hooks/PageLoading";
 
 const Faq = () => {
+
+  useEffect(()=>{document.title = "NexusCore | FaQ"},[])
+
   const faqs = [
     {
       question: "How do I enroll in a course?",

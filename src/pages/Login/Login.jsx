@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import Lottie from "lottie-react";
 import loginLottie from "../../assets/lotties/login.json";
@@ -10,6 +10,9 @@ import PageLoading from "../../Hooks/PageLoading";
 import Animation from "../../Hooks/Animation";
 
 const Login = () => {
+
+  useEffect(()=>{document.title = "NexusCore | Login"},[])
+
   const { signIn } = UseAuth();
 
   const handleGitHub = GitHubSignIn();

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Lottie from "lottie-react";
 import ErrorLottie from "../../assets/lotties/error.json";
 import { Link, useNavigate } from "react-router";
 import Navbar from "../../components/Navbar/Navbar";
 
 const ErrorPage = () => {
+
+  useEffect(()=>{document.title = "NexusCore | No Page Found"},[])
+
   const navigate = useNavigate();
 
   return (

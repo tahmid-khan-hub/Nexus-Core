@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLoaderData, useParams } from "react-router";
 import CategoryDetails from "../CategoryDetails/CategoryDetails";
 import Lottie from "lottie-react";
 import NoDataFound from "../../assets/lotties/noData.json";
 
 const Category = () => {
+
+  useEffect(()=>{document.title = "NexusCore | CategoryDetails"},[])
+
   const { category } = useParams();
   const courseData = useLoaderData();
 
