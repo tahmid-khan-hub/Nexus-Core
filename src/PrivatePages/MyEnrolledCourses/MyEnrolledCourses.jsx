@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router";
 import UseAuth from "../../Hooks/UseAuth";
 import Lottie from "lottie-react";
@@ -7,6 +7,9 @@ import Swal from "sweetalert2";
 import axios from "axios";
 
 const MyEnrolledCourses = () => {
+
+  useEffect(() => {document.title = "NexusCore | MyEnrolledCourses"},[])
+
   const { user } = UseAuth();
   const UserEmail = user.email || "";
 

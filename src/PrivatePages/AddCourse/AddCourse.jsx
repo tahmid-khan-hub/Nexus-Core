@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Lottie from "lottie-react";
 import addCourseLotties from "../../assets/lotties/addCourse.json";
 import axios from "axios";
@@ -7,6 +7,9 @@ import Swal from "sweetalert2";
 import Animation from "../../Hooks/Animation";
 
 const AddCourse = () => {
+
+  useEffect(()=>{document.title = "NexusCore | AddCourse"},[])
+
   const { user } = UseAuth();
 
   const handleNewCourses = (e) => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router";
 import UseAuth from "../../Hooks/UseAuth";
 import Lottie from "lottie-react";
@@ -7,6 +7,9 @@ import axios from "axios";
 import dataNotFound from "../../assets/lotties/dataNotFound.json"
 
 const ManageCourses = () => {
+
+  useEffect(()=>{document.title = "NexusCore | ManageCourses"},[])
+
   const { user } = UseAuth();
   const courseData = useLoaderData();
 

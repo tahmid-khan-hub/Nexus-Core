@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLoaderData, useNavigate, useParams } from "react-router";
 import Lottie from "lottie-react";
 import updateCourseLottie from "../../assets/lotties/updateCourse.json";
@@ -6,6 +6,9 @@ import Swal from "sweetalert2";
   import axios from "axios";
 
 const UpdateCourse = () => {
+
+  useEffect(()=>{document.title = "NexusCore | UpdateCourse"},[])
+
   const data = useLoaderData();
   const { id } = useParams();
 
