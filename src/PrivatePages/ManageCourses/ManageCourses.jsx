@@ -3,14 +3,17 @@ import { Link, useLoaderData } from "react-router";
 import UseAuth from "../../Hooks/UseAuth";
 import Lottie from "lottie-react";
 import Swal from "sweetalert2";
-import axios from "axios";
-import dataNotFound from "../../assets/lotties/dataNotFound.json"
+import dataNotFound from "../../assets/lotties/dataNotFound.json";
+import UseApplicationApi from "../../Hooks/UseApplicationApi";
 
 const ManageCourses = () => {
-
-  useEffect(()=>{document.title = "NexusCore | ManageCourses"},[])
+  useEffect(() => {
+    document.title = "NexusCore | ManageCourses";
+    window.scrollTo(0,0)
+  }, []);
 
   const { user } = UseAuth();
+  const { manageCoursesPromise } = UseApplicationApi();
   const courseData = useLoaderData();
 
   const email = user.email;
@@ -31,10 +34,8 @@ const ManageCourses = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios
-          .delete(`http://localhost:3000/courses/${id}`)
-          .then((res) => {
-            console.log(res.data);
+        manageCoursesPromise(id)
+          .then(() => {
             setCourses((prevCourses) =>
               prevCourses.filter((course) => course._id !== id)
             );
@@ -130,7 +131,8 @@ const ManageCourses = () => {
             You haven’t added any courses yet.
           </h2>
           <p className="text-gray-500 mt-2 text-sm md:text-base">
-            Start by adding a new course to manage and keep track of your content here.
+            Start by adding a new course to manage and keep track of your
+            content here.
           </p>
         </div>
       )}
