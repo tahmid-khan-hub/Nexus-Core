@@ -3,7 +3,8 @@ import { useLoaderData, useNavigate, useParams } from "react-router";
 import Lottie from "lottie-react";
 import updateCourseLottie from "../../assets/lotties/updateCourse.json";
 import Swal from "sweetalert2";
-  import axios from "axios";
+import UseApplicationApi from "../../Hooks/UseApplicationApi";
+import UseAuth from "../../Hooks/UseAuth";
 
 const UpdateCourse = () => {
 
@@ -11,6 +12,9 @@ const UpdateCourse = () => {
 
   const data = useLoaderData();
   const { id } = useParams();
+  const { user } = UseAuth();
+  const{ updateCoursePromise } = UseApplicationApi();
+  const email = user.email;
 
   const EditCourse = data.find((c) => c._id.toString() === id);
 
@@ -24,6 +28,7 @@ const UpdateCourse = () => {
     language,
     title,
     _id,
+    seatLimit,
   } = EditCourse;
 
   const navigate = useNavigate();
@@ -37,11 +42,10 @@ const UpdateCourse = () => {
 
     console.log(courseData);
 
-    axios
-      .put(`http://localhost:3000/courses/${_id}`, courseData)
+    updateCoursePromise(_id, email, courseData)
       .then((response) => {
-        console.log(response.data);
-        if (response.data.modifiedCount) {
+        console.log(response);
+        if (response.modifiedCount) {
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -173,6 +177,20 @@ const UpdateCourse = () => {
                 <span className="label-text ml-2">No</span>
               </label>
             </div>
+          </div>
+
+          <div>
+            <label className="label block font-bold mb-1">
+              Seat Limit
+            </label>
+            <input
+              className="input w-full"
+              type="number"
+              name="seatLimit"
+              placeholder="Enter Seat Limit"
+              required
+              defaultValue={seatLimit}
+            />
           </div>
 
           <div>

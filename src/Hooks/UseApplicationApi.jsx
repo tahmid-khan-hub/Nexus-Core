@@ -20,13 +20,20 @@ const UseApplicationApi = () => {
 
     const myEnrolledCoursesPatch = (courseId, email) =>{
         return axiosSecure.patch(`courses/${courseId}/unenroll?email=${email}`)
+        .then(res => res.data)
+    }
+
+    const updateCoursePromise = (_id, email, courseData) =>{
+        return axiosSecure.put(`courses/${_id}?email=${email}`, courseData)
+        .then(res => res.data)
     }
 
     return {
         addCoursePromise,
         manageCoursesPromise,
         myEnrolledCoursesPromise,
-        myEnrolledCoursesPatch
+        myEnrolledCoursesPatch,
+        updateCoursePromise,
     }
 };
 
