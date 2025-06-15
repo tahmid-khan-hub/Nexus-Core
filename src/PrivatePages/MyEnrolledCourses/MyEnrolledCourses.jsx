@@ -4,13 +4,14 @@ import UseAuth from "../../Hooks/UseAuth";
 import Lottie from "lottie-react";
 import dataNotFound from "../../assets/lotties/dataNotFound.json";
 import Swal from "sweetalert2";
-import axios from "axios";
+import UseApplicationApi from "../../Hooks/UseApplicationApi";
 
 const MyEnrolledCourses = () => {
 
   useEffect(() => {document.title = "NexusCore | MyEnrolledCourses"},[])
 
   const { user } = UseAuth();
+  const { myEnrolledCoursesPromise, myEnrolledCoursesPatch } = UseApplicationApi();
   const UserEmail = user.email || "";
 
   const data = useLoaderData();
@@ -30,11 +31,9 @@ const MyEnrolledCourses = () => {
       confirmButtonText: "Yes, remove it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios
-          .delete(`http://localhost:3000/userCourses/${id}`)
+        myEnrolledCoursesPromise(id, UserEmail) 
           .then(() => {
-            axios
-            .patch(`http://localhost:3000/courses/${courseId}/unenroll`)
+            myEnrolledCoursesPatch(courseId, UserEmail)
             .then(() => {
               setUserCourses((prev) =>
                 prev.filter((course) => course._id !== id)

@@ -13,9 +13,20 @@ const UseApplicationApi = () => {
         return axiosSecure.delete(`courses/${id}?email=${email}`).then(res => res.data);
     };
 
+    const myEnrolledCoursesPromise = (id, email) =>{
+        return axiosSecure.delete(`userCourses/${id}?email=${email}`)
+        .then(res => res.data)
+    }
+
+    const myEnrolledCoursesPatch = (courseId, email) =>{
+        return axiosSecure.patch(`courses/${courseId}/unenroll?email=${email}`)
+    }
+
     return {
         addCoursePromise,
-        manageCoursesPromise
+        manageCoursesPromise,
+        myEnrolledCoursesPromise,
+        myEnrolledCoursesPatch
     }
 };
 
