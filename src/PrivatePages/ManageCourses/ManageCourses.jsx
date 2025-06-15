@@ -34,7 +34,7 @@ const ManageCourses = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        manageCoursesPromise(id)
+        manageCoursesPromise(id, email)
           .then(() => {
             setCourses((prevCourses) =>
               prevCourses.filter((course) => course._id !== id)

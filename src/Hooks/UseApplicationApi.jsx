@@ -9,8 +9,8 @@ const UseApplicationApi = () => {
         .then(res => res.data)
     }
 
-    const manageCoursesPromise = id => {
-        return axiosSecure.delete(`courses/${id}`).then(res => res.data);
+    const manageCoursesPromise = (id, email) => {
+        return axiosSecure.delete(`courses/${id}?email=${email}`).then(res => res.data);
     };
 
     return {
