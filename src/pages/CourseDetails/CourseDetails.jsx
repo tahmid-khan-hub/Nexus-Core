@@ -15,6 +15,7 @@ const CourseDetails = () => {
   const course = data.find((c) => c._id.toString() === id);
   const userEmail = user?.email || "";
   const [totalEnrolled, setTotalEnrolled] = useState(course.enrolled);
+  const [enrollLimitReached, setEnrollLimitReached] = useState(false);
   const remainingSeat = Number(course.seatLimit) - totalEnrolled;
 
   const userCourseData = {
@@ -33,13 +34,26 @@ const CourseDetails = () => {
     if (!userEmail || !course?._id) return;
 
     axios
-      .get("http://localhost:3000/userCourses/check", {
-        params: { email: userEmail, courseId: course._id },
-      })
+      .get(`http://localhost:3000/userCoursesCount?email=${userEmail}`)
       .then((res) => {
-        if (res.data.enrolled === true) {
-          setAlreadyEnrolled(true);
-        }
+        setEnrollLimitReached(res.data.count >= 3);
+      })
+      .catch((err) => {
+        console.error("Count error:", err);
+        setEnrollLimitReached(false);
+      })
+      .finally(() => {
+        axios
+          .get("http://localhost:3000/userCourses/check", {
+            params: { email: userEmail, courseId: course._id },
+          })
+          .then((res) => {
+            setAlreadyEnrolled(res?.data?.enrolled === true);
+          })
+          .catch((err) => {
+            console.error("Enrollment check error:", err);
+            setAlreadyEnrolled(false);
+          });
       });
   }, [userEmail, course?._id]);
 
@@ -51,6 +65,15 @@ const CourseDetails = () => {
 
   const handleUserCourses = () => {
     if (!userEmail || alreadyEnrolled) return;
+
+    if (enrollLimitReached) {
+      Swal.fire({
+        icon: "warning",
+        title: "Limit Reached",
+        text: "You can’t enroll in more than 3 courses.",
+      });
+      return;
+    }
 
     axios
       .post("http://localhost:3000/userCourses", userCourseData)
@@ -74,7 +97,8 @@ const CourseDetails = () => {
               });
               setTotalEnrolled((prev) => Number(prev) + 1);
               setAlreadyEnrolled(true);
-            });
+            })
+            .catch((err) => console.log(err));
         }
       })
       .catch((err) => console.log(err));
@@ -118,10 +142,7 @@ const CourseDetails = () => {
             setTotalEnrolled((prev) => Math.max(0, prev - 1));
             setAlreadyEnrolled(false);
           })
-          .catch((err) => {
-            console.error(err);
-            Swal.fire("Error", "Failed to unenroll from course.", "error");
-          });
+          .catch((err) => Swal.fire(err));
       }
     });
   };
