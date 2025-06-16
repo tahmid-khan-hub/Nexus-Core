@@ -5,9 +5,11 @@ import UseAuth from "../../Hooks/UseAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
 import PageLoading from "../../Hooks/PageLoading";
+import UseApplicationApi from "../../Hooks/UseApplicationApi";
 
 const CourseDetails = () => {
   const { user } = UseAuth();
+  const {myEnrolledCoursesPatch, courseDelete} = UseApplicationApi();
   const { id } = useParams();
   const data = useLoaderData();
 
@@ -79,30 +81,24 @@ const CourseDetails = () => {
       .post("http://localhost:3000/userCourses", userCourseData)
       .then((res) => {
         if (res.data.insertedId) {
-          fetch(`http://localhost:3000/courses/${course._id}`, {
-            method: "PATCH",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify({ enrolled: totalEnrolled + 1 }),
-          })
-            .then((res) => res.json())
-            .then(() => {
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Course enrolled successfully!",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-              setTotalEnrolled((prev) => Number(prev) + 1);
-              setAlreadyEnrolled(true);
-            })
-            .catch((err) => console.log(err));
+          return axios.patch(`http://localhost:3000/courses/${course._id}`, {
+            enrolled: totalEnrolled + 1,
+          });
         }
       })
-      .catch((err) => console.log(err));
-  };
+      .then(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Course enrolled successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        setTotalEnrolled((prev) => Number(prev) + 1);
+        setAlreadyEnrolled(true);
+      })
+      .catch((err) => console.log("Enrollment error:", err));
+    };
 
   const handleUnenroll = () => {
     Swal.fire({
@@ -115,22 +111,10 @@ const CourseDetails = () => {
       confirmButtonText: "Yes, remove it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios
-          .delete(
-            `http://localhost:3000/userCourses/${userEmail}/${course._id}`
-          )
+        courseDelete(userEmail, course._id)
           .then(() => {
-            return fetch(
-              `http://localhost:3000/courses/${course._id}/unenroll`,
-              {
-                method: "PATCH",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              }
-            );
+            myEnrolledCoursesPatch(course._id, userEmail)
           })
-          .then((res) => res.json())
           .then(() => {
             Swal.fire({
               position: "top-end",
