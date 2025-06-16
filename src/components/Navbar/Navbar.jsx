@@ -85,7 +85,9 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{user ? privateLinks : links}</ul>
+        <ul className="menu menu-horizontal px-1">
+          {user ? privateLinks : links}
+        </ul>
       </div>
 
       <div className="navbar-end flex items-center space-x-3">
@@ -105,9 +107,16 @@ const Navbar = () => {
             </button>
 
             {showProfileDropdown && (
-              <div className="absolute right-0 mt-2 w-64 rounded-md shadow-lg bg-white p-4 z-20 text-left">
-                <p className="font-semibold text-center mb-1">{user.displayName}</p>
-                <p className="text-sm text-gray-600 mb-2 text-center">{user.email}</p>
+              <div className="absolute right-0 mt-2 w-64 rounded-md shadow-lg bg-white p-4 z-20 text-center">
+                {user.photoURL && (
+                  <img
+                    src={user.photoURL}
+                    alt="Profile"
+                    className="w-12 h-12 rounded-full object-cover mx-auto mb-2 ring-2 ring-blue-500 ring-offset-2"
+                  />
+                )}
+                <p className="font-semibold mb-1">{user.displayName}</p>
+                <p className="text-sm text-gray-600 mb-2">{user.email}</p>
                 <button
                   onClick={handleSignOut}
                   className="mt-2 w-full text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2"
@@ -120,16 +129,24 @@ const Navbar = () => {
         ) : (
           <>
             <Link to="/login">
-              <a className="mr-1 text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2">Login</a>
+              <a className="mr-1 text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2">
+                Login
+              </a>
             </Link>
             <Link className="hidden lg:block" to="/register">
-              <a className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2">Register</a>
+              <a className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2">
+                Register
+              </a>
             </Link>
           </>
         )}
 
         <div className="dropdown relative">
-          <div tabIndex={0} role="button" className="btn-ghost lg:hidden cursor-pointer mr-3">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn-ghost lg:hidden cursor-pointer mr-3"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -137,7 +154,12 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
             </svg>
           </div>
           <ul

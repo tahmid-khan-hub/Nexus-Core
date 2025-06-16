@@ -14,8 +14,6 @@ const AddCourse = () => {
 
   const { user } = UseAuth();
   const { addCoursePromise } = UseApplicationApi();
-  const token = user.accessToken;
-  console.log(token);
 
   const handleNewCourses = (e) => {
   e.preventDefault();
