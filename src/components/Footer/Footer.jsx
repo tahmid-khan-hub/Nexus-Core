@@ -10,8 +10,8 @@ const Footer = () => {
             <a className="flex items-center">
               <img src="https://i.ibb.co/kpFnqYQ/image.png" className="h-8 me-3" alt="course Logo" />
               <div>
-                <span className="self-center text-2xl font-semibold whitespace-nowrap ">
-                  NexusCore
+                <span className="self-cente whitespace-nowrap ">
+                  <a className="text-2xl font-semibold ml-1">Nex<span className="font-bold text-blue-500 text-[27px]">US</span>Core</a>
                 </span>
                 <p className="text-sm text-gray-700 mt-1">
                   Empowering learning through technology
@@ -66,14 +66,14 @@ const Footer = () => {
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-gray-700 sm:text-center ">
             © {new Date().getFullYear()}{" "}
-            <a href="https://flowbite.com/" className="hover:underline">
-              NexusCore™
+            <a className="hover:underline">
+              NexUSCore™
             </a>
             . All Rights Reserved.
           </span>
           <div className="flex mt-4 sm:justify-center sm:mt-0">
             <a
-              href="#"
+              href="https://www.google.com/search?gs_ssp=eJzj4tLP1TfIyK1MKy5TYDRgdGDw4khLTE5Nys_PBgBmYAfL&q=facebook&oq=face&gs_lcrp=EgZjaHJvbWUqGQgBEC4YgwEYxwEYkQIYsQMY0QMYgAQYigUyBggAEEUYPDIZCAEQLhiDARjHARiRAhixAxjRAxiABBiKBTIPCAIQRRg5GIMBGLEDGIAEMg0IAxAAGJECGIAEGIoFMgYIBBBFGDwyBggFEEUYPDIGCAYQRRg8MgYIBxBFGEHSAQgxNDQ0ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8"
               className="text-gray-700 hover:text-gray-900 "
             >
               <svg
@@ -93,7 +93,7 @@ const Footer = () => {
             </a>
 
             <a
-              href="#"
+              href="https://x.com/"
               className="text-gray-700 hover:text-gray-900 ms-5"
             >
               <svg
@@ -112,7 +112,7 @@ const Footer = () => {
               <span className="sr-only">Twitter page</span>
             </a>
             <a
-              href="#"
+              href="https://www.google.com/search?gs_ssp=eJzj4tLP1TcoqiwoyE1XYDRgdGDwYkvPLMkoTQIAWC4HFA&q=github&oq=gi&gs_lcrp=EgZjaHJvbWUqGAgBEC4YQxiDARjHARixAxjRAxiABBiKBTIGCAAQRRg8MhgIARAuGEMYgwEYxwEYsQMY0QMYgAQYigUyBggCEEUYOTIMCAMQIxgnGIAEGIoFMgYIBBBFGDwyBggFEEUYPDIGCAYQRRg8MgYIBxBFGD3SAQgxODkwajBqN6gCALACAA&sourceid=chrome&ie=UTF-8"
               className="text-gray-700 hover:text-gray-900 ms-5 mr-0 md:mr-11"
             >
               <svg

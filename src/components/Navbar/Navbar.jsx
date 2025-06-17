@@ -81,7 +81,7 @@ const Navbar = () => {
   return (
     <div className="navbar sticky top-0 z-50 bg-[#d9e9f9] border-b-2 border-blue-400 shadow-sm">
       <div className="navbar-start">
-        <a className="text-2xl font-semibold ml-1">NexusCore</a>
+        <a className="text-2xl font-semibold ml-1">Nex<span className="font-bold text-blue-500 text-[27px]">US</span>Core</a>
       </div>
 
       <div className="navbar-center hidden lg:flex">
@@ -98,23 +98,33 @@ const Navbar = () => {
               className="focus:outline-none"
               aria-label="User menu"
             >
-              <img
+              
+              {user.photoURL ? <img
                 title={user.displayName || "User"}
                 className="w-9 h-9 rounded-full object-cover ring-2 ring-blue-500 ring-offset-2"
                 src={user.photoURL}
                 alt="Profile"
-              />
+              /> : <img
+                title={user.displayName || "User"}
+                className="w-9 h-9 rounded-full object-cover "
+                src="https://i.ibb.co/Kxsnfc4C/image.png"
+                alt="Profile"
+              /> }
             </button>
 
             {showProfileDropdown && (
               <div className="absolute right-0 mt-2 w-64 rounded-md shadow-lg bg-white p-4 z-20 text-center">
-                {user.photoURL && (
+                {user.photoURL ? (
                   <img
                     src={user.photoURL}
                     alt="Profile"
                     className="w-12 h-12 rounded-full object-cover mx-auto mb-2 ring-2 ring-blue-500 ring-offset-2"
                   />
-                )}
+                ) : <img
+                    src="https://i.ibb.co/Kxsnfc4C/image.png"
+                    alt="Profile"
+                    className="w-12 h-12 rounded-full object-cover mx-auto mb-2 "
+                  />}
                 <p className="font-semibold mb-1">{user.displayName}</p>
                 <p className="text-sm text-gray-600 mb-2">{user.email}</p>
                 <button
