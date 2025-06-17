@@ -6,7 +6,7 @@ const UseAxiosSecure = () => {
   const { user, logOut } = UseAuth();
 
   const axiosInstance = axios.create({
-    baseURL: "http://localhost:3000/",
+    baseURL: "https://course-management-server-pi.vercel.app/",
   });
 
   axiosInstance.interceptors.request.use(
