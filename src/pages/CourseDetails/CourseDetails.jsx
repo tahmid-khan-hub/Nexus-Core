@@ -2,23 +2,30 @@ import React, { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router";
 import * as motion from "motion/react-client";
 import UseAuth from "../../Hooks/UseAuth";
-import axios from "axios";
 import Swal from "sweetalert2";
 import PageLoading from "../../Hooks/PageLoading";
 import UseApplicationApi from "../../Hooks/UseApplicationApi";
 
 const CourseDetails = () => {
   const { user } = UseAuth();
-  const {myEnrolledCoursesPatch, courseDelete} = UseApplicationApi();
+  const {
+    myEnrolledCoursesPatch,
+    courseDelete,
+    userCoursesCheck,
+    userCoursesCount,
+    enrollPost,
+    enrollIncrement,
+  } = UseApplicationApi();
   const { id } = useParams();
   const data = useLoaderData();
 
   const [alreadyEnrolled, setAlreadyEnrolled] = useState(false);
+  const [totalEnrolled, setTotalEnrolled] = useState(0);
+  const [enrollLimitReached, setEnrollLimitReached] = useState(false);
+  const [remainingSeat, setRemainingSeat] = useState(0);
+
   const course = data.find((c) => c._id.toString() === id);
   const userEmail = user?.email || "";
-  const [totalEnrolled, setTotalEnrolled] = useState(course.enrolled);
-  const [enrollLimitReached, setEnrollLimitReached] = useState(false);
-  const remainingSeat = Number(course.seatLimit) - totalEnrolled;
 
   const userCourseData = {
     email: userEmail,
@@ -33,31 +40,39 @@ const CourseDetails = () => {
   }, []);
 
   useEffect(() => {
+    if (course) {
+      setTotalEnrolled(course.enrolled);
+      setRemainingSeat(Number(course.seatLimit) - Number(course.enrolled));
+    }
+  }, [course]);
+
+  useEffect(() => {
+    if (course) {
+      setRemainingSeat(Number(course.seatLimit) - totalEnrolled);
+    }
+  }, [totalEnrolled, course]);
+
+  useEffect(() => {
     if (!userEmail || !course?._id) return;
 
-    axios
-      .get(`http://localhost:3000/userCoursesCount?email=${userEmail}`)
+    userCoursesCount(userEmail)
       .then((res) => {
-        setEnrollLimitReached(res.data.count >= 3);
+        setEnrollLimitReached(res.count >= 3);
       })
       .catch((err) => {
         console.error("Count error:", err);
         setEnrollLimitReached(false);
-      })
-      .finally(() => {
-        axios
-          .get("http://localhost:3000/userCourses/check", {
-            params: { email: userEmail, courseId: course._id },
-          })
-          .then((res) => {
-            setAlreadyEnrolled(res?.data?.enrolled === true);
-          })
-          .catch((err) => {
-            console.error("Enrollment check error:", err);
-            setAlreadyEnrolled(false);
-          });
       });
-  }, [userEmail, course?._id]);
+
+    userCoursesCheck(userEmail, course._id)
+      .then((res) => {
+        setAlreadyEnrolled(res?.enrolled === true);
+      })
+      .catch((err) => {
+        console.error("Enrollment check error:", err);
+        setAlreadyEnrolled(false);
+      });
+  }, [userEmail, course?._id, userCoursesCheck, userCoursesCount]);
 
   useEffect(() => {
     if (!userEmail) {
@@ -69,21 +84,25 @@ const CourseDetails = () => {
     if (!userEmail || alreadyEnrolled) return;
 
     if (enrollLimitReached) {
-      Swal.fire({
+      return Swal.fire({
         icon: "warning",
         title: "Limit Reached",
         text: "You can’t enroll in more than 3 courses.",
       });
-      return;
     }
 
-    axios
-      .post("http://localhost:3000/userCourses", userCourseData)
+    if (remainingSeat <= 0) {
+      return Swal.fire({
+        icon: "warning",
+        title: "No Seat Available",
+        text: "All seats for this course are filled.",
+      });
+    }
+
+    enrollPost(userCourseData, userEmail)
       .then((res) => {
-        if (res.data.insertedId) {
-          return axios.patch(`http://localhost:3000/courses/${course._id}`, {
-            enrolled: totalEnrolled + 1,
-          });
+        if (res.insertedId) {
+          return enrollIncrement(course._id, totalEnrolled + 1, userEmail);
         }
       })
       .then(() => {
@@ -98,7 +117,7 @@ const CourseDetails = () => {
         setAlreadyEnrolled(true);
       })
       .catch((err) => console.log("Enrollment error:", err));
-    };
+  };
 
   const handleUnenroll = () => {
     Swal.fire({
@@ -112,9 +131,7 @@ const CourseDetails = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         courseDelete(userEmail, course._id)
-          .then(() => {
-            myEnrolledCoursesPatch(course._id, userEmail)
-          })
+          .then(() => myEnrolledCoursesPatch(course._id, userEmail))
           .then(() => {
             Swal.fire({
               position: "top-end",
@@ -126,7 +143,7 @@ const CourseDetails = () => {
             setTotalEnrolled((prev) => Math.max(0, prev - 1));
             setAlreadyEnrolled(false);
           })
-          .catch((err) => Swal.fire(err));
+          .catch((err) => Swal.fire("Error", err.message, "error"));
       }
     });
   };
@@ -197,7 +214,7 @@ const CourseDetails = () => {
               </div>
 
               <div className="pt-5">
-                {remainingSeat > 0 ? (
+                {/* {remainingSeat > 0 ? (
                   <button
                     onClick={
                       alreadyEnrolled ? handleUnenroll : handleUserCourses
@@ -223,6 +240,29 @@ const CourseDetails = () => {
                     className="w-full bg-gray-400 cursor-not-allowed p-2 rounded-2xl"
                   >
                     No Seat Left
+                  </button>
+                )} */}
+                {alreadyEnrolled ? (
+                  <button
+                    onClick={handleUnenroll}
+                    className="w-full text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2"
+                  >
+                    Enrolled
+                  </button>
+                ) : (
+                  <button
+                    onClick={handleUserCourses}
+                    className={`px-4 py-2 rounded ${
+                      enrollLimitReached || remainingSeat <= 0
+                        ? "w-full text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
+                        : "w-full text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2"
+                    }`}
+                  >
+                    {enrollLimitReached
+                      ? "Enroll Now"
+                      : remainingSeat <= 0
+                      ? "No Seat Left"
+                      : "Enroll Now"}
                   </button>
                 )}
               </div>
