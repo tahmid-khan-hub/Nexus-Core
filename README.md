@@ -25,7 +25,6 @@
 ### ✨ Key Features  
 - **📚 Browse and Discover Courses** – Explore a growing catalog of curated courses across various topics  
 - **📝 Enroll and Track Progress** – Enroll in courses and manage learning via a personalized dashboard  
-- **🔐 Secure Firebase Authentication** – Sign up and log in with Firebase for a smooth and secure experience  
 - **📋 View Enrolled Courses** – Access enrolled courses anytime and continue where you left off  
 - **📊 Course Limits & Duplicate Protection** – Backend logic prevents duplicate enrollments and controls max limits
 
