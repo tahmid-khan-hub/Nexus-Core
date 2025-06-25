@@ -34,8 +34,8 @@
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/nexuscore.git  
-   cd recipe-book
+   git clone https://github.com/tahmid-khan-hub/Nexus-Core.git
+   cd Nexus-Core
    ```
 
 2. **Install dependencies**
