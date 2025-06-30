@@ -14,6 +14,7 @@ import CourseDetails from "../pages/CourseDetails/CourseDetails";
 import UpdateCourse from "../PrivatePages/UpdateCourse/UpdateCourse";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Faq from "../pages/Faq/Faq";
+import AllCourses from "../pages/AllCourses/AllCourses";
 
 const Router = createBrowserRouter([
   {
@@ -81,6 +82,11 @@ const Router = createBrowserRouter([
       {
         path: "/courseDetails/:id",
         element: <CourseDetails></CourseDetails>,
+        loader: () => fetch("http://localhost:3000/courses"),
+      },
+      {
+        path: "/allCourses",
+        element: <AllCourses></AllCourses>,
         loader: () => fetch("http://localhost:3000/courses"),
       },
       {

@@ -40,6 +40,11 @@ const Navbar = () => {
           <a>Home</a>
         </li>
       </NavLink>
+      <NavLink to="/allCourses">
+        <li>
+          <a>All Courses</a>
+        </li>
+      </NavLink>
       <NavLink to="/addCourse">
         <li>
           <a>AddCourse</a>
@@ -55,11 +60,6 @@ const Navbar = () => {
           <a>MyEnrolledCourses</a>
         </li>
       </NavLink>
-      <NavLink to="/faq">
-        <li>
-          <a>FaQ</a>
-        </li>
-      </NavLink>
     </>
   );
 
@@ -68,6 +68,11 @@ const Navbar = () => {
       <NavLink to="/">
         <li>
           <a>Home</a>
+        </li>
+      </NavLink>
+      <NavLink to="/allCourses">
+        <li>
+          <a>All Courses</a>
         </li>
       </NavLink>
       <NavLink to="/faq">
