@@ -169,79 +169,58 @@ const CourseDetails = () => {
             repeatType: "reverse",
             ease: "easeInOut",
           }}
-          className="max-w-2xl w-[96%] mx-auto bg-white dark:bg-gray-900 shadow-2xl rounded-2xl overflow-hidden border-2 border-blue-600 dark:border-gray-700 transition hover:shadow-2xl duration-300 my-16"
+          className="max-w-7xl w-[96%] mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden border-2 border-blue-300 transition duration-300 my-16 p-2 mb-44"
         >
-          <div>
-            <img
-              src={course.photoURL}
-              alt={course.title}
-              className="w-full h-56 object-cover p-2 rounded-2xl"
-            />
+          <div className="flex flex-col md:flex-row">
+            {/* Left image side */}
+            <div className="md:w-[60%]">
+              <img
+                src={course.photoURL}
+                alt={course.title}
+                className="w-full h-[300px] md:h-full object-cover p-2 rounded-2xl"
+              />
+            </div>
 
-            <div className="p-6 space-y-3">
-              <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
-                {course.title}
-              </h2>
-              <p className="text-sm mb-5 text-gray-500 dark:text-gray-400">
-                {course.description}
-              </p>
+            {/* Right content side */}
+            <div className="p-6 space-y-3 flex flex-col justify-between md:w-[40%]">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                  {course.title}
+                </h2>
+                <p className="text-sm mb-8 text-gray-500">
+                  {course.description}
+                </p>
 
-              <div className="grid grid-cols-2 gap-4 mt-4 text-sm text-gray-700 dark:text-gray-300">
-                <div>
-                  <span className="font-semibold">📅 Date:</span>
-                  <p>{new Date(course.date).toLocaleDateString()}</p>
-                </div>
-                <div>
-                  <span className="font-semibold">⏳ Duration:</span>
-                  <p>{course.duration} weeks</p>
-                </div>
-                <div>
-                  <span className="font-semibold">🌍 Language:</span>
-                  <p>{course.language}</p>
-                </div>
-                <div>
-                  <span className="font-semibold">🎓 Certificate:</span>
-                  <p>{course.certificateIncluded}</p>
-                </div>
-                <div>
-                  <span className="font-semibold">👥 Enrolled:</span>
-                  <p>{totalEnrolled}</p>
-                </div>
-                <div>
-                  <span className="font-semibold">🪑 Seat Limit:</span>
-                  <p>{course.seatLimit}</p>
+                <div className="grid grid-cols-2 gap-4 mt-4 text-sm text-gray-700">
+                  <div>
+                    <span className="font-semibold">📅 Date:</span>
+                    <p>{new Date(course.date).toLocaleDateString()}</p>
+                  </div>
+                  <div>
+                    <span className="font-semibold">⏳ Duration:</span>
+                    <p>{course.duration} weeks</p>
+                  </div>
+                  <div>
+                    <span className="font-semibold">🌍 Language:</span>
+                    <p>{course.language}</p>
+                  </div>
+                  <div>
+                    <span className="font-semibold">🎓 Certificate:</span>
+                    <p>{course.certificateIncluded}</p>
+                  </div>
+                  <div>
+                    <span className="font-semibold">👥 Enrolled:</span>
+                    <p>{totalEnrolled}</p>
+                  </div>
+                  <div>
+                    <span className="font-semibold">🪑 Seat Limit:</span>
+                    <p>{course.seatLimit}</p>
+                  </div>
                 </div>
               </div>
 
+              {/* Button section pinned to bottom */}
               <div className="pt-5">
-                {/* {remainingSeat > 0 ? (
-                  <button
-                    onClick={
-                      alreadyEnrolled ? handleUnenroll : handleUserCourses
-                    }
-                    disabled={!userEmail}
-                    className={`w-full text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center transition duration-200 ${
-                      !userEmail
-                        ? "bg-gray-400 cursor-not-allowed"
-                        : alreadyEnrolled
-                        ? "bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl"
-                        : "bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl"
-                    }`}
-                  >
-                    {!userEmail
-                      ? "Login to Enroll"
-                      : alreadyEnrolled
-                      ? "Enrolled"
-                      : "Enroll Now"}
-                  </button>
-                ) : (
-                  <button
-                    disabled
-                    className="w-full bg-gray-400 cursor-not-allowed p-2 rounded-2xl"
-                  >
-                    No Seat Left
-                  </button>
-                )} */}
                 {alreadyEnrolled ? (
                   <button
                     onClick={handleUnenroll}
@@ -252,10 +231,10 @@ const CourseDetails = () => {
                 ) : (
                   <button
                     onClick={handleUserCourses}
-                    className={`px-4 py-2 rounded ${
+                    className={`w-full text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 ${
                       enrollLimitReached || remainingSeat <= 0
-                        ? "w-full text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
-                        : "w-full text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2"
+                        ? "cursor-not-allowed opacity-60"
+                        : ""
                     }`}
                   >
                     {enrollLimitReached
