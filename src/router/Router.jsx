@@ -23,7 +23,7 @@ const Router = createBrowserRouter([
       {
         path: "",
         element: <Home></Home>,
-        loader: () => fetch("https://course-management-server-pi.vercel.app/courses"),
+        loader: () => fetch("http://localhost:3000/courses"),
       },
       {
         path: "/login",
@@ -48,7 +48,7 @@ const Router = createBrowserRouter([
             <MyEnrolledCourses></MyEnrolledCourses>
           </PrivateRoute>
         ),
-        loader: ()=> fetch("https://course-management-server-pi.vercel.app/userCourses")
+        loader: ()=> fetch("http://localhost:3000/userCourses")
       },
       {
         path: "/manageCourses",
@@ -57,7 +57,7 @@ const Router = createBrowserRouter([
             <ManageCourses></ManageCourses>
           </PrivateRoute>
         ),
-        loader: () => fetch("https://course-management-server-pi.vercel.app/courses"),
+        loader: () => fetch("http://localhost:3000/courses"),
       },
       {
         path: "/updateCourse/:id",
@@ -66,22 +66,22 @@ const Router = createBrowserRouter([
             <UpdateCourse></UpdateCourse>
           </PrivateRoute>
         ),
-        loader: () => fetch("https://course-management-server-pi.vercel.app/courses"),
+        loader: () => fetch("http://localhost:3000/courses"),
       },
       {
         path: "/Category/:category",
         element: <Category></Category>,
-        loader: () => fetch("https://course-management-server-pi.vercel.app/courses"),
+        loader: () => fetch("http://localhost:3000/courses"),
       },
       {
         path: "/categoryDetails",
         element: <CategoryDetails></CategoryDetails>,
-        loader: () => fetch("https://course-management-server-pi.vercel.app/courses"),
+        loader: () => fetch("http://localhost:3000/courses"),
       },
       {
         path: "/courseDetails/:id",
         element: <CourseDetails></CourseDetails>,
-        loader: () => fetch("https://course-management-server-pi.vercel.app/courses"),
+        loader: () => fetch("http://localhost:3000/courses"),
       },
       {
         path: "/faq",

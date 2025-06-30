@@ -44,7 +44,7 @@ const HallOfFame = () => {
   return (
     <div className="mb-16">
       <h2 className="text-3xl font-bold text-center mt-16 mb-2">
-        🏆 Hall of Fame
+       Hall of Fame
       </h2>
       <p className="text-gray-500 mb-10 text-center max-w-xl mx-auto">
         Celebrating our top learners who completed their courses with excellence

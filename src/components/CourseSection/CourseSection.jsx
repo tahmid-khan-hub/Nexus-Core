@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import * as motion from "motion/react-client";
 
 const CourseSection = ({ coursesData }) => {
-  const limit = 6;
+  const limit = 8;
 
   const [latestCourses, setLatestCourses] = useState([]);
 
@@ -31,36 +31,30 @@ const CourseSection = ({ coursesData }) => {
         </p>
 
         {latestCourses.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {latestCourses.map((course) => (
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 key={course._id}
-                className="max-w-sm bg-gray-50 border-2 border-blue-300 rounded-lg shadow-xl mx-auto"
+                className="max-w-sm bg-gray-50 border-2 border-blue-300 rounded-lg shadow-xl mx-auto flex flex-col"
               >
-                  <img
-                    className="rounded-xl w-full p-2 h-48 object-cover"
-                    src={course.photoURL}
-                  />
-                <div className="p-5">
-                    <h5 className="mb-4 text-2xl font-semibold tracking-tight text-gray-900 ">
-                      {course.title}
-                    </h5>
-                  <p className="mb-3 font-normal text-gray-500 ">
-                    {course.description && course.description.length > 150
-                      ? course.description.slice(0, 150) + "..."
+                <img
+                  className="rounded-xl w-full p-2 h-[250px] object-cover"
+                  src={course.photoURL}
+                  alt={course.title}
+                />
+                <div className="p-5 flex flex-col flex-grow">
+                  <h5 className="mb-4 text-2xl font-semibold tracking-tight text-gray-900">
+                    {course.title}
+                  </h5>
+                  <p className="mb-3 font-normal text-gray-500">
+                    {course.description && course.description.length > 100
+                      ? course.description.slice(0, 100) + "..."
                       : course.description || "No description available."}
                   </p>
-                  {course.date && (
-                    <p className="mb-3 mt-4 text-sm font-normal text-gray-600 ">
-                      Added on :{" "}
-                      <span className="font-semibold">
-                        {new Date(course.date).toLocaleDateString()}
-                      </span>
-                    </p>
-                  )}
+
+                  {/* Button pinned to bottom */}
                   <div className="text-right mt-auto">
-                    {" "}
                     <Link
                       to={`/courseDetails/${course._id}`}
                       className="inline-flex items-center text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mt-5"
