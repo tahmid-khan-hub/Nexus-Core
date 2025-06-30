@@ -40,24 +40,30 @@ const Footer = () => {
             </div>
             <div className="mr-0 md:mr-5">
               <h2 className="mb-6 text-sm font-bold text-gray-900 uppercase ">
-                Company
+                Platform
               </h2>
               <ul className="text-gray-600 font-medium">
                 <li className="mb-4">
                   <a href="/about" className="hover:underline">
-                    About Us
+                    About
+                  </a>
+                </li>
+                <li className="mb-4">
+                  <a href="/careers" className="hover:underline">
+                    FaQ
                   </a>
                 </li>
                 <li className="mb-4">
                   <a href="/contact" className="hover:underline">
-                    Contact
+                    Privacy Policy
                   </a>
                 </li>
                 <li>
                   <a href="/careers" className="hover:underline">
-                    Careers
+                    Terms And Conditions
                   </a>
                 </li>
+                
               </ul>
             </div>
           </div>
