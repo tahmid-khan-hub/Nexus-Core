@@ -33,7 +33,7 @@ const AllCourses = () => {
 
   return (
     <div className="py-12">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1310px] mx-auto px-2">
         <h2 className="text-3xl font-bold text-center mb-4 mt-5">
           All Courses
         </h2>

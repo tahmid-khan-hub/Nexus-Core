@@ -51,25 +51,26 @@ const MyEnrolledCourses = () => {
   };
 
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <h2 className="text-3xl font-bold text-center mt-11 text-black mb-2">
+    <div className="relative max-w-[1300px] mx-auto mt-11 overflow-x-auto sm:rounded-lg ">
+      <h2 className="text-3xl font-bold text-center mb-2 mt-5">
         My Enrolled Courses
       </h2>
-      <p className="text-gray-500 text-center mb-8">
+      <p className="text-gray-500 text-center mb-12">
         View all the courses you’ve enrolled in. You can remove your enrollment
         from any course at any time.
       </p>
 
       {userCourses.length > 0 ? (
-        <table className="w-11/12 mx-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mb-11 ">
+       <div className="overflow-x-auto"> <table className="w-[1300px] mx-auto text-sm text-left text-gray-500 dark:text-gray-400 mb-48 mt-8 border ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50  dark:text-gray-400">
             <tr className="border-b-2">
               <th scope="col" className="px-6 py-3">
                 Title
               </th>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className=" py-3">
                 Description
               </th>
+              
               <th scope="col" className="px-6 py-3">
                 Action
               </th>
@@ -87,7 +88,7 @@ const MyEnrolledCourses = () => {
                 >
                   {course.title}
                 </th>
-                <td className="px-6 py-4">
+                <td className="py-4">
                   {course.description.length > 50
                     ? course.description.slice(0, 50) + "..."
                     : course.description}
@@ -95,7 +96,7 @@ const MyEnrolledCourses = () => {
                 <td className="px-6 py-4">
                   <a
                     onClick={() => handleRemoveEnrollment(course._id, course.courseId)}
-                    className="font-medium text-blue-600 dark:text-blue-500 "
+                    className="font-medium hover:underline text-blue-600 dark:text-blue-500 "
                   >
                     Remove enrollment
                   </a>
@@ -103,13 +104,13 @@ const MyEnrolledCourses = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table></div>
       ) : (
-        <div className="p-4 mb-11 text-center flex flex-col items-center justify-center">
-          <div className="w-72 h-72">
+        <div className="p-4 mb-32 text-center flex flex-col items-center justify-center ">
+          <div className="w-72 h-72 text-blue-400">
             <Lottie animationData={dataNotFound} loop />
           </div>
-          <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 ">
+          <h2 className="text-2xl md:text-3xl font-semibold ">
             You haven’t enrolled in any courses yet.
           </h2>
           <p className="text-gray-500 mt-2 text-sm md:text-base">
