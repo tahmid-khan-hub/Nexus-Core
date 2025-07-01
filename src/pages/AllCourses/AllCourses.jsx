@@ -1,17 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router";
 import * as motion from "motion/react-client";
 
 const AllCourses = () => {
   const coursesData = useLoaderData();
+  const [sortOption, setSortOption] = useState("default");
+
   useEffect(() => {
     document.title = "NexusCore | All Courses";
   }, []);
 
+  const sortOptions = [
+    { label: "Default", value: "default" },
+    { label: "Most enrolled", value: "enrolled_descending" },
+    { label: "Less enrolled", value: "enrolled_ascending" },
+    { label: "Latest", value: "new_course" },
+    { label: "Oldest", value: "old_course" },
+  ];
+
+  const sortedCourses = [...coursesData].sort((a, b) => {
+    if (sortOption === "enrolled_descending") {
+      return b.enrolled - a.enrolled;
+    } else if (sortOption === "enrolled_ascending") {
+      return a.enrolled - b.enrolled;
+    } else if (sortOption === "new_course") {
+      return new Date(b.date) - new Date(a.date); // newest first
+    } else if (sortOption === "old_course") {
+      return new Date(a.date) - new Date(b.date); // oldest first
+    }
+    return 0; // default
+  });
+
   return (
-    <div className="py-12 ">
+    <div className="py-12">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-4 mt-5 ">
+        <h2 className="text-3xl font-bold text-center mb-4 mt-5">
           All Courses
         </h2>
         <p className="text-gray-500 mb-16 text-center">
@@ -20,9 +43,24 @@ const AllCourses = () => {
           everyone—start learning and growing today.
         </p>
 
-        {coursesData.length > 0 && (
+        {/* Sort dropdown */}
+        <div className="flex justify-center gap-4 mb-10 flex-wrap">
+          <select
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+            className="px-4 py-2 border border-blue-400 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+          >
+            {sortOptions.map((option) => (
+              <option key={option.value} className="text-black" value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {sortedCourses.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-24">
-            {coursesData.map((course) => (
+            {sortedCourses.map((course) => (
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 key={course._id}
@@ -43,11 +81,10 @@ const AllCourses = () => {
                       : course.description || "No description available."}
                   </p>
 
-                  {/* Button pinned to bottom */}
                   <div className="text-right mt-auto">
                     <Link
                       to={`/courseDetails/${course._id}`}
-                      className="inline-flex items-center text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mt-5"
+                      className="inline-flex items-center text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mt-5"
                     >
                       View Details
                       <svg
