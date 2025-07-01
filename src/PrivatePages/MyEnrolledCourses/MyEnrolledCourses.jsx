@@ -51,7 +51,7 @@ const MyEnrolledCourses = () => {
   };
 
   return (
-    <div className="relative max-w-[1300px] mx-auto mt-11 overflow-x-auto sm:rounded-lg ">
+    <div className="relative max-w-[1300px] mx-auto mt-11 overflow-x-auto sm:rounded-lg min-h-screen">
       <h2 className="text-3xl font-bold text-center mb-2 mt-5">
         My Enrolled Courses
       </h2>
@@ -61,7 +61,7 @@ const MyEnrolledCourses = () => {
       </p>
 
       {userCourses.length > 0 ? (
-       <div className="overflow-x-auto"> <table className="w-[1300px] mx-auto text-sm text-left text-gray-500 dark:text-gray-400 mb-48 mt-8 border ">
+       <div className="overflow-x-auto"> <table className="w-[1300px] mx-auto text-sm text-left text-gray-500 dark:text-gray-400 mt-8 border ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50  dark:text-gray-400">
             <tr className="border-b-2">
               <th scope="col" className="px-6 py-3">

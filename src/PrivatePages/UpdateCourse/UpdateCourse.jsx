@@ -62,7 +62,7 @@ const UpdateCourse = () => {
   };
 
   return (
-    <div className="card bg-base-100 w-11/12 max-w-2xl mx-auto shrink-0 shadow-xl shadow-gray-500 mt-16 mb-24 border-1 border-blue-600">
+    <div className="card bg-base-100 w-11/12 max-w-[1300px] mx-auto shrink-0 shadow-xl shadow-gray-500 mt-16 mb-24 border-1 border-blue-600">
       <div className="card-body text-blue-900">
         {/* Lottie Animation */}
         <div className="flex justify-center ">
@@ -73,8 +73,8 @@ const UpdateCourse = () => {
           />
         </div>
 
-        <h1 className="text-3xl font-bold text-center mt-8">Edit Course</h1>
-        <p className="text-center mt-3 mb-11">
+        <h1 className="text-3xl font-bold text-center mt-8 text-black">Edit Course</h1>
+        <p className="text-center mt-3 mb-11 text-gray-600">
           Make changes to the course details below. You can update the title,
           description, category, and other important information to keep your
           course accurate and up to date for learners.

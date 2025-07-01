@@ -54,7 +54,7 @@ const AddCourse = () => {
     <Animation>
       <div
         data-aos="fade-up"
-        className="card bg-base-100 w-11/12 max-w-2xl mx-auto shrink-0 shadow-xl shadow-gray-500 mt-16 mb-24 border-1 border-blue-600"
+        className="card bg-base-100 w-11/12 max-w-[1300px] mx-auto shrink-0 shadow-xl shadow-gray-500 mt-16 mb-24 border-1 border-blue-600"
       >
         <div className="card-body text-blue-900">
           {/* Lottie Animation */}
@@ -66,8 +66,8 @@ const AddCourse = () => {
             />
           </div>
 
-          <h1 className="text-3xl font-bold text-center">Add Course</h1>
-          <p className="text-center mt-3 mb-9">
+          <h1 className="text-3xl font-bold text-center text-black">Add Course</h1>
+          <p className="text-center mt-3 mb-16 text-gray-600">
             Fill in the course details to add a new learning opportunity.
             Include a title, description, category, and other key info to help
             learners find and enroll in your course easily.

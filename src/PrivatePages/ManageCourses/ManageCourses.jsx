@@ -58,8 +58,8 @@ const ManageCourses = () => {
   };
 
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <h2 className="text-3xl font-bold text-center mt-11 text-black mb-2">
+    <div className="relative overflow-x-auto sm:rounded-lg mt-11 min-h-screen">
+      <h2 className="text-3xl font-bold text-center mt-5 mb-2">
         Manage Your Courses
       </h2>
       <p className="text-gray-500 text-center mb-8">
@@ -68,7 +68,7 @@ const ManageCourses = () => {
       </p>
 
       {courses.length > 0 ? (
-        <table className="w-11/12 mx-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mb-11 ">
+        <div className="overflow-x-auto"><table className="w-[1300px] mx-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mt-8 border">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50  dark:text-gray-400">
             <tr className="border-b-2">
               <th scope="col" className="px-6 py-3">
@@ -121,13 +121,13 @@ const ManageCourses = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table></div>
       ) : (
-        <div className="p-4 mb-11 text-center flex flex-col items-center justify-center">
+        <div className="p-4 mb-36 text-center flex flex-col items-center justify-center">
           <div className="w-72 h-72">
             <Lottie animationData={dataNotFound} loop />
           </div>
-          <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 ">
+          <h2 className="text-2xl md:text-3xl font-semibold ">
             You haven’t added any courses yet.
           </h2>
           <p className="text-gray-500 mt-2 text-sm md:text-base">
