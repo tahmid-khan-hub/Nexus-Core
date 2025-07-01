@@ -17,7 +17,7 @@ const PopularSection = ({ coursesData }) => {
 
   return (
     <div className="pt-5 pb-24 my-12">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1300px] mx-auto px-2">
         <h2 className="text-3xl font-bold text-center mb-4 mt-16 ">
           Our Most Popular Courses
         </h2>
@@ -32,7 +32,7 @@ const PopularSection = ({ coursesData }) => {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 key={course._id}
-                className="max-w-sm bg-[#eef6ff] border-2 border-blue-300 rounded-lg shadow-xl mx-auto flex flex-col"
+                className=" bg-[#eef6ff] border-2 border-blue-300 rounded-lg shadow-xl flex flex-col"
               >
                 <img
                   className="rounded-xl w-full p-2 h-[250px] object-cover"

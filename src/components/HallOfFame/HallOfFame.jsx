@@ -42,7 +42,7 @@ const HallOfFame = () => {
   ];
 
   return (
-    <div className=" my-24">
+    <div className=" my-24 ">
       <h2 className="text-3xl font-bold text-center mt-16 mb-2">
        Hall of Fame
       </h2>

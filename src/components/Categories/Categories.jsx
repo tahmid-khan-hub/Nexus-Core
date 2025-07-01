@@ -39,7 +39,7 @@ const Categories = () => {
   };
 
   return (
-    <div className="p-6  ">
+    <div className="">
       <h2 className="text-3xl font-bold mb-2 text-center ">
         Categories
       </h2>
@@ -50,7 +50,7 @@ const Categories = () => {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {category.map((cat) => (
           <motion.div
-            className="overflow-hidden border-2 rounded-xl border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-600 transition-colors duration-200"
+            className="overflow-hidden border-2 rounded-xl border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-400 transition-colors duration-200"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             animate={{ y: [0, -10] }} 
