@@ -15,6 +15,7 @@ import UpdateCourse from "../PrivatePages/UpdateCourse/UpdateCourse";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Faq from "../pages/Faq/Faq";
 import AllCourses from "../pages/AllCourses/AllCourses";
+import About from "../pages/About/About";
 
 const Router = createBrowserRouter([
   {
@@ -92,6 +93,10 @@ const Router = createBrowserRouter([
       {
         path: "/faq",
         element: <Faq></Faq>
+      },
+      {
+        path: "/about",
+        element: <About></About>
       }
     ],
   },
