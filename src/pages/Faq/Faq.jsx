@@ -38,7 +38,7 @@ const Faq = () => {
   return (
    <PageLoading>
      <section className="mt-8 py-12">
-      <div className="max-w-[1300px] mx-auto px-4">
+      <div className="max-w-[1320px] mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-3">
           Frequently Asked Questions
         </h2>
