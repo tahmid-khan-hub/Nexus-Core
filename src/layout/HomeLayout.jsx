@@ -1,18 +1,26 @@
 import React from 'react';
-import { Outlet } from 'react-router';
+import { Outlet, useLocation } from 'react-router';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import Banner from '../components/Banner/Banner';
 
 const HomeLayout = () => {
+    const location = useLocation();
+    
+    const showBannerRoutes = ['/', '/home'];
+    const shouldShowBanner = showBannerRoutes.includes(location.pathname);
+
     return (
-        <div className=''>
-            <Navbar></Navbar>
-            <Banner></Banner>
-            <div className='w-[96%] md:max-w-[1500px] mx-auto '>
-                <Outlet></Outlet>
+        <div>
+            <Navbar />
+            
+            {shouldShowBanner && <Banner />}
+
+            <div className='w-[96%] md:max-w-[1500px] mx-auto'>
+                <Outlet />
             </div>
-            <Footer></Footer>
+
+            <Footer />
         </div>
     );
 };
