@@ -5,8 +5,8 @@ import aboutLottie from "../../assets/lotties/about.json";
 const About = () => {
   useEffect(()=>{document.title = "NexusCore | About"},[])
   return (
-    <div className=" min-h-screen px-4 py-12 md:px-10 lg:px-20">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center mb-44">
+    <div className=" min-h-screen py-12 md:px-10 lg:px-20">
+      <div className="max-w-[1300px] mx-auto grid md:grid-cols-2 gap-16 items-center mb-44">
         {/* Lottie Animation */}
         <div>
           <Lottie

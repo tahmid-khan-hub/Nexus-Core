@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 const Terms = () => {
     useEffect(()=>{document.title = "NexusCore | Terms & Conditions"},[])
   return (
-    <div className="px-4 py-12 mb-24 mt-11">
+    <div className="max-w-[1300px] mx-auto py-12 mb-24 mt-11 min-h-screen">
       <div className="">
         <h1 className="text-3xl font-bold mb-6">Terms & Conditions</h1>
 

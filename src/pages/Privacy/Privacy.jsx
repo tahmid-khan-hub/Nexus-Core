@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 const Privacy = () => {
   useEffect(()=>{document.title = "NexusCore | Privacy & Policy"},[])
   return (
-    <div className=" px-4 py-12 mb-24">
+    <div className=" max-w-[1300px] mx-auto py-12 mb-24 min-h-screen">
       <div className="">
         <h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
 
