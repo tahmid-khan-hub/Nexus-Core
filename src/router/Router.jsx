@@ -16,6 +16,8 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Faq from "../pages/Faq/Faq";
 import AllCourses from "../pages/AllCourses/AllCourses";
 import About from "../pages/About/About";
+import Terms from "../pages/Terms/Terms";
+import Privacy from "../pages/Privacy/Privacy";
 
 const Router = createBrowserRouter([
   {
@@ -97,6 +99,14 @@ const Router = createBrowserRouter([
       {
         path: "/about",
         element: <About></About>
+      },
+      {
+        path: "/terms",
+        element: <Terms></Terms>
+      },
+      {
+        path: "/privacy",
+        element: <Privacy></Privacy>
       }
     ],
   },

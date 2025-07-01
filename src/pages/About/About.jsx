@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Lottie from "lottie-react";
 import aboutLottie from "../../assets/lotties/about.json";
 
 const About = () => {
+  useEffect(()=>{document.title = "NexusCore | About"},[])
   return (
     <div className=" min-h-screen px-4 py-12 md:px-10 lg:px-20">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center mb-44">
@@ -17,7 +18,7 @@ const About = () => {
 
         {/* Text Content */}
         <div>
-          <h2 className="text-3xl font-bold mb-4">
+          <h2 className="text-3xl font-bold mb-7">
             Welcome to{" "}
             <a className="text-3xl font-bold ml-1 ">
               Nex<span className="font-bold text-blue-500 text-3xl">US</span>
