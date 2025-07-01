@@ -54,4 +54,4 @@
 ---
 
 ### 🔗 Live Link  
-- 🌐 [Live Site](https://effervescent-centaur-5a4b64.netlify.app)
+- 🌐 [Live Site](https://dancing-paprenjak-69a983.netlify.app/)
