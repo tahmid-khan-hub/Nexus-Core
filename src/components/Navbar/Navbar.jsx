@@ -2,11 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router";
 import UseAuth from "../../Hooks/UseAuth";
 import "./Navbar.css";
+import { FiMoon, FiSun } from "react-icons/fi";
 
 const Navbar = () => {
   const { user, logOut } = UseAuth();
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const profileDropdownRef = useRef(null);
+  const [darkMode, setDarkMode] = useState(false);
 
   const handleSignOut = () => {
     logOut()
@@ -32,6 +34,10 @@ const Navbar = () => {
     document.addEventListener("mousedown", handleOutsideClick);
     return () => document.removeEventListener("mousedown", handleOutsideClick);
   }, []);
+
+  useEffect(() => {
+    document.body.className = darkMode ? "dark" : "light";
+  }, [darkMode]);
 
   const privateLinks = (
     <>
@@ -86,16 +92,25 @@ const Navbar = () => {
   return (
     <div className="navbar sticky top-0 z-50 bg-[#d9e9f9] border-b-2 border-blue-400 shadow-sm">
       <div className="navbar-start">
-        <a className="text-2xl font-semibold ml-1">Nex<span className="font-bold text-blue-500 text-[27px]">US</span>Core</a>
+        <a className="text-2xl font-semibold ml-1 text-black">
+          Nex<span className="font-bold text-blue-500 text-[27px]">US</span>Core
+        </a>
       </div>
 
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-center hidden lg:flex text-black">
         <ul className="menu menu-horizontal px-1">
           {user ? privateLinks : links}
         </ul>
       </div>
 
       <div className="navbar-end flex items-center space-x-3">
+        <a onClick={() => setDarkMode(!darkMode)} className="theme-toggle">
+          {darkMode ? (
+            <FiSun className="text-black" size={24}></FiSun>
+          ) : (
+            <FiMoon size={24}></FiMoon>
+          )}
+        </a>
         {user ? (
           <div className="relative" ref={profileDropdownRef}>
             <button
@@ -103,18 +118,21 @@ const Navbar = () => {
               className="focus:outline-none"
               aria-label="User menu"
             >
-              
-              {user.photoURL ? <img
-                title={user.displayName || "User"}
-                className="w-9 h-9 rounded-full object-cover ring-2 ring-blue-500 ring-offset-2"
-                src={user.photoURL}
-                alt="Profile"
-              /> : <img
-                title={user.displayName || "User"}
-                className="w-9 h-9 rounded-full object-cover "
-                src="https://i.ibb.co/Kxsnfc4C/image.png"
-                alt="Profile"
-              /> }
+              {user.photoURL ? (
+                <img
+                  title={user.displayName || "User"}
+                  className="w-9 h-9 rounded-full object-cover ring-2 ring-blue-500 ring-offset-2"
+                  src={user.photoURL}
+                  alt="Profile"
+                />
+              ) : (
+                <img
+                  title={user.displayName || "User"}
+                  className="w-9 h-9 rounded-full object-cover "
+                  src="https://i.ibb.co/Kxsnfc4C/image.png"
+                  alt="Profile"
+                />
+              )}
             </button>
 
             {showProfileDropdown && (
@@ -125,11 +143,13 @@ const Navbar = () => {
                     alt="Profile"
                     className="w-12 h-12 rounded-full object-cover mx-auto mb-2 ring-2 ring-blue-500 ring-offset-2"
                   />
-                ) : <img
+                ) : (
+                  <img
                     src="https://i.ibb.co/Kxsnfc4C/image.png"
                     alt="Profile"
                     className="w-12 h-12 rounded-full object-cover mx-auto mb-2 "
-                  />}
+                  />
+                )}
                 <p className="font-semibold mb-1">{user.displayName}</p>
                 <p className="text-sm text-gray-600 mb-2">{user.email}</p>
                 <button
@@ -156,7 +176,7 @@ const Navbar = () => {
           </>
         )}
 
-        <div className="dropdown relative">
+        <div className="dropdown relative text-black">
           <div
             tabIndex={0}
             role="button"

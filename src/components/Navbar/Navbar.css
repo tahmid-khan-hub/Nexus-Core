@@ -13,3 +13,22 @@ a.active:hover {
   transform: scale(1.03);
   box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25);
 }
+
+body.light {
+  background-color: white;
+  color: rgb(0, 0, 0);
+}
+
+body.dark {
+  background-color: #080b1d;
+  color: white;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 20px;
+  margin-right: 12px;
+  /* padding-right: 6px; */
+}

@@ -37,16 +37,16 @@ const Faq = () => {
 
   return (
    <PageLoading>
-     <section className="bg-gradient-to-b from-blue-50 to-white py-12">
+     <section className="mt-8 py-12">
       <div className="max-w-5xl mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-3 text-black">
+        <h2 className="text-3xl font-bold text-center mb-3">
           Frequently Asked Questions
         </h2>
-        <p className="text-center text-gray-600 mb-10 max-w-2xl mx-auto">
+        <p className="text-center text-gray-500 mb-16 max-w-2xl mx-auto">
           Here are answers to some common questions about enrolling, accessing
           materials, and certificates.
         </p>
-        <div className="space-y-6">
+        <div className="space-y-6 mb-24">
           {faqs.map((faq, index) => (
             <motion.div
               animate={{ y: [0, -10] }}
@@ -60,7 +60,7 @@ const Faq = () => {
               className="group bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 p-6"
             >
               <div className="flex items-start justify-between">
-                <h3 className="text-lg font-semibold text-gray-800 group-hover:text-blue-600">
+                <h3 className="text-lg font-semibold text-gray-800 group-hover:text-blue-400">
                   {faq.question}
                 </h3>
                 <ChevronDown className="text-gray-400 group-hover:text-blue-500" />
