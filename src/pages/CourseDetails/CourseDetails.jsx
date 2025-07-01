@@ -152,10 +152,10 @@ const CourseDetails = () => {
     <PageLoading>
       <>
         <div>
-          <h1 className="text-3xl font-bold text-gray-800 text-center mt-11 mb-2">
+          <h1 className="text-3xl font-bold text-center mt-16 mb-2">
             Course Details
           </h1>
-          <p className="text-gray-600 mb-11 text-center">
+          <p className="text-gray-500 mb-16 text-center">
             Explore the full details of the selected course and decide if it’s
             the right fit for your learning journey.
           </p>
@@ -169,7 +169,7 @@ const CourseDetails = () => {
             repeatType: "reverse",
             ease: "easeInOut",
           }}
-          className="max-w-7xl w-[96%] mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden border-2 border-blue-300 transition duration-300 my-16 p-2 mb-44"
+          className="max-w-[1300px] mx-auto w-[96%] bg-white shadow-2xl rounded-2xl overflow-hidden border-2 border-blue-300 transition duration-300 my-16 p-2 mb-48"
         >
           <div className="flex flex-col md:flex-row">
             {/* Left image side */}
@@ -187,7 +187,7 @@ const CourseDetails = () => {
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
                   {course.title}
                 </h2>
-                <p className="text-sm mb-8 text-gray-500">
+                <p className="text-sm mb-8 text-gray-700">
                   {course.description}
                 </p>
 
