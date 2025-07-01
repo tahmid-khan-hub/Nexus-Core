@@ -4,7 +4,7 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaGithub, FaLinkedinIn } from "rea
 const Footer = () => {
   return (
     <footer className="bg-[#afd1f3] text-black py-8 border-t border-gray-400 mt-10">
-      <div className="max-w-screen-xl mx-auto px-4 md:px-8">
+      <div className="max-w-[1300px] mx-auto ">
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Brand */}
           <div className="mb-6 md:mb-0">

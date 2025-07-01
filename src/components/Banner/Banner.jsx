@@ -15,109 +15,73 @@ const Banner = () => {
     autoplaySpeed: 4000,
     pauseOnHover: false,
   };
+const slides = [
+  {
+    id: 1,
+    image: "https://i.ibb.co/931y1XzJ/image.png",
+    heading: "Browse All Courses",
+    paragraph:
+      "Explore a rich collection of curated courses tailored to your learning goals. Browse by category, instructor, or discover what’s trending with our most enrolled courses.",
+  },
+  {
+    id: 2,
+    image: "https://i.ibb.co/cczPpgcF/image.png",
+    heading: "Your Enrolled Courses",
+    paragraph:
+      "Easily access and manage all the courses you’ve enrolled in. Track your progress, resume lessons, and stay on top of your learning—anytime, on any device.",
+  },
+  {
+    id: 3,
+    image: "https://i.ibb.co/YFzgFY7j/image.png",
+    heading: "Top-Rated Courses",
+    paragraph:
+      "Browse our most popular courses, highly rated by learners like you. These trusted courses are selected for their quality, effectiveness, and learner satisfaction.",
+  },
+];
 
-  const slides = [
-    {
-      id: 1,
-      image: "https://i.ibb.co/931y1XzJ/image.png",
-      heading: "Browse All Courses",
-      paragraph:
-        "Explore a diverse catalog of courses across various categories. Filter by topic, difficulty, or instructor to find exactly what you need.",
-    },
-    {
-      id: 2,
-      image: "https://i.ibb.co/cczPpgcF/image.png",
-      heading: "Your Enrolled Courses",
-      paragraph:
-        "Easily track your enrolled courses, manage your progress, and continue learning where you left off—on any device.",
-    },
-    {
-      id: 3,
-      image: "https://i.ibb.co/YFzgFY7j/image.png",
-      heading: "Top-Rated Courses",
-      paragraph:
-        "Check out the most popular courses loved by thousands of learners. Handpicked based on ratings, reviews, and completion rate.",
-    },
-  ];
 
   return (
-    <div
-      style={{
-        maxWidth: "1350px",
-        marginLeft: "auto",
-        marginRight: "auto",
-        overflow: "hidden",
-      }}
-    >
+    <div className="w-full overflow-hidden">
       <Slider {...settings}>
         {slides.map((slide) => (
           <div key={slide.id}>
-            <div style={{ position: "relative" }}>
+            <div className="relative">
               {/* Background Image */}
               <img
                 src={slide.image}
                 alt={slide.heading}
-                style={{
-                  width: "100%",
-                  height: "90vh",
-                  maxHeight: "500px",
-                  objectFit: "cover",
-                  display: "block", // prevent inline image whitespace issues
-                }}
+                className="w-full h-[90vh] max-h-[500px] md:max-h-[600px] object-cover"
               />
 
               {/* Overlay */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  backgroundColor: "rgba(0, 0, 0, 0.5)",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  padding: "1rem",
-                }}
-              >
-                <motion.div
-                  key={slide.id}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ duration: 1, ease: "easeOut" }}
-                  style={{
-                    color: "#fff",
-                    textAlign: "center",
-                    maxWidth: "95%",
-                  }}
-                >
-                  <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
+              <div className="absolute inset-0 bg-black/50 flex justify-center items-center px-4">
+                <div className="w-[96%] max-w-[1300px] mx-auto text-white text-center">
+                  <motion.div
+                    key={slide.id}
+                    initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-                    style={{
-                      fontSize: "clamp(1.5rem, 5vw, 2.5rem)",
-                      fontWeight: "bold",
-                      marginBottom: "1rem",
-                    }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ duration: 1, ease: "easeOut" }}
                   >
-                    {slide.heading}
-                  </motion.h1>
+                    <motion.h1
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+                      className="text-[clamp(1.5rem,5vw,2.5rem)] font-bold mb-4"
+                    >
+                      {slide.heading}
+                    </motion.h1>
 
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
-                    style={{
-                      fontSize: "clamp(0.9rem, 3vw, 1.2rem)",
-                      color: "#ccc",
-                    }}
-                  >
-                    {slide.paragraph}
-                  </motion.p>
-                </motion.div>
+                    <motion.p
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
+                      className="text-[clamp(0.9rem,3vw,1.2rem)] text-gray-300"
+                    >
+                      {slide.paragraph}
+                    </motion.p>
+                  </motion.div>
+                </div>
               </div>
             </div>
           </div>
