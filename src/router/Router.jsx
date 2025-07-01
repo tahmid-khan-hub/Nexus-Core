@@ -27,7 +27,7 @@ const Router = createBrowserRouter([
       {
         path: "",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:3000/courses"),
+        loader: () => fetch("https://nex-us-core-server.vercel.app/courses"),
       },
       {
         path: "/login",
@@ -52,7 +52,7 @@ const Router = createBrowserRouter([
             <MyEnrolledCourses></MyEnrolledCourses>
           </PrivateRoute>
         ),
-        loader: ()=> fetch("http://localhost:3000/userCourses")
+        loader: ()=> fetch("https://nex-us-core-server.vercel.app/userCourses")
       },
       {
         path: "/manageCourses",
@@ -61,7 +61,7 @@ const Router = createBrowserRouter([
             <ManageCourses></ManageCourses>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:3000/courses"),
+        loader: () => fetch("https://nex-us-core-server.vercel.app/courses"),
       },
       {
         path: "/updateCourse/:id",
@@ -70,27 +70,27 @@ const Router = createBrowserRouter([
             <UpdateCourse></UpdateCourse>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:3000/courses"),
+        loader: () => fetch("https://nex-us-core-server.vercel.app/courses"),
       },
       {
         path: "/Category/:category",
         element: <Category></Category>,
-        loader: () => fetch("http://localhost:3000/courses"),
+        loader: () => fetch("https://nex-us-core-server.vercel.app/courses"),
       },
       {
         path: "/categoryDetails",
         element: <CategoryDetails></CategoryDetails>,
-        loader: () => fetch("http://localhost:3000/courses"),
+        loader: () => fetch("https://nex-us-core-server.vercel.app/courses"),
       },
       {
         path: "/courseDetails/:id",
         element: <CourseDetails></CourseDetails>,
-        loader: () => fetch("http://localhost:3000/courses"),
+        loader: () => fetch("https://nex-us-core-server.vercel.app/courses"),
       },
       {
         path: "/allCourses",
         element: <AllCourses></AllCourses>,
-        loader: () => fetch("http://localhost:3000/courses"),
+        loader: () => fetch("https://nex-us-core-server.vercel.app/courses"),
       },
       {
         path: "/faq",
