@@ -7,8 +7,9 @@ const Footer = () => {
       <div className="max-w-[1300px] mx-auto px-2">
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Brand */}
-          <div className="mb-6 md:mb-0">
-            <h2 className="text-2xl font-bold">
+          <div className="mb-6 md:mb-0 flex">
+            <img className="w-9 ml-1" src="https://i.ibb.co/kpFnqYQ/image.png" alt="brandLogo" />
+            <h2 className="text-2xl font-bold mt-1">
               <span>N</span>ex<span className="text-blue-600">US</span>Core
             </h2>
           </div>
@@ -18,10 +19,10 @@ const Footer = () => {
             <p><span className="font-semibold">Contact</span>: NexUSCore@gmail.com</p>
             <p><span className="font-semibold">Phone</span>: +880 123 456 7890</p>
             <div className="flex justify-center gap-6 mt-3">
-              <a href="/about" className="hover:underline">About</a>
-              <a href="/faq" className="hover:underline">FAQ</a>
-              <a href="/terms" className="hover:underline">Terms & Conditions</a>
-              <a href="/privacy" className="hover:underline">Privacy Policy</a>
+              <a href="/about" className="hover:underline font-semibold">About</a>
+              <a href="/faq" className="hover:underline font-semibold">FAQ</a>
+              <a href="/terms" className="hover:underline font-semibold">Terms & Conditions</a>
+              <a href="/privacy" className="hover:underline font-semibold">Privacy Policy</a>
             </div>
             <p className="mt-6 text-gray-700">
               © {new Date().getFullYear()} NexUSCore. All rights reserved.

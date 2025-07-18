@@ -40,27 +40,27 @@ const Navbar = () => {
     <>
       <NavLink to="/">
         <li>
-          <a>Home</a>
+          <a className="font-semibold">Home</a>
         </li>
       </NavLink>
       <NavLink to="/allCourses">
         <li>
-          <a>All Courses</a>
+          <a className="font-semibold">All Courses</a>
         </li>
       </NavLink>
       <NavLink to="/addCourse">
         <li>
-          <a>AddCourse</a>
+          <a className="font-semibold">AddCourse</a>
         </li>
       </NavLink>
       <NavLink to="/manageCourses">
         <li>
-          <a>ManageCourses</a>
+          <a className="font-semibold">ManageCourses</a>
         </li>
       </NavLink>
       <NavLink to="/myEnrolledCourses">
         <li>
-          <a>MyEnrolledCourses</a>
+          <a className="font-semibold">MyEnrolledCourses</a>
         </li>
       </NavLink>
     </>
@@ -70,22 +70,22 @@ const Navbar = () => {
     <>
       <NavLink to="/">
         <li>
-          <a>Home</a>
+          <a className="font-semibold">Home</a>
         </li>
       </NavLink>
       <NavLink to="/allCourses">
         <li>
-          <a>All Courses</a>
+          <a className="font-semibold">All Courses</a>
         </li>
       </NavLink>
       <NavLink to="/about">
         <li>
-          <a>About</a>
+          <a className="font-semibold">About</a>
         </li>
       </NavLink>
       <NavLink to="/faq">
         <li>
-          <a>FaQ</a>
+          <a className="font-semibold">FaQ</a>
         </li>
       </NavLink>
     </>
@@ -96,7 +96,7 @@ const Navbar = () => {
       <div className="max-w-[1300px] w-[96%] mx-auto flex justify-between items-center">
         <div className="navbar-start">
           <img className="w-9 ml-1" src="https://i.ibb.co/kpFnqYQ/image.png" alt="brandLogo" />
-          <a className="text-2xl font-semibold ml-1 text-black">
+          <a className="text-2xl font-bold ml-1 mt-1 text-black">
             Nex<span className="font-bold text-blue-500 text-[27px]">US</span>
             Core
           </a>
