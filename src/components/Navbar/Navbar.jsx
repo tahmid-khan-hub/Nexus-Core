@@ -96,7 +96,7 @@ const Navbar = () => {
       <div className="max-w-[1300px] w-[96%] mx-auto flex justify-between items-center">
         <div className="navbar-start">
           <img className="w-9 ml-1" src="https://i.ibb.co/kpFnqYQ/image.png" alt="brandLogo" />
-          <a className="text-2xl font-bold ml-1 mt-1 text-black">
+          <a className="text-2xl font-semibold ml-1 mt-1 text-black">
             Nex<span className="font-bold text-blue-500 text-[27px]">US</span>
             Core
           </a>

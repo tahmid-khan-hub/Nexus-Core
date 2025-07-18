@@ -9,7 +9,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="mb-6 md:mb-0 flex">
             <img className="w-9 ml-1" src="https://i.ibb.co/kpFnqYQ/image.png" alt="brandLogo" />
-            <h2 className="text-2xl font-bold mt-1">
+            <h2 className="text-2xl font-semibold mt-1">
               <span>N</span>ex<span className="text-blue-600">US</span>Core
             </h2>
           </div>

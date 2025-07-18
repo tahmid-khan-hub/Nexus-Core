@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import Lottie from "lottie-react";
 import aboutLottie from "../../assets/lotties/about.json";
+import Animation from "../../Hooks/Animation"
 
 const About = () => {
   useEffect(()=>{document.title = "NexusCore | About"},[])
   return (
-    <div className=" min-h-screen py-12 md:px-10 lg:px-20">
+    <Animation><div className=" min-h-screen py-12 md:px-10 lg:px-20">
       <div className="max-w-[1300px] mx-auto grid md:grid-cols-2 gap-16 items-center mb-44">
         {/* Lottie Animation */}
-        <div>
+        <div data-aos="fade-right">
           <Lottie
             animationData={aboutLottie}
             loop={true}
@@ -17,7 +18,7 @@ const About = () => {
         </div>
 
         {/* Text Content */}
-        <div>
+        <div data-aos="fade-left">
           <h2 className="text-3xl font-bold mb-7">
             Welcome to{" "}
             <a className="text-3xl font-bold ml-1 ">
@@ -76,7 +77,7 @@ const About = () => {
           </p>
         </div>
       </div>
-    </div>
+    </div></Animation>
   );
 };
 
