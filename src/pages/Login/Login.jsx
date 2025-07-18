@@ -107,7 +107,7 @@ const Login = () => {
 
         {/* Lost Password */}
         <div>
-          <a className="ms-auto text-sm text-blue-700 hover:underline font-semibold">
+          <a className="ms-auto text-sm text-blue-400 hover:underline font-semibold">
             Lost Password?
           </a>
         </div>
@@ -115,7 +115,7 @@ const Login = () => {
         {/* Login Button */}
         <button
           type="submit"
-          className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5"
+          className="w-full text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2"
         >
           Login to your account
         </button>
@@ -146,7 +146,7 @@ const Login = () => {
         {/* google */}
         <button
           onClick={handleGoogle}
-          className="btn w-full -mt-2 bg-white text-black border-2 border-blue-500"
+          className="btn w-full -mt-2 bg-white text-black border-2 border-[#77b2ea]"
         >
           <svg
             aria-label="Google logo"
@@ -181,7 +181,7 @@ const Login = () => {
         {/* Register Link */}
         <div className="text-sm font-medium text-gray-500 mb-5">
           Not registered?{" "}
-          <Link to="/register" className="text-blue-700 hover:underline">
+          <Link to="/register" className="text-blue-400 hover:underline">
             Create account
           </Link>
         </div>

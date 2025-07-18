@@ -125,8 +125,11 @@ const Register = () => {
         <Lottie animationData={registerLottie} loop={true} />
       </div>
       <form onSubmit={handleRegister} className="space-y-6">
-        <h5 className="text-2xl text-center font-semibold text-gray-900">
-          Welcome To EduNova!
+        <h5 className="flex text-2xl justify-center items-center font-semibold text-gray-900 ">
+          Welcome To <div className="">
+            <h2 className="text-2xl font-semibold ml-2">
+              <span>N</span>ex<span className="text-blue-600">US</span>Core
+            </h2></div>!
         </h5>
         <p className="text-center -mt-5">Please Register here </p>
 
@@ -205,7 +208,7 @@ const Register = () => {
         {/* Register Button */}
         <button
           type="submit"
-          className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mt-4"
+          className="w-full text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mt-4"
         >
           Click here to Register
         </button>
@@ -236,7 +239,7 @@ const Register = () => {
         {/* google */}
         <button
           onClick={handleGoogle}
-          className="btn w-full -mt-2 bg-white text-black border-2 border-blue-500"
+          className="btn w-full -mt-2 bg-white text-black border-2 border-[#77b2ea]"
         >
           <svg
             aria-label="Google logo"
@@ -271,7 +274,7 @@ const Register = () => {
         {/* Register Link */}
         <div className="text-sm font-medium text-gray-500 mb-5">
           Already Have Account?{" "}
-          <Link to="/login" className="text-blue-700 hover:underline">
+          <Link to="/login" className="text-blue-400 hover:underline">
             Sign in here
           </Link>
         </div>
