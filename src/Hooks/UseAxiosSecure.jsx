@@ -6,7 +6,7 @@ const UseAxiosSecure = () => {
   const { user, logOut } = UseAuth();
 
   const axiosInstance = axios.create({
-    baseURL: "https://nex-us-core-server.vercel.app/",
+    baseURL: "http://localhost:3000/",
   });
 
   axiosInstance.interceptors.request.use(
