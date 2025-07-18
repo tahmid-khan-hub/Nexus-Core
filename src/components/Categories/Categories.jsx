@@ -47,7 +47,7 @@ const Categories = () => {
         Browse through our popular categories to find courses that match your
         interests and boost your skills.
       </p>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
         {category.map((cat) => (
           <motion.div
             className="overflow-hidden border-2 rounded-xl border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-400 transition-colors duration-200"

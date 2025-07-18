@@ -61,7 +61,7 @@ const HallOfFame = () => {
               <div className="p-2 bg-blue-100 text-blue-600 rounded-full">
                 <Award className="w-5 h-5" />
               </div>
-              <h3 className="text-xl font-semibold">{cert.name}</h3>
+              <h3 className="text-xl text-black font-semibold">{cert.name}</h3>
             </div>
 
             <div className="text-sm text-gray-700 mb-1">
