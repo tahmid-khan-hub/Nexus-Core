@@ -8,7 +8,6 @@ const Navbar = () => {
   const { user, logOut } = UseAuth();
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const profileDropdownRef = useRef(null);
-  const [darkMode, setDarkMode] = useState(false);
 
   const handleSignOut = () => {
     logOut()
@@ -35,9 +34,7 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleOutsideClick);
   }, []);
 
-  useEffect(() => {
-    document.body.className = darkMode ? "dark" : "light";
-  }, [darkMode]);
+
 
   const privateLinks = (
     <>
@@ -98,6 +95,7 @@ const Navbar = () => {
     <div className="navbar sticky top-0 z-50 bg-[#d9e9f9] border-b-2 border-blue-400 shadow-sm ">
       <div className="max-w-[1300px] w-[96%] mx-auto flex justify-between items-center">
         <div className="navbar-start">
+          <img className="w-9 ml-1" src="https://i.ibb.co/kpFnqYQ/image.png" alt="brandLogo" />
           <a className="text-2xl font-semibold ml-1 text-black">
             Nex<span className="font-bold text-blue-500 text-[27px]">US</span>
             Core
@@ -111,13 +109,7 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end flex items-center space-x-3">
-          <a onClick={() => setDarkMode(!darkMode)} className="theme-toggle">
-            {darkMode ? (
-              <FiSun className="text-black" size={24}></FiSun>
-            ) : (
-              <FiMoon size={24}></FiMoon>
-            )}
-          </a>
+          
           {user ? (
             <div className="relative" ref={profileDropdownRef}>
               <button

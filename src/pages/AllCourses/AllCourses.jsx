@@ -8,6 +8,7 @@ const AllCourses = () => {
 
   useEffect(() => {
     document.title = "NexusCore | All Courses";
+    window.scrollTo(0,0)
   }, []);
 
   const sortOptions = [
