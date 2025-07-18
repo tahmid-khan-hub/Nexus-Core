@@ -161,7 +161,7 @@ const CourseDetails = () => {
           </p>
         </div>
 
-        <motion.div
+        <div className="min-h-screen"><motion.div
           animate={{ y: [0, -20] }}
           transition={{
             duration: 1.5,
@@ -247,7 +247,7 @@ const CourseDetails = () => {
               </div>
             </div>
           </div>
-        </motion.div>
+        </motion.div></div>
       </>
     </PageLoading>
   );

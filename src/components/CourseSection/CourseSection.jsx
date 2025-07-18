@@ -19,6 +19,8 @@ const CourseSection = ({ coursesData }) => {
     }
   }, [coursesData, limit]);
 
+  console.log(coursesData);
+
   return (
     <div className="py-12 mt-12">
       <div className="max-w-[1300px] mx-auto px-2">
@@ -48,8 +50,8 @@ const CourseSection = ({ coursesData }) => {
                     {course.title}
                   </h5>
                   <p className="mb-3 font-normal text-gray-500">
-                    {course.description && course.description.length > 100
-                      ? course.description.slice(0, 100) + "..."
+                    {course.description && course.description.length > 50
+                      ? course.description.slice(0, 50) + "..."
                       : course.description || "No description available."}
                   </p>
 
