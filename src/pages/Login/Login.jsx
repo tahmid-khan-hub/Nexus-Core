@@ -61,7 +61,7 @@ const Login = () => {
   return (
     <Animation>
       <PageLoading>
-      <div data-aos="fade-up" className="max-w-sm w-11/12 mx-auto text-black p-4 border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 bg-white my-24 mb-52">
+      <div data-aos="fade-up" className="max-w-sm w-11/12 mx-auto text-black p-4 border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 bg-white my-24 mb-[213px]">
       {/* Lottie Animation */}
       <div className="w-40 mx-auto mb-4">
         <Lottie animationData={loginLottie} loop={true} />

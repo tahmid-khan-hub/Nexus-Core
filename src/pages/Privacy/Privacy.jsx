@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
+import Animation from "../../Hooks/Animation";
 
 const Privacy = () => {
   useEffect(()=>{document.title = "NexusCore | Privacy & Policy"},[])
   return (
     <div className=" max-w-[1300px] mx-auto py-12 mb-24 min-h-screen">
-      <div className="">
-        <h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
+      <Animation><div data-aos="fade-up">
+        <h1 className="text-3xl font-bold mb-6 mt-11">Privacy Policy</h1>
 
         <p className="mb-9 text-gray-500">
           Your privacy is important to us. This policy outlines how NexUSCore collects, uses, and
@@ -63,7 +64,7 @@ const Privacy = () => {
         </section>
 
         <p className="text-sm text-gray-500 mt-10">Last updated: July 1, 2025</p>
-      </div>
+      </div></Animation>
     </div>
   );
 };
