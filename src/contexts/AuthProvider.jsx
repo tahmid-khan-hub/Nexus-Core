@@ -14,22 +14,27 @@ const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
 
     const signUp = (email, password) =>{
+        setLoading(true)
         return createUserWithEmailAndPassword(auth , email , password)
     }
 
     const signIn = (email, password) =>{
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
     const signWithGoogle = () =>{
+        setLoading(true)
         return signInWithPopup(auth, googleProvider)
     }
 
     const signWithGitHub = () =>{
+        setLoading(true)
         return signInWithPopup(auth, githubProvider)
     }
 
     const logOut = () =>{
+        setLoading(true)
         return signOut(auth)
     }
 
