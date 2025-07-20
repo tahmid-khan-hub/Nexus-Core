@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router";
 import Lottie from "lottie-react";
 import registerLottie from "../../assets/lotties/register.json";
 import UseAuth from "../../Hooks/UseAuth";
-import { updateProfile } from "firebase/auth";
 import GoogleSignIn from "../../Hooks/GoogleSignIn";
 import GitHubSignIn from "../../Hooks/GitHubSignIn";
 import Swal from "sweetalert2";
@@ -11,123 +10,71 @@ import PageLoading from "../../Hooks/PageLoading";
 import Animation from "../../Hooks/Animation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
+import { useForm } from "react-hook-form";
+import app from "../../firebase/firebase_init";
+import { getAuth } from "firebase/auth";
 
 const Register = () => {
   useEffect(() => {
     document.title = "NexusCore | Register";
   }, []);
+  const auth = getAuth(app);
 
   const [showIcon, setShowIcon] = useState(false);
   const [showConfirmIcon, setShowConfirmIcon] = useState(false);
 
-  const { signUp } = UseAuth();
-  const axiosSecure = UseAxiosSecure()
+  const { signUp, updateUserProfile } = UseAuth();
+  const axiosSecure = UseAxiosSecure();
 
   const handleGoogle = GoogleSignIn();
   const handleGitHub = GitHubSignIn();
 
   const navigate = useNavigate();
 
-  const handleRegister = (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
-    const form = e.target;
-    const name = form.name.value;
-    const photo = form.photo.value;
-    const email = form.email.value;
-    const password = form.password.value;
-    const confirmPassword = form.confirmPassword.value;
+  const password = watch("password");
 
-    console.log(name, photo, email, password, confirmPassword);
+  const onSubmit = async (data) => {
+    try {
+      await signUp(data.email, data.password);
 
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+      await updateUserProfile({
+        displayName: data.name,
+        photoURL: data.photoURL,
+      });
+      await auth.currentUser.reload();
 
-    if (!passwordRegex.test(password)) {
+      const userInfo = {
+        name: data.name,
+        email: data.email,
+        photoURL: data.photoURL,
+        role: "user",
+        createdAt: new Date(),
+      };
+
+      await axiosSecure.post("/users", userInfo);
+
       Swal.fire({
-        position: "top-end",
-        icon: "error",
-        title:
-          "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character!",
-        showConfirmButton: false,
+        icon: "success",
+        title: "Registration Successful!",
         timer: 1500,
+        showConfirmButton: false,
       });
-      return;
-    }
 
-    if (password !== confirmPassword) {
+      navigate("/");
+    } catch (error) {
       Swal.fire({
-        position: "top-end",
         icon: "error",
-        title: "Password and Confirm Password do not match!",
-        showConfirmButton: false,
-        timer: 1500,
+        title: "Registration Failed",
+        text: error.message || "Something went wrong!",
       });
-      return;
     }
-
-    if (email && password.toLowerCase().includes(email.toLowerCase())) {
-      Swal.fire({
-        position: "top-end",
-        icon: "error",
-        title: "Password should not contain the email address!",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      return;
-    }
-
-    signUp(email, password)
-      .then((res) => {
-        console.log(res);
-
-        const newUser = res.user;
-
-        updateProfile(newUser, {
-          displayName: name,
-          photoURL: photo,
-        })
-
-        // const userInfo = {
-        //   name: name,
-        //   email: email,
-        //   photoURL: photo,
-        //   role: "user",
-        //   createdAt: new Date(),
-        // };
-
-        // axiosSecure
-        //   .post("/users", userInfo)
-          .then(() => {
-            navigate("/");
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Successfully Registered! Welcome to our Platform",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-          })
-          .catch((err) => {
-            console.log(err);
-            Swal.fire({
-              position: "top-end",
-              icon: "error",
-              title: "Something went wrong! Please try again.",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-          });
-      })
-      .catch((err) => {
-        console.log(err);
-        Swal.fire({
-          position: "top-end",
-          icon: "error",
-          title: "Something went wrong! Please try again.",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      });
   };
 
   return (
@@ -141,7 +88,7 @@ const Register = () => {
           <div className="w-40 mx-auto mb-4">
             <Lottie animationData={registerLottie} loop={true} />
           </div>
-          <form onSubmit={handleRegister} className="space-y-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <h5 className="flex text-2xl justify-center items-center font-semibold text-gray-900 ">
               Welcome To{" "}
               <div className="">
@@ -160,12 +107,15 @@ const Register = () => {
               </label>
               <input
                 type="text"
-                name="name"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                 placeholder="Enter Your Name"
                 required
+                {...register("name", { required: "Name is required" })}
               />
             </div>
+            {errors.name && (
+              <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+            )}
 
             {/* photoURL */}
             <div>
@@ -174,10 +124,10 @@ const Register = () => {
               </label>
               <input
                 type="text"
-                name="photo"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                 placeholder="Enter Your Photo URL"
                 required
+                {...register("photoURL", {})}
               />
             </div>
 
@@ -188,12 +138,23 @@ const Register = () => {
               </label>
               <input
                 type="email"
-                name="email"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                 placeholder="Enter Your Email"
                 required
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "Invalid email address",
+                  },
+                })}
               />
             </div>
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.email.message}
+              </p>
+            )}
 
             {/* password */}
             <label className="block mb-2 text-sm font-medium text-gray-900">
@@ -202,10 +163,17 @@ const Register = () => {
             <div className="flex relative">
               <input
                 type={showIcon ? "text" : "password"}
-                name="password"
                 placeholder="Enter Your Password"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                 required
+                {...register("password", {
+                  required: "Password is required",
+                  pattern: {
+                    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/,
+                    message:
+                      "Password must be at least 8 characters, include uppercase, lowercase, number, and special character",
+                  },
+                })}
               />
               <span
                 onClick={() => setShowIcon(!showIcon)}
@@ -214,6 +182,11 @@ const Register = () => {
                 {showIcon ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
               </span>
             </div>
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
+            )}
 
             {/* confirm password */}
             <label className="block mb-2 text-sm font-medium text-gray-900">
@@ -222,10 +195,14 @@ const Register = () => {
             <div className="flex relative">
               <input
                 type={showConfirmIcon ? "text" : "password"}
-                name="confirmPassword"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                 placeholder="Confirm Your Password"
                 required
+                {...register("confirmPassword", {
+                  required: "Please confirm your password",
+                  validate: (value) =>
+                    value === password || "Passwords do not match",
+                })}
               />
               <span
                 onClick={() => setShowConfirmIcon(!showConfirmIcon)}
@@ -238,6 +215,11 @@ const Register = () => {
                 )}
               </span>
             </div>
+            {errors.confirmPassword && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.confirmPassword.message}
+              </p>
+            )}
 
             {/* Register Button */}
             <button
