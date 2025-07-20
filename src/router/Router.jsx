@@ -19,6 +19,8 @@ import About from "../pages/About/About";
 import Terms from "../pages/Terms/Terms";
 import Privacy from "../pages/Privacy/Privacy";
 import DashBoardLayout from "../layout/DashBoardLayout";
+import DashBoardRedirect from "../layout/DashBoardRedirect";
+import MyProfile from "../PrivatePages/MyProfile/MyProfile";
 
 const Router = createBrowserRouter([
   {
@@ -118,7 +120,22 @@ const Router = createBrowserRouter([
     </PrivateRoute>,
     children:[
       {
-        
+        index: true,
+        element: <PrivateRoute>
+          <DashBoardRedirect></DashBoardRedirect>
+        </PrivateRoute>
+      },
+
+      // user
+      {
+        path: "myProfile",
+        element: <MyProfile></MyProfile>
+      },
+      {
+        path: "dashboard/myEnrolledCourses",
+        element: <PrivateRoute>
+          <MyEnrolledCourses></MyEnrolledCourses>
+        </PrivateRoute>
       },
     ]
   },
