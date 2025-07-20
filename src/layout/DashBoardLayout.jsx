@@ -49,7 +49,7 @@ const DashBoardLayout = () => {
         {/* Page content here */}
         <Outlet></Outlet>
       </div>
-      <div className="drawer-side border-r border-orange-500">
+      <div className="drawer-side border-r border-blue-500">
         <label
           htmlFor="my-drawer-2"
           aria-label="close sidebar"

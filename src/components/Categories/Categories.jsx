@@ -11,6 +11,7 @@ import {
   FaBriefcase,
   FaLightbulb,
 } from "react-icons/fa";
+import Animation from "../../Hooks/Animation";
 
 const Categories = () => {
   const category = [
@@ -49,7 +50,7 @@ const Categories = () => {
       </p>
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
         {category.map((cat) => (
-          <motion.div
+          <Animation><div data-aos="fade-left"><motion.div
             className="overflow-hidden border-2 rounded-xl border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-400 transition-colors duration-200"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -68,7 +69,7 @@ const Categories = () => {
                 <h2 className="text-lg font-semibold  text-gray-700 ">{cat}</h2>
               </div>
             </Link>
-          </motion.div>
+          </motion.div></div></Animation>
         ))}
       </div>
     </div>

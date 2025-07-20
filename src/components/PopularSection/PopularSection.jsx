@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 import * as motion from "motion/react-client";
+import Animation from "../../Hooks/Animation";
 
 const PopularSection = ({ coursesData }) => {
   const [popularCourses, setPopularCourses] = useState([]);
@@ -29,10 +30,10 @@ const PopularSection = ({ coursesData }) => {
         {popularCourses.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {popularCourses.map((course) => (
-              <motion.div
+              <Animation><div data-aos="fade-up"><motion.div
                 whileHover={{ scale: 1.05 }}
                 key={course._id}
-                className=" bg-[#eef6ff] border-2 border-blue-300 rounded-lg shadow-xl flex flex-col"
+                className=" bg-[#eef6ff] border-2 border-blue-300 rounded-lg shadow-xl flex flex-col h-full"
               >
                 <img
                   className="rounded-xl w-full p-2 h-[250px] object-cover"
@@ -74,7 +75,7 @@ const PopularSection = ({ coursesData }) => {
                     </Link>
                   </div>
                 </div>
-              </motion.div>
+              </motion.div></div></Animation>
             ))}
           </div>
         )}
