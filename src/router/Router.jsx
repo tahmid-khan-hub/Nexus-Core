@@ -21,6 +21,8 @@ import Privacy from "../pages/Privacy/Privacy";
 import DashBoardLayout from "../layout/DashBoardLayout";
 import DashBoardRedirect from "../layout/DashBoardRedirect";
 import MyProfile from "../PrivatePages/MyProfile/MyProfile";
+import AdminRoute from "../routes/AdminRoute";
+import AdminProfile from "../PrivatePages/AdminProfile/AdminProfile";
 
 const Router = createBrowserRouter([
   {
@@ -129,7 +131,9 @@ const Router = createBrowserRouter([
       // user
       {
         path: "myProfile",
-        element: <MyProfile></MyProfile>
+        element: <PrivateRoute>
+          <MyProfile></MyProfile>
+        </PrivateRoute>
       },
       {
         path: "dashboard/myEnrolledCourses",
@@ -137,6 +141,26 @@ const Router = createBrowserRouter([
           <MyEnrolledCourses></MyEnrolledCourses>
         </PrivateRoute>
       },
+
+      // admin
+      {
+        path: "adminProfile",
+        element: <AdminRoute>
+          <AdminProfile></AdminProfile>
+        </AdminRoute>
+      },
+      {
+        path: "dashboard/addCourse",
+        element: <AdminRoute>
+          <AddCourse></AddCourse>
+        </AdminRoute>
+      },
+      {
+        path: "dashboard/manageCourses",
+        element: <AdminRoute>
+          <ManageCourses></ManageCourses>
+        </AdminRoute>
+      }
     ]
   },
   {
