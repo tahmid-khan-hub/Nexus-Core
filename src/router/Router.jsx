@@ -18,6 +18,7 @@ import AllCourses from "../pages/AllCourses/AllCourses";
 import About from "../pages/About/About";
 import Terms from "../pages/Terms/Terms";
 import Privacy from "../pages/Privacy/Privacy";
+import DashBoardLayout from "../layout/DashBoardLayout";
 
 const Router = createBrowserRouter([
   {
@@ -109,6 +110,17 @@ const Router = createBrowserRouter([
         element: <Privacy></Privacy>
       }
     ],
+  },
+  {
+    path: "dashboard",
+    element: <PrivateRoute>
+      <DashBoardLayout></DashBoardLayout>
+    </PrivateRoute>,
+    children:[
+      {
+        
+      },
+    ]
   },
   {
     path: "*",

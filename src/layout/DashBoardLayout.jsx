@@ -1,15 +1,11 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router";
-import { AiFillHome, AiOutlineHome } from "react-icons/ai";
-import {
-  FaUserCircle,
-  FaRegNewspaper,
-  FaUserShield,
-  FaUsersCog,
-} from "react-icons/fa";
-import { MdPostAdd, MdReportProblem, MdCampaign } from "react-icons/md";
+import { AiFillHome } from "react-icons/ai";
+import { FaUserShield, FaUserCircle } from "react-icons/fa";
+import { MdManageAccounts, MdLibraryAdd } from "react-icons/md";
+import { RiBookMarkLine } from "react-icons/ri";
 import useUserRole from "../Hooks/useUserRole";
-import Loader from "../pages/Loader/Loader"
+import Loader from "../pages/Loader/Loader";
 
 const DashBoardLayout = () => {
   const { role, roleLoading } = useUserRole();
@@ -89,18 +85,20 @@ const DashBoardLayout = () => {
                   </a>
                 </li>
               </NavLink>
-              <NavLink>
+              <NavLink to="dashboard/manageCourses">
                 <li>
-                    <a>
-                        Manage Courses
-                    </a>
+                  <a>
+                    <MdManageAccounts className="inline-block mr-2" />
+                    Manage Courses
+                  </a>
                 </li>
               </NavLink>
-              <NavLink>
+              <NavLink to="dashboard/addCourse">
                 <li>
-                    <a>
-                        Add Course
-                    </a>
+                  <a>
+                    <MdLibraryAdd className="inline-block mr-2" />
+                    Add Course
+                  </a>
                 </li>
               </NavLink>
             </>
@@ -123,14 +121,14 @@ const DashBoardLayout = () => {
                   </a>
                 </li>
               </NavLink>
-              <NavLink to="dashboard/addPost">
+              <NavLink to="dashboard/enrolledCourses">
                 <li>
                   <a>
+                    <RiBookMarkLine className="inline-block mr-2" />
                     My Enrolled Courses
                   </a>
                 </li>
               </NavLink>
-              
             </>
           )}
         </ul>
