@@ -85,18 +85,18 @@ const Register = () => {
         updateProfile(newUser, {
           displayName: name,
           photoURL: photo,
-        });
+        })
 
-        const userInfo = {
-          name: name,
-          email: email,
-          photoURL: photo,
-          role: "user",
-          createdAt: new Date(),
-        };
+        // const userInfo = {
+        //   name: name,
+        //   email: email,
+        //   photoURL: photo,
+        //   role: "user",
+        //   createdAt: new Date(),
+        // };
 
-        axiosSecure
-          .post("/users", userInfo)
+        // axiosSecure
+        //   .post("/users", userInfo)
           .then(() => {
             navigate("/");
             Swal.fire({
