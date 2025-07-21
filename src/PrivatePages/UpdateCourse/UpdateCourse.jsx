@@ -5,6 +5,7 @@ import updateCourseLottie from "../../assets/lotties/updateCourse.json";
 import Swal from "sweetalert2";
 import UseApplicationApi from "../../Hooks/UseApplicationApi";
 import UseAuth from "../../Hooks/UseAuth";
+import Animation from "../../Hooks/Animation";
 
 const UpdateCourse = () => {
 
@@ -62,7 +63,7 @@ const UpdateCourse = () => {
   };
 
   return (
-    <div className="card bg-base-100 w-11/12 max-w-[1300px] mx-auto shrink-0 shadow-xl shadow-gray-500 mt-16 mb-24 border-1 border-blue-600">
+    <Animation><div data-aos="fade-up" className="card bg-base-100 w-11/12 max-w-[1300px] mx-auto shrink-0 shadow-xl shadow-gray-500 mt-16 mb-24 border-1 border-blue-600">
       <div className="card-body text-blue-900">
         {/* Lottie Animation */}
         <div className="flex justify-center ">
@@ -233,7 +234,7 @@ const UpdateCourse = () => {
           </div>
         </form>
       </div>
-    </div>
+    </div></Animation>
   );
 };
 
