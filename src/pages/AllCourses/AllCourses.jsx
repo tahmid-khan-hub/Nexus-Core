@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router";
 import * as motion from "motion/react-client";
+import Animation from "../../Hooks/Animation";
 
 const AllCourses = () => {
   const coursesData = useLoaderData();
@@ -62,10 +63,10 @@ const AllCourses = () => {
         {sortedCourses.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-24">
             {sortedCourses.map((course) => (
-              <motion.div
+              <Animation><div data-aos="fade-up"><motion.div
                 whileHover={{ scale: 1.05 }}
                 key={course._id}
-                className="max-w-sm bg-gray-50 border-2 border-blue-300 rounded-lg shadow-xl mx-auto flex flex-col"
+                className="max-w-sm bg-gray-50 border-2 border-blue-300 rounded-lg shadow-xl mx-auto flex flex-col h-full"
               >
                 <img
                   className="rounded-xl w-full p-2 h-[250px] object-cover"
@@ -106,7 +107,7 @@ const AllCourses = () => {
                     </Link>
                   </div>
                 </div>
-              </motion.div>
+              </motion.div></div></Animation>
             ))}
           </div>
         )}
