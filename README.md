@@ -54,4 +54,4 @@
 ---
 
 ### 🔗 Live Link  
-- 🌐 [Live Site](https://dancing-paprenjak-69a983.netlify.app/)
+- 🌐 [Live Site](https://nexuscore-dev.netlify.app)
