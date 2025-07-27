@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import PageLoading from "../../Hooks/PageLoading";
 import Animation from "../../Hooks/Animation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import RegisterWithGoogle from "../../Hooks/RegisterWithGoogle";
 
 const Login = () => {
 
@@ -19,7 +20,7 @@ const Login = () => {
   const { signIn } = UseAuth();
 
   const handleGitHub = GitHubSignIn();
-  const handleGoogle = GoogleSignIn();
+  const handleGoogle = RegisterWithGoogle();
 
   const navigate = useNavigate();
   const location = useLocation();

@@ -1,9 +1,8 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router";
 import { AiFillHome } from "react-icons/ai";
-import { FaUserShield, FaUserCircle } from "react-icons/fa";
+import { FaUserShield, FaUserCircle, FaBookmark } from "react-icons/fa";
 import { MdManageAccounts, MdLibraryAdd } from "react-icons/md";
-// import { RiBookMarkLine } from "react-icons/ri";
 import useUserRole from "../Hooks/useUserRole";
 import Loader from "../pages/Loader/Loader";
 
@@ -70,35 +69,27 @@ const DashBoardLayout = () => {
             <>
               {/* Admin links */}
               <NavLink to="/">
-                <li>
-                  <a>
-                    <AiFillHome className="inline-block mr-2" />
-                    Home
-                  </a>
+                <li className="p-2 hover:bg-gray-200 rounded">
+                  <AiFillHome className="inline-block mr-2" />
+                  Home
                 </li>
               </NavLink>
-              <NavLink to="dashboard/adminProfile">
-                <li>
-                  <a>
-                    <FaUserShield className="inline-block mr-2" />
-                    Admin Profile
-                  </a>
+              <NavLink to="/dashboard/adminProfile">
+                <li className="p-2 hover:bg-gray-200 rounded">
+                  <FaUserShield className="inline-block mr-2" />
+                  Admin Profile
                 </li>
               </NavLink>
-              <NavLink to="dashboard/manageCourses">
-                <li>
-                  <a>
-                    <MdManageAccounts className="inline-block mr-2" />
-                    Manage Courses
-                  </a>
+              <NavLink to="/dashboard/manageCourses">
+                <li className="p-2 hover:bg-gray-200 rounded">
+                  <MdManageAccounts className="inline-block mr-2" />
+                  Manage Courses
                 </li>
               </NavLink>
-              <NavLink to="dashboard/addCourse">
-                <li>
-                  <a>
-                    <MdLibraryAdd className="inline-block mr-2" />
-                    Add Course
-                  </a>
+              <NavLink to="/dashboard/addCourse">
+                <li className="p-2 hover:bg-gray-200 rounded">
+                  <MdLibraryAdd className="inline-block mr-2" />
+                  Add Course
                 </li>
               </NavLink>
             </>
@@ -106,27 +97,21 @@ const DashBoardLayout = () => {
             <>
               {/* User links */}
               <NavLink to="/">
-                <li>
-                  <a>
-                    <AiFillHome className="inline-block mr-2" />
-                    Home
-                  </a>
+                <li className="p-2 hover:bg-gray-200 rounded">
+                  <AiFillHome className="inline-block mr-2" />
+                  Home
                 </li>
               </NavLink>
-              <NavLink to="dashboard/myProfile">
-                <li>
-                  <a>
-                    <FaUserCircle className="inline-block mr-2" />
-                    My Profile
-                  </a>
+              <NavLink to="/dashboard/myProfile">
+                <li className="p-2 hover:bg-gray-200 rounded">
+                  <FaUserCircle className="inline-block mr-2" />
+                  My Profile
                 </li>
               </NavLink>
-              <NavLink to="dashboard/enrolledCourses">
-                <li>
-                  <a>
-                    <RiBookMarkLine className="inline-block mr-2" />
-                    My Enrolled Courses
-                  </a>
+              <NavLink to="/dashboard/enrolledCourses">
+                <li className="p-2 hover:bg-gray-200 rounded">
+                  <FaBookmark className="inline-block mr-2" />
+                  My Enrolled Courses
                 </li>
               </NavLink>
             </>
