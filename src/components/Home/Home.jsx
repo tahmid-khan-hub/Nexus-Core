@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="max-w-[1300px] mx-auto">
+      <div className="max-w-[1300px] mx-auto overflow-x-hidden">
         <CourseSection coursesData={coursesData}></CourseSection>
         <PopularSection coursesData={coursesData}></PopularSection>
         <Categories coursesData={coursesData}></Categories>
