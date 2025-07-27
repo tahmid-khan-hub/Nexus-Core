@@ -136,10 +136,11 @@ const Router = createBrowserRouter([
         </PrivateRoute>
       },
       {
-        path: "dashboard/myEnrolledCourses",
+        path: "/dashboard/myEnrolledCourses",
         element: <PrivateRoute>
           <MyEnrolledCourses></MyEnrolledCourses>
-        </PrivateRoute>
+        </PrivateRoute>,
+        loader: ()=> fetch("https://nex-us-core-server.vercel.app/userCourses")
       },
 
       // admin

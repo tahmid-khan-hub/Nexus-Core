@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router";
+import { Outlet, Link } from "react-router";
 import { AiFillHome } from "react-icons/ai";
 import { FaUserShield, FaUserCircle, FaBookmark } from "react-icons/fa";
 import { MdManageAccounts, MdLibraryAdd } from "react-icons/md";
@@ -68,52 +68,52 @@ const DashBoardLayout = () => {
           {role === "admin" ? (
             <>
               {/* Admin links */}
-              <NavLink to="/">
-                <li className="p-2 hover:bg-gray-200 rounded">
+              <Link to="/">
+                <li className="p-2 rounded">
                   <AiFillHome className="inline-block mr-2" />
-                  Home
+                  <a>Home</a>
                 </li>
-              </NavLink>
-              <NavLink to="/dashboard/adminProfile">
-                <li className="p-2 hover:bg-gray-200 rounded">
+              </Link>
+              <Link to="/dashboard/adminProfile">
+                <li className="p-2 rounded">
                   <FaUserShield className="inline-block mr-2" />
-                  Admin Profile
+                  <a>Admin Profile</a>
                 </li>
-              </NavLink>
-              <NavLink to="/dashboard/manageCourses">
-                <li className="p-2 hover:bg-gray-200 rounded">
+              </Link>
+              <Link to="/dashboard/manageCourses">
+                <li className="p-2 rounded">
                   <MdManageAccounts className="inline-block mr-2" />
-                  Manage Courses
+                  <a>Manage Courses</a>
                 </li>
-              </NavLink>
-              <NavLink to="/dashboard/addCourse">
-                <li className="p-2 hover:bg-gray-200 rounded">
+              </Link>
+              <Link to="/dashboard/addCourse">
+                <li className="p-2 rounded">
                   <MdLibraryAdd className="inline-block mr-2" />
-                  Add Course
+                  <a>Add Course</a>
                 </li>
-              </NavLink>
+              </Link>
             </>
           ) : (
             <>
               {/* User links */}
-              <NavLink to="/">
-                <li className="p-2 hover:bg-gray-200 rounded">
+              <Link to="/">
+                <li className="p-2 rounded">
                   <AiFillHome className="inline-block mr-2" />
-                  Home
+                  <a>Home</a>
                 </li>
-              </NavLink>
-              <NavLink to="/dashboard/myProfile">
-                <li className="p-2 hover:bg-gray-200 rounded">
+              </Link>
+              <Link to="/dashboard/myProfile">
+                <li className="p-2 rounded">
                   <FaUserCircle className="inline-block mr-2" />
-                  My Profile
+                  <a>My Profile</a>
                 </li>
-              </NavLink>
-              <NavLink to="/dashboard/enrolledCourses">
-                <li className="p-2 hover:bg-gray-200 rounded">
+              </Link>
+              <Link to="/dashboard/myEnrolledCourses">
+                <li className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium rounded-[13px] shadow-md ">
                   <FaBookmark className="inline-block mr-2" />
-                  My Enrolled Courses
+                  <a>My Enrolled Courses</a>
                 </li>
-              </NavLink>
+              </Link>
             </>
           )}
         </ul>
