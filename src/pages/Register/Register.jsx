@@ -3,8 +3,6 @@ import { Link, useNavigate } from "react-router";
 import Lottie from "lottie-react";
 import registerLottie from "../../assets/lotties/register.json";
 import UseAuth from "../../Hooks/UseAuth";
-import GoogleSignIn from "../../Hooks/GoogleSignIn";
-import GitHubSignIn from "../../Hooks/GitHubSignIn";
 import Swal from "sweetalert2";
 import PageLoading from "../../Hooks/PageLoading";
 import Animation from "../../Hooks/Animation";
@@ -13,6 +11,8 @@ import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 import { useForm } from "react-hook-form";
 import app from "../../firebase/firebase_init";
 import { getAuth } from "firebase/auth";
+import RegisterWithGoogle from "../../Hooks/RegisterWithGoogle";
+import RegisterWithGitHub from "../../Hooks/RegisterWithGitHub";
 
 const Register = () => {
   useEffect(() => {
@@ -26,8 +26,8 @@ const Register = () => {
   const { signUp, updateUserProfile } = UseAuth();
   const axiosSecure = UseAxiosSecure();
 
-  const handleGoogle = GoogleSignIn();
-  const handleGitHub = GitHubSignIn();
+  const handleGoogle = RegisterWithGoogle();
+  const handleGitHub = RegisterWithGitHub();
 
   const navigate = useNavigate();
 
