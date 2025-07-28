@@ -133,7 +133,8 @@ const Router = createBrowserRouter([
         path: "myProfile",
         element: <PrivateRoute>
           <MyProfile></MyProfile>
-        </PrivateRoute>
+        </PrivateRoute>,
+        loader: ()=> fetch("http://localhost:3000/userCourses")
       },
       {
         path: "/dashboard/myEnrolledCourses",
