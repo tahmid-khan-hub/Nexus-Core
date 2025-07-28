@@ -151,13 +151,13 @@ const Router = createBrowserRouter([
         </AdminRoute>
       },
       {
-        path: "dashboard/addCourse",
+        path: "/dashboard/addCourse",
         element: <AdminRoute>
           <AddCourse></AddCourse>
         </AdminRoute>
       },
       {
-        path: "dashboard/manageCourses",
+        path: "/dashboard/manageCourses",
         element: <AdminRoute>
           <ManageCourses></ManageCourses>
         </AdminRoute>

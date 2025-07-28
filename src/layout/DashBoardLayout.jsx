@@ -69,27 +69,27 @@ const DashBoardLayout = () => {
             <>
               {/* Admin links */}
               <Link to="/">
-                <li className="p-2 rounded">
-                  <AiFillHome className="inline-block mr-2" />
-                  <a>Home</a>
+                <li className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium rounded-[13px] shadow-md">
+                  <div><AiFillHome size={12} className="inline-block mr-1 mt-1" />
+                  <a>Home</a></div>
                 </li>
               </Link>
               <Link to="/dashboard/adminProfile">
-                <li className="p-2 rounded">
-                  <FaUserShield className="inline-block mr-2" />
-                  <a>Admin Profile</a>
+                <li className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium rounded-[13px] shadow-md">
+                  <div><FaUserShield size={12} className="inline-block mr-1 mt-1" />
+                  <a>Admin Profile</a></div>
                 </li>
               </Link>
               <Link to="/dashboard/manageCourses">
-                <li className="p-2 rounded">
-                  <MdManageAccounts className="inline-block mr-2" />
-                  <a>Manage Courses</a>
+                <li className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium rounded-[13px] shadow-md">
+                  <div><MdManageAccounts size={12} className="inline-block mr-1 mt-1" />
+                  <a>Manage Courses</a></div>
                 </li>
               </Link>
               <Link to="/dashboard/addCourse">
-                <li className="p-2 rounded">
-                  <MdLibraryAdd className="inline-block mr-2" />
-                  <a>Add Course</a>
+                <li className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium rounded-[13px] shadow-md">
+                  <div><MdLibraryAdd size={12} className="inline-block mr-1 mt-1" />
+                  <a>Add Course</a></div>
                 </li>
               </Link>
             </>
@@ -97,21 +97,21 @@ const DashBoardLayout = () => {
             <>
               {/* User links */}
               <Link to="/">
-                <li className="p-2 rounded">
-                  <AiFillHome className="inline-block mr-2" />
-                  <a>Home</a>
+                <li className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium rounded-[13px] shadow-md mb-1.5">
+                  <div><AiFillHome size={14} className="inline-block mr-1 " />
+                  <a>Home</a></div>
                 </li>
               </Link>
               <Link to="/dashboard/myProfile">
-                <li className="p-2 rounded">
-                  <FaUserCircle className="inline-block mr-2" />
-                  <a>My Profile</a>
+                <li className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium rounded-[13px] shadow-md mb-1.5">
+                  <div><FaUserCircle size={14} className="inline-block mr-1 mt-0.5" />
+                  <a>My Profile</a></div>
                 </li>
               </Link>
               <Link to="/dashboard/myEnrolledCourses">
-                <li className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium rounded-[13px] shadow-md ">
-                  <FaBookmark className="inline-block mr-2" />
-                  <a>My Enrolled Courses</a>
+                <li className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium rounded-[13px] shadow-md mb-1.5">
+                  <div className="flex"><FaBookmark size={12} className="inline-block mr-1 mt-0.5" />
+                  <a>My Enrolled Courses</a></div>
                 </li>
               </Link>
             </>
