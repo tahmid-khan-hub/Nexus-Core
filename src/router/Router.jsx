@@ -148,7 +148,8 @@ const Router = createBrowserRouter([
         path: "adminProfile",
         element: <AdminRoute>
           <AdminProfile></AdminProfile>
-        </AdminRoute>
+        </AdminRoute>,
+        loader: () => fetch("http://localhost:3000/courses"),
       },
       {
         path: "/dashboard/addCourse",
