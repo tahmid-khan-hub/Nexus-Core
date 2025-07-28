@@ -69,26 +69,26 @@ const DashBoardLayout = () => {
             <>
               {/* Admin links */}
               <Link to="/">
-                <li className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium rounded-[13px] shadow-md">
-                  <div><AiFillHome size={12} className="inline-block mr-1 mt-1" />
+                <li className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium rounded-[13px] shadow-md mb-1.5">
+                  <div><AiFillHome size={14} className="inline-block mr-1" />
                   <a>Home</a></div>
                 </li>
               </Link>
               <Link to="/dashboard/adminProfile">
-                <li className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium rounded-[13px] shadow-md">
-                  <div><FaUserShield size={12} className="inline-block mr-1 mt-1" />
+                <li className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium rounded-[13px] shadow-md mb-1.5">
+                  <div><FaUserShield size={14} className="inline-block mr-1 " />
                   <a>Admin Profile</a></div>
                 </li>
               </Link>
               <Link to="/dashboard/manageCourses">
-                <li className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium rounded-[13px] shadow-md">
-                  <div><MdManageAccounts size={12} className="inline-block mr-1 mt-1" />
+                <li className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium rounded-[13px] shadow-md mb-1.5">
+                  <div><MdManageAccounts size={15} className="inline-block mr-1" />
                   <a>Manage Courses</a></div>
                 </li>
               </Link>
               <Link to="/dashboard/addCourse">
-                <li className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium rounded-[13px] shadow-md">
-                  <div><MdLibraryAdd size={12} className="inline-block mr-1 mt-1" />
+                <li className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium rounded-[13px] shadow-md mb-1.5">
+                  <div><MdLibraryAdd size={14} className="inline-block mr-1 " />
                   <a>Add Course</a></div>
                 </li>
               </Link>
