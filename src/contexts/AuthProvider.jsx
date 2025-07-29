@@ -56,6 +56,14 @@ const AuthProvider = ({children}) => {
         return () => unsubscribe();
     },[])
 
+    const refreshUser = async () => {
+        if (auth.currentUser) {
+            await auth.currentUser.reload();
+            setUser(auth.currentUser);
+        }
+    };
+
+
     const userInfo = {
         user,
         loading,
@@ -66,6 +74,7 @@ const AuthProvider = ({children}) => {
         logOut,
         updateUserProfile,
         updateUserPassword,
+        refreshUser,
     }
 
     return (
