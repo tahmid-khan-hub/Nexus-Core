@@ -53,19 +53,9 @@ const Navbar = () => {
           <a className="font-semibold">All Courses</a>
         </li>
       </NavLink>
-      <NavLink to="/addCourse">
+      <NavLink to="/about">
         <li>
-          <a className="font-semibold">AddCourse</a>
-        </li>
-      </NavLink>
-      <NavLink to="/manageCourses">
-        <li>
-          <a className="font-semibold">ManageCourses</a>
-        </li>
-      </NavLink>
-      <NavLink to="/myEnrolledCourses">
-        <li>
-          <a className="font-semibold">MyEnrolledCourses</a>
+          <a className="font-semibold">About</a>
         </li>
       </NavLink>
     </>
