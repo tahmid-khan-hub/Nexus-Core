@@ -23,6 +23,7 @@ import DashBoardRedirect from "../layout/DashBoardRedirect";
 import MyProfile from "../PrivatePages/MyProfile/MyProfile";
 import AdminRoute from "../routes/AdminRoute";
 import AdminProfile from "../PrivatePages/AdminProfile/AdminProfile";
+import Settings from "../PrivatePages/Settings/Settings";
 
 const Router = createBrowserRouter([
   {
@@ -164,6 +165,14 @@ const Router = createBrowserRouter([
           <ManageCourses></ManageCourses>
         </AdminRoute>,
         loader: () => fetch("http://localhost:3000/courses"),
+      },
+
+      // user settings
+      {
+        path: "/dashboard/settings",
+        element: <PrivateRoute>
+          <Settings></Settings>
+        </PrivateRoute>
       }
     ]
   },
