@@ -4,6 +4,7 @@ import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 import UseAuth from "../../Hooks/UseAuth";
 import { useMutation } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import Animation from "../../Hooks/Animation";
 
 const Feedback = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -34,14 +35,14 @@ const Feedback = () => {
     mutate(data);
   };
   return (
-    <div className="max-w-xl mx-auto p-4 bg-white rounded shadow">
-      <h2 className="text-xl font-bold mb-4">Submit Feedback</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <Animation><div className="mx-3 p-4">
+      <h2 className="text-3xl text-center font-semibold mb-9 mt-5">Submit Feedback</h2>
+      <form data-aos="fade-up" onSubmit={handleSubmit(onSubmit)} className="space-y-4 bg-base-200 p-5 rounded-xl">
         <label className="block">
-          <span className="text-gray-700">Category</span>
+          <span className="text-black font-semibold">Category</span>
           <select
             {...register("category")}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border-2 border-gray-300 bg-white rounded"
             required
           >
             <option value="">Select Category</option>
@@ -54,10 +55,10 @@ const Feedback = () => {
         </label>
 
         <label className="block">
-          <span className="text-gray-700">Rating</span>
+          <span className="text-black font-semibold">Rating</span>
           <select
             {...register("rating")}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border-2 border-gray-300 bg-white rounded"
             required
           >
             <option value="">Rate your experience (1–5)</option>
@@ -72,19 +73,19 @@ const Feedback = () => {
         <textarea
           {...register("message")}
           placeholder="Write your feedback here..."
-          className="w-full p-2 border rounded h-32"
+          className="w-full p-2 border-2 border-gray-300 bg-white rounded h-32"
           required
         />
 
         <button
           type="submit"
           disabled={isPending}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="w-full mt-5 text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2"
         >
           {isPending ? "Submitting..." : "Submit"}
         </button>
       </form>
-    </div>
+    </div></Animation>
   );
 };
 
