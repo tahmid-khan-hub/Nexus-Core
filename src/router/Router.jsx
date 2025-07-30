@@ -167,6 +167,10 @@ const Router = createBrowserRouter([
         </AdminRoute>,
         loader: () => fetch("http://localhost:3000/courses"),
       },
+      {
+        path: "/dashboard/allFeedback",
+        
+      },
 
       // user settings
       {

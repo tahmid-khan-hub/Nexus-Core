@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet, Link, useNavigate } from "react-router";
 import { AiFillHome } from "react-icons/ai";
 import { FaUserShield, FaUserCircle, FaBookmark, FaComment } from "react-icons/fa";
-import { MdManageAccounts, MdLibraryAdd } from "react-icons/md";
+import { MdManageAccounts, MdLibraryAdd, MdFeedback } from "react-icons/md";
 import useUserRole from "../Hooks/useUserRole";
 import Loader from "../pages/Loader/Loader";
 import UseAuth from "../Hooks/UseAuth";
@@ -124,6 +124,17 @@ const DashBoardLayout = () => {
                     </div>
                   </li>
                 </Link>
+                <Link to="/dashboard/allFeedback">
+                  <li className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium rounded-[13px] shadow-md mb-1.5">
+                    <div>
+                      <MdFeedback
+                        size={15}
+                        className="inline-block mr-1 mt-0.5"
+                      />
+                      <a>All Feedback</a>
+                    </div>
+                  </li>
+                </Link>
               </>
             ) : (
               <>
@@ -188,11 +199,13 @@ const DashBoardLayout = () => {
             </Link>
 
             {/* Feedback Link */}
-            <Link to="/dashboard/feedback">
+            {
+              role !== 'admin' && <Link to="/dashboard/feedback">
               <button className="btn btn-outline btn-sm w-full text-blue-600 border-blue-400 hover:bg-blue-100 text-[15px] rounded-lg">
                 <FaComment size={14} className="mr-1 mt-0.5"/> Feedback
               </button>
-            </Link>
+              </Link>
+            }
 
             {/* Logout */}
             <button
