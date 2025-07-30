@@ -21,6 +21,10 @@ const Settings = () => {
   } = useForm();
 
   useEffect(() => {
+    document.title = "NexusCore | Settings";
+  }, []);
+  
+  useEffect(() => {
     if (user) {
       reset({
         name: user.displayName || "",

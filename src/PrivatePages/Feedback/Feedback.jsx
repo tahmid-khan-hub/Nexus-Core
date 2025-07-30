@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 import UseAuth from "../../Hooks/UseAuth";
@@ -7,6 +7,9 @@ import Swal from "sweetalert2";
 import Animation from "../../Hooks/Animation";
 
 const Feedback = () => {
+  useEffect(() => {
+    document.title = "NexusCore | Feedback";
+  }, []);
   const { register, handleSubmit, reset } = useForm();
   const axiosSecure = UseAxiosSecure();
   const { user } = UseAuth();

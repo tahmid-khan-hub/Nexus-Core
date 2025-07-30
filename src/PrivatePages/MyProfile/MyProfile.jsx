@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import UseAuth from "../../Hooks/UseAuth";
 import { Link, useLoaderData } from "react-router";
 import { FaBookOpen } from "react-icons/fa";
 import Animation from "../../Hooks/Animation";
 
 const MyProfile = () => {
+  useEffect(() => {
+    document.title = "NexusCore | Dashboard";
+  }, []);
   const { user } = UseAuth();
   const allUserCourses = useLoaderData();
   const userCourses = allUserCourses.filter(

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLoaderData } from "react-router";
 import UseAuth from "../../Hooks/UseAuth";
 import { FaBook, FaTags, FaUserGraduate } from "react-icons/fa";
@@ -6,6 +6,9 @@ import DataGraph from "./DataGraph";
 import Animation from "../../Hooks/Animation";
 
 const AdminProfile = () => {
+  useEffect(() => {
+    document.title = "NexusCore | Admin Profile";
+  }, []);
   const courses = useLoaderData();
   const { user } = UseAuth();
 

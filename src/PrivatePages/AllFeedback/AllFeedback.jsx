@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Loader from "../../pages/Loader/Loader";
@@ -7,6 +7,9 @@ import { FaStar } from "react-icons/fa";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 
 const AllFeedback = () => {
+  useEffect(() => {
+    document.title = "NexusCore | All Feedback";
+  }, []);
   const axiosSecure = UseAxiosSecure();
 
   const { data: feedbacks = [], isLoading } = useQuery({
