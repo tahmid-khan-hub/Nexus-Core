@@ -87,7 +87,7 @@ const Settings = () => {
   return (
     <Animation>
       <div className=" p-6 space-y-8">
-        <h2 className="text-3xl font-semibold mt-5 text-center">Settings</h2>
+        <h2 className="text-3xl font-bold mt-5 text-center">Settings</h2>
 
         {/* Account Info Section */}
         <div data-aos="fade-up" className="bg-base-200 rounded-xl p-6 shadow">

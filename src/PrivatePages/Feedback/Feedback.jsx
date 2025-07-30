@@ -39,7 +39,7 @@ const Feedback = () => {
   };
   return (
     <Animation><div className="mx-3 p-4">
-      <h2 className="text-3xl text-center font-semibold mb-9 mt-5">Submit Feedback</h2>
+      <h2 className="text-3xl text-center font-bold mb-9 mt-5">Submit Feedback</h2>
       <form data-aos="fade-up" onSubmit={handleSubmit(onSubmit)} className="space-y-4 bg-base-200 p-5 rounded-xl">
         <label className="block">
           <span className="text-black font-semibold">Category</span>

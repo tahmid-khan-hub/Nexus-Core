@@ -59,7 +59,7 @@ const ManageCourses = () => {
 
   return (
     <div className="relative overflow-x-auto sm:rounded-lg mt-11 min-h-screen">
-      <h2 className="text-3xl font-semibold text-center mt-5 mb-2">
+      <h2 className="text-3xl font-bold text-center mt-5 mb-2">
         Manage Courses
       </h2>
 
