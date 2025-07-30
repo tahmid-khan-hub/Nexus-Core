@@ -63,6 +63,10 @@ const UpdateCourse = () => {
   };
 
   return (
+    <>
+    <div className="max-w-[1300px] mx-auto">
+      <button onClick={()=> navigate(-1)} className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mt-4">Back</button>
+    </div>
     <Animation><div data-aos="fade-up" className="card bg-base-100 w-11/12 max-w-[1300px] mx-auto shrink-0 shadow-xl shadow-gray-500 mt-16 mb-24 border-1 border-blue-600">
       <div className="card-body text-blue-900">
         {/* Lottie Animation */}
@@ -234,7 +238,7 @@ const UpdateCourse = () => {
           </div>
         </form>
       </div>
-    </div></Animation>
+    </div></Animation></>
   );
 };
 
