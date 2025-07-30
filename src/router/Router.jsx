@@ -24,6 +24,7 @@ import MyProfile from "../PrivatePages/MyProfile/MyProfile";
 import AdminRoute from "../routes/AdminRoute";
 import AdminProfile from "../PrivatePages/AdminProfile/AdminProfile";
 import Settings from "../PrivatePages/Settings/Settings";
+import Feedback from "../PrivatePages/Feedback/Feedback";
 
 const Router = createBrowserRouter([
   {
@@ -172,6 +173,12 @@ const Router = createBrowserRouter([
         path: "/dashboard/settings",
         element: <PrivateRoute>
           <Settings></Settings>
+        </PrivateRoute>
+      },
+      {
+        path: "/dashboard/feedback",
+        element: <PrivateRoute>
+          <Feedback></Feedback>
         </PrivateRoute>
       }
     ]
