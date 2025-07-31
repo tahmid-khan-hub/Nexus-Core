@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData, useParams } from "react-router";
+import { Link, useLoaderData, useParams } from "react-router";
 import * as motion from "motion/react-client";
 import UseAuth from "../../Hooks/UseAuth";
 import Swal from "sweetalert2";
@@ -229,7 +229,7 @@ const CourseDetails = () => {
                     Enrolled
                   </button>
                 ) : (
-                  <button
+                  <Link to="/payment"><button
                     onClick={handleUserCourses}
                     className={`w-full text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 ${
                       enrollLimitReached || remainingSeat <= 0
@@ -242,7 +242,7 @@ const CourseDetails = () => {
                       : remainingSeat <= 0
                       ? "No Seat Left"
                       : "Enroll Now"}
-                  </button>
+                  </button></Link>
                 )}
               </div>
             </div>

@@ -26,6 +26,7 @@ import AdminProfile from "../PrivatePages/AdminProfile/AdminProfile";
 import Settings from "../PrivatePages/Settings/Settings";
 import Feedback from "../PrivatePages/Feedback/Feedback";
 import AllFeedback from "../PrivatePages/AllFeedback/AllFeedback";
+import CoursePayment from "../PrivatePages/CoursePayment/CoursePayment";
 
 const Router = createBrowserRouter([
   {
@@ -46,29 +47,10 @@ const Router = createBrowserRouter([
         element: <Register></Register>,
       },
       {
-        path: "/addCourse",
-        element: (
-          <PrivateRoute>
-            <AddCourse></AddCourse>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/myEnrolledCourses",
-        element: (
-          <PrivateRoute>
-            <MyEnrolledCourses></MyEnrolledCourses>
-          </PrivateRoute>
-        ),
-        loader: ()=> fetch("http://localhost:3000/userCourses")
-      },
-      {
-        path: "/manageCourses",
-        element: (
-          <PrivateRoute>
-            <ManageCourses></ManageCourses>
-          </PrivateRoute>
-        ),
+        path: "/payment",
+        element: <PrivateRoute>
+          <CoursePayment></CoursePayment>
+        </PrivateRoute>,
         loader: () => fetch("http://localhost:3000/courses"),
       },
       {
