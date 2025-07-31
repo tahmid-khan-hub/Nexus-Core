@@ -175,6 +175,19 @@ const AddCourse = () => {
 
             <div>
               <label className="label block font-bold mb-1">
+                Price:
+              </label>
+              <input
+                className="input w-full"
+                type="number"
+                name="price"
+                placeholder="Enter Course Price"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="label block font-bold mb-1">
                 Course Language:
               </label>
               <select className="select w-full" name="language" required>
