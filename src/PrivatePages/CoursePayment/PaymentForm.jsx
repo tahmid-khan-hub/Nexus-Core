@@ -22,32 +22,35 @@ const PaymentForm = () => {
   const course = courseData.find((c) => c._id.toString() === courseId);
   const coursePrice = course.price;
 
-    useEffect(() => {
-        axiosSecure
-        .post("/create-payment-intent", {
-            email: user.email,
-            amount: coursePrice,
-        })
-        .then((res) => setClientSecret(res.data.clientSecret));
-    }, [axiosSecure, user?.email, coursePrice]);
+  useEffect(() => {
+    const price = parseFloat(coursePrice);
+    if (!price || isNaN(price)) return;
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (!stripe || !elements || !clientSecret) return;
+    axiosSecure
+      .post("/create-payment-intent", {
+        email: user.email,
+        price: price,
+      })
+      .then((res) => setClientSecret(res.data.clientSecret));
+  }, [axiosSecure, user?.email, coursePrice]);
 
-        setLoading(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!stripe || !elements || !clientSecret) return;
 
-        const card = elements.getElement(CardElement);
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
-        type: "card",
-        card,
-        });
+    setLoading(true);
 
-        if (error) {
-        Swal.fire("Error", error.message, "error");
-        setLoading(false);
-        return;
-        }
+    const card = elements.getElement(CardElement);
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card,
+    });
+
+    if (error) {
+      Swal.fire("Error", error.message, "error");
+      setLoading(false);
+      return;
+    }
 
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
