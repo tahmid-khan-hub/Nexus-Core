@@ -1,37 +1,39 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLoaderData, useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import * as motion from "motion/react-client";
 import UseAuth from "../../Hooks/UseAuth";
 import Swal from "sweetalert2";
 import PageLoading from "../../Hooks/PageLoading";
 import UseApplicationApi from "../../Hooks/UseApplicationApi";
 import { useQuery } from "@tanstack/react-query";
+import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
+import Loader from "../Loader/Loader";
 
 const CourseDetails = () => {
   const { user } = UseAuth();
-  const {
-    myEnrolledCoursesPatch,
-    courseDelete,
-    userCoursesCheck,
-    userCoursesCount,
-    enrollPost,
-    enrollIncrement,
-  } = UseApplicationApi();
+  const {userCoursesCheck, userCoursesCount} = UseApplicationApi();
   const { id } = useParams();
-  const data = useLoaderData();
   const navigate = useNavigate();
+  const axiosSecure = UseAxiosSecure();
+
+  const { data: data = [], isLoading} = useQuery({
+      queryKey: ["courses"],
+      queryFn: async () => {
+        const res = await axiosSecure.get("/courses");
+        return res.data;
+      },
+    });
 
   const course = data.find((c) => c._id.toString() === id);
   const userEmail = user?.email || "";
 
-  // Fetch user's total enrolled courses
+  // total enrolled courses
   const { data: courseCount = 0 } = useQuery({
     queryKey: ["userCoursesCount", userEmail],
     queryFn: () => userCoursesCount(userEmail).then((res) => res.count),
     enabled: !!userEmail,
   });
 
-  // Check if already enrolled in this course
+  // Checking if already enrolled in this course
   const { data: isAlreadyEnrolled = false } = useQuery({
     queryKey: ["userCourseCheck", userEmail, course?._id],
     queryFn: () =>
@@ -90,6 +92,8 @@ const CourseDetails = () => {
   };
 
   const { text, disabled } = getButtonProps();
+
+  if(isLoading) return <Loader></Loader>;
 
   return (
     <PageLoading>

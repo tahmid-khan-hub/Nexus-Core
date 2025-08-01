@@ -1,19 +1,32 @@
 import React, { useEffect } from "react";
-import { useLoaderData, useParams } from "react-router";
+import { useParams } from "react-router";
 import CategoryDetails from "../CategoryDetails/CategoryDetails";
 import Lottie from "lottie-react";
 import NoDataFound from "../../assets/lotties/noData.json";
+import { useQuery } from "@tanstack/react-query";
+import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
+import Loader from "../Loader/Loader";
 
 const Category = () => {
 
   useEffect(()=>{document.title = "NexusCore | CategoryDetails"},[])
 
   const { category } = useParams();
-  const courseData = useLoaderData();
+  const axiosSecure = UseAxiosSecure();
+
+  const { data: courseData = [], isLoading} = useQuery({
+    queryKey: ["courses"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/courses");
+      return res.data;
+    },
+  });
 
   const categoryTypes = courseData.filter(
     (course) => course.categories === category
   );
+
+  if(isLoading) return <Loader></Loader>;
 
   return (
     <div className="grid grid-cols-1">

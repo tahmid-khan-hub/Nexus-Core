@@ -64,17 +64,17 @@ const Router = createBrowserRouter([
       {
         path: "/Category/:category",
         element: <Category></Category>,
-        loader: () => fetch("http://localhost:3000/courses"),
+
       },
       {
         path: "/categoryDetails",
         element: <CategoryDetails></CategoryDetails>,
-        loader: () => fetch("http://localhost:3000/courses"),
+        
       },
       {
         path: "/courseDetails/:id",
         element: <CourseDetails></CourseDetails>,
-        loader: () => fetch("http://localhost:3000/courses"),
+        
       },
       {
         path: "/allCourses",
