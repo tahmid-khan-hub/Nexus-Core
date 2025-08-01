@@ -132,7 +132,7 @@ const Router = createBrowserRouter([
         element: <AdminRoute>
           <AdminProfile></AdminProfile>
         </AdminRoute>,
-        loader: () => fetch("http://localhost:3000/courses"),
+        
       },
       {
         path: "/dashboard/addCourse",
@@ -145,7 +145,7 @@ const Router = createBrowserRouter([
         element: <AdminRoute>
           <ManageCourses></ManageCourses>
         </AdminRoute>,
-        loader: () => fetch("http://localhost:3000/courses"),
+        
       },
       {
         path: "/dashboard/allFeedback",

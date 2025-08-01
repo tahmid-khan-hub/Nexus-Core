@@ -1,16 +1,26 @@
 import React, { useEffect } from "react";
-import { useLoaderData } from "react-router";
 import UseAuth from "../../Hooks/UseAuth";
 import { FaBook, FaTags, FaUserGraduate } from "react-icons/fa";
 import DataGraph from "./DataGraph";
 import Animation from "../../Hooks/Animation";
+import { useQuery } from "@tanstack/react-query";
+import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
+import Loader from "../../pages/Loader/Loader";
 
 const AdminProfile = () => {
   useEffect(() => {
     document.title = "NexusCore | Admin Profile";
   }, []);
-  const courses = useLoaderData();
   const { user } = UseAuth();
+  const axiosSecure = UseAxiosSecure();
+
+  const { data: courses = [], isLoading} = useQuery({
+    queryKey: ["courses"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/courses");
+      return res.data;
+    },
+  });
 
   // Total counts
   const totalCourses = courses.length;
@@ -18,9 +28,9 @@ const AdminProfile = () => {
     (sum, course) => sum + course.enrolled,
     0
   );
-  const totalCategories = new Set(courses.map((course) => course.categories))
-    .size;
+  const totalCategories = new Set(courses.map((course) => course.categories)).size;
 
+  if(isLoading) return <Loader></Loader>;
   return (
     <div className="min-h-screen p-6 space-y-6">
       {/* Admin Info */}

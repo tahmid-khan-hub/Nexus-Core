@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLoaderData } from "react-router";
+import { Link } from "react-router";
 import UseAuth from "../../Hooks/UseAuth";
 import Lottie from "lottie-react";
 import Swal from "sweetalert2";
@@ -7,6 +7,9 @@ import dataNotFound from "../../assets/lotties/dataNotFound.json";
 import UseApplicationApi from "../../Hooks/UseApplicationApi";
 import { MdModeEditOutline } from "react-icons/md";
 import { RiDeleteBin5Fill } from "react-icons/ri";
+import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../../pages/Loader/Loader";
 
 const ManageCourses = () => {
   useEffect(() => {
@@ -16,12 +19,25 @@ const ManageCourses = () => {
 
   const { user } = UseAuth();
   const { manageCoursesPromise } = UseApplicationApi();
-  const courseData = useLoaderData();
+  const axiosSecure = UseAxiosSecure();
+
+  const { data: courseData = [], isLoading} = useQuery({
+    queryKey: ["courses"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/courses");
+      return res.data;
+    },
+  });
 
   const email = user.email;
-  
 
-  const [courses, setCourses] = useState(courseData);
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    if (courseData.length) {
+      setCourses(courseData);
+    }
+  }, [courseData]);
 
   const handleCourseDelete = (id) => {
     Swal.fire({
@@ -56,6 +72,8 @@ const ManageCourses = () => {
       }
     });
   };
+
+  if(isLoading) return <Loader></Loader>;
 
   return (
     <div className="relative overflow-x-auto sm:rounded-lg mt-11 min-h-screen">
