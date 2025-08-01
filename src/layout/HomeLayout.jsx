@@ -16,7 +16,7 @@ const HomeLayout = () => {
             
             {shouldShowBanner && <Banner />}
 
-            <div className='w-[96%] md:max-w-[1500px] mx-auto'>
+            <div className='w-[96%] md:max-w-[1500px] mx-auto h-screen'>
                 <Outlet />
             </div>
 

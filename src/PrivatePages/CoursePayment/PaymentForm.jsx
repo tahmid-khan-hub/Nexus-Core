@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import UseAuth from "../../Hooks/UseAuth";
 import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { useLoaderData, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import Lottie from "lottie-react";
 import paymentLottie from "../../assets/lotties/Online Payment.json";
 
 const PaymentForm = () => {
@@ -16,16 +17,12 @@ const PaymentForm = () => {
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const courseData = useLoaderData();
-  const { courseId } = location.state || {};
+  const { courseId, coursePrice } = location.state || {};
 
-  const course = courseData.find((c) => c._id.toString() === courseId);
-  const coursePrice = course.price;
 
   useEffect(() => {
     const price = parseFloat(coursePrice);
     if (!price || isNaN(price)) return;
-
     axiosSecure
       .post("/create-payment-intent", {
         email: user.email,
@@ -69,7 +66,7 @@ const PaymentForm = () => {
       });
     }
     setLoading(false);
-  };
+  };  
   return (
     <div className="min-h-screen mt-32">
       <div className="flex flex-col items-center mb-6">

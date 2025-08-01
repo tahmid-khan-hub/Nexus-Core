@@ -5,10 +5,11 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useQuery } from "@tanstack/react-query";
 import { Elements } from "@stripe/react-stripe-js";
 import PaymentForm from "./PaymentForm";
+import { Loader } from "lucide-react";
 
 const CoursePayment = () => {
   useEffect(() => {
-    document.title = "ThreadQube | Course Payment";
+    document.title = "NexUSCore | Course Payment";
   }, []);
 
   const { user } = UseAuth();

@@ -51,7 +51,6 @@ const Router = createBrowserRouter([
         element: <PrivateRoute>
           <CoursePayment></CoursePayment>
         </PrivateRoute>,
-        loader: () => fetch("http://localhost:3000/courses"),
       },
       {
         path: "/updateCourse/:id",
