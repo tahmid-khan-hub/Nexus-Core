@@ -90,6 +90,9 @@ const CourseDetails = () => {
     if (remainingSeat <= 0) {
       return { text: "No Seat Left", disabled: true };
     }
+    if(isAlreadyEnrolled){
+      return { text: "Already Enrolled", disabled: true}
+    }
     return { text: "Enroll & Pay", disabled: false };
   };
 
