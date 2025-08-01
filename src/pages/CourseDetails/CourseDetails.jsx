@@ -7,6 +7,7 @@ import UseApplicationApi from "../../Hooks/UseApplicationApi";
 import { useQuery } from "@tanstack/react-query";
 import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 import Loader from "../Loader/Loader";
+import useUserRole from "../../Hooks/useUserRole";
 
 const CourseDetails = () => {
   const { user } = UseAuth();
@@ -14,6 +15,7 @@ const CourseDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const axiosSecure = UseAxiosSecure();
+  const { role, roleLoading } = useUserRole();
 
   const { data: data = [], isLoading} = useQuery({
       queryKey: ["courses"],
@@ -94,6 +96,7 @@ const CourseDetails = () => {
   const { text, disabled } = getButtonProps();
 
   if(isLoading) return <Loader></Loader>;
+  if(roleLoading) return <Loader></Loader>;
 
   return (
     <PageLoading>
@@ -168,31 +171,8 @@ const CourseDetails = () => {
                 </div>
 
                 {/* Button section pinned to bottom */}
-                {/* <div className="pt-5">
-                {alreadyEnrolled ? (
+                {role !== 'admin' &&
                   <button
-                    onClick={handleUnenroll}
-                    className="w-full text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2"
-                  >
-                    Enrolled
-                  </button>
-                ) : (
-                  <Link to="/payment" state={{courseId: course._id, handleCourses: handleUserCourses}}><button
-                    className={`w-full text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 ${
-                      enrollLimitReached || remainingSeat <= 0
-                        ? "cursor-not-allowed opacity-60"
-                        : ""
-                    }`}
-                  >
-                    {enrollLimitReached
-                      ? "Enroll Now"
-                      : remainingSeat <= 0
-                      ? "No Seat Left"
-                      : "Enroll Now"}
-                  </button></Link>
-                )}
-              </div> */}
-                <button
                   onClick={handleGoToPayment}
                   disabled={disabled}
                   className={`btn mt-4 ${
@@ -200,9 +180,10 @@ const CourseDetails = () => {
                       ? "bg-gray-400 cursor-not-allowed"
                       : "bg-gradient-to-r from-[#ef7706] to-[#fa9a1b] hover:from-[#fa9a1b] hover:to-[#ef7706] text-white"
                   }`}
-                >
-                  {text}
-                </button>
+                  >
+                    {text}
+                  </button>
+                }
               </div>
             </div>
           </motion.div>

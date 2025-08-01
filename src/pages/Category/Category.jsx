@@ -29,7 +29,7 @@ const Category = () => {
   if(isLoading) return <Loader></Loader>;
 
   return (
-    <div className="grid grid-cols-1">
+    <div className="grid grid-cols-1 min-h-screen">
       {categoryTypes.length > 0 ? (
         categoryTypes.map((item, index) => (
           <CategoryDetails key={index} category={item} />
