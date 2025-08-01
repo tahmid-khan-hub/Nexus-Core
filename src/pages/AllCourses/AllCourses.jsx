@@ -1,11 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLoaderData } from "react-router";
+import { Link } from "react-router";
 import * as motion from "motion/react-client";
 import Animation from "../../Hooks/Animation";
+import { useQuery } from "@tanstack/react-query";
+import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
+import Loader from "../Loader/Loader";
 
 const AllCourses = () => {
-  const coursesData = useLoaderData();
+  const axiosSecure = UseAxiosSecure();
   const [sortOption, setSortOption] = useState("default");
+
+  const { data: coursesData = [], isLoading} = useQuery({
+    queryKey: ["courses"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/courses");
+      return res.data;
+    },
+  });
 
   useEffect(() => {
     document.title = "NexusCore | All Courses";
@@ -32,6 +43,8 @@ const AllCourses = () => {
     }
     return 0; // default
   });
+
+  if(isLoading) return <Loader></Loader>;
 
   return (
     <div className="py-12">

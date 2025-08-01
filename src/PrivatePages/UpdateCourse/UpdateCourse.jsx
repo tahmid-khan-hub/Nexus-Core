@@ -1,21 +1,32 @@
 import React, { useEffect } from "react";
-import { useLoaderData, useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import Lottie from "lottie-react";
 import updateCourseLottie from "../../assets/lotties/updateCourse.json";
 import Swal from "sweetalert2";
 import UseApplicationApi from "../../Hooks/UseApplicationApi";
 import UseAuth from "../../Hooks/UseAuth";
 import Animation from "../../Hooks/Animation";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../../pages/Loader/Loader";
+import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 
 const UpdateCourse = () => {
 
   useEffect(()=>{document.title = "NexusCore | EditCourse"},[])
 
-  const data = useLoaderData();
   const { id } = useParams();
   const { user } = UseAuth();
+  const axiosSecure = UseAxiosSecure();
   const{ updateCoursePromise } = UseApplicationApi();
   const email = user.email;
+
+  const { data: data = [], isLoading} = useQuery({
+    queryKey: ["courses"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/courses");
+      return res.data;
+    },
+  });
 
   const EditCourse = data.find((c) => c._id.toString() === id);
 
@@ -61,6 +72,8 @@ const UpdateCourse = () => {
         console.error("Error updating course:", error);
       });
   };
+
+  if(isLoading) return <Loader></Loader>;
 
   return (
     <>

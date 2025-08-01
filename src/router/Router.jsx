@@ -59,7 +59,6 @@ const Router = createBrowserRouter([
             <UpdateCourse></UpdateCourse>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:3000/courses"),
       },
       {
         path: "/Category/:category",
@@ -79,7 +78,6 @@ const Router = createBrowserRouter([
       {
         path: "/allCourses",
         element: <AllCourses></AllCourses>,
-        loader: () => fetch("http://localhost:3000/courses"),
       },
       {
         path: "/faq",
