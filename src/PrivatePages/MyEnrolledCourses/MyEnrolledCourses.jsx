@@ -1,24 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLoaderData } from "react-router";
 import UseAuth from "../../Hooks/UseAuth";
 import Lottie from "lottie-react";
 import dataNotFound from "../../assets/lotties/dataNotFound.json";
 import Swal from "sweetalert2";
 import UseApplicationApi from "../../Hooks/UseApplicationApi";
+import { useQuery } from "@tanstack/react-query";
+import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
+import Loader from "../../pages/Loader/Loader";
+import { MdRemoveCircle } from "react-icons/md";
 
 const MyEnrolledCourses = () => {
 
   useEffect(() => {document.title = "NexusCore | MyEnrolledCourses"},[])
 
   const { user } = UseAuth();
+  const axiosSecure = UseAxiosSecure();
   const { myEnrolledCoursesPromise, myEnrolledCoursesPatch } = UseApplicationApi();
   const UserEmail = user.email || "";
 
-  const data = useLoaderData();
+  const { data: data = [], isLoading} = useQuery({
+    queryKey: ["courses"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/userCourses");
+      return res.data;
+    },
+  });
 
-  const UserCoursesData = data.filter((courses) => courses.email == UserEmail);
+  const [userCourses, setUserCourses] = useState([]);
 
-  const [userCourses, setUserCourses] = useState(UserCoursesData);
+  useEffect(() => {
+    if (data.length && UserEmail) {
+      const filtered = data.filter((courses) => courses.email === UserEmail);
+      setUserCourses(filtered);
+    }
+  }, [data, UserEmail]);
 
   const handleRemoveEnrollment = (id, courseId) => {
     Swal.fire({
@@ -49,6 +64,8 @@ const MyEnrolledCourses = () => {
       }
     });
   };
+
+  if(isLoading) return <Loader></Loader>;
 
   return (
     <div className="relative mt-11 overflow-x-auto sm:rounded-lg min-h-screen">
@@ -96,9 +113,9 @@ const MyEnrolledCourses = () => {
                 <td className="px-6 py-4">
                   <a
                     onClick={() => handleRemoveEnrollment(course._id, course.courseId)}
-                    className="font-medium hover:underline text-blue-600 dark:text-blue-500 "
+                    className="font-medium hover:underline text-red-500 hover:text-red-600"
                   >
-                    Remove enrollment
+                    <MdRemoveCircle className="ml-3" size={18} />
                   </a>
                 </td>
               </tr>

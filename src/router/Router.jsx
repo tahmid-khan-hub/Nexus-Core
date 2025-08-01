@@ -116,14 +116,14 @@ const Router = createBrowserRouter([
         element: <PrivateRoute>
           <MyProfile></MyProfile>
         </PrivateRoute>,
-        loader: ()=> fetch("http://localhost:3000/userCourses")
+        
       },
       {
         path: "/dashboard/myEnrolledCourses",
         element: <PrivateRoute>
           <MyEnrolledCourses></MyEnrolledCourses>
         </PrivateRoute>,
-        loader: ()=> fetch("http://localhost:3000/userCourses")
+        
       },
 
       // admin

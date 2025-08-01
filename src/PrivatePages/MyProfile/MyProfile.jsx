@@ -1,19 +1,34 @@
 import React, { useEffect } from "react";
 import UseAuth from "../../Hooks/UseAuth";
-import { Link, useLoaderData } from "react-router";
+import { Link } from "react-router";
 import { FaBookOpen } from "react-icons/fa";
 import Animation from "../../Hooks/Animation";
+import { useQuery } from "@tanstack/react-query";
+import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
+import Loader from "../../pages/Loader/Loader";
 
 const MyProfile = () => {
+
   useEffect(() => {
     document.title = "NexusCore | Dashboard";
   }, []);
+
   const { user } = UseAuth();
-  const allUserCourses = useLoaderData();
+  const axiosSecure = UseAxiosSecure();
+
+  const { data: allUserCourses = [], isLoading} = useQuery({
+    queryKey: ["courses"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/userCourses");
+      return res.data;
+    },
+  });
+
   const userCourses = allUserCourses.filter(
     (course) => course.email === user?.email
   );
-  console.log(userCourses);
+
+  if(isLoading) return <Loader></Loader>;
   return (
     <div className="min-h-screen p-6 space-y-10">
       {/* Profile Section */}
