@@ -18,8 +18,7 @@ const PaymentForm = () => {
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { courseId, coursePrice } = location.state || {};
-
+  const { courseId, coursePrice, courseTitle } = location.state || {};
 
   useEffect(() => {
     const price = parseFloat(coursePrice);
@@ -62,11 +61,12 @@ const PaymentForm = () => {
       await axiosSecure.post(`/userCourses`, {
         email: user.email,
         courseId: courseId,
+        title: courseTitle,
         paid: true,
         date: new Date()
       });
 
-      // await axiosSecure.patch(`/courses/${courseId}`);
+      await axiosSecure.patch(`/courses/enroll/${courseId}`);
       Swal.fire("Success", "Course payment successful", "success").then(() => {
         navigate("/");
       });

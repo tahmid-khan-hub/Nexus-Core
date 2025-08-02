@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 import Loader from "../Loader/Loader";
 import useUserRole from "../../Hooks/useUserRole";
+import { useEffect } from "react";
 
 const CourseDetails = () => {
   const { user } = UseAuth();
@@ -16,6 +17,11 @@ const CourseDetails = () => {
   const navigate = useNavigate();
   const axiosSecure = UseAxiosSecure();
   const { role, roleLoading } = useUserRole();
+
+  useEffect(() => {
+    document.title = "NexUSCore | Course Details";
+    window.scrollTo(0,0);
+  }, []);
 
   const { data: data = [], isLoading} = useQuery({
       queryKey: ["courses"],
@@ -79,7 +85,7 @@ const CourseDetails = () => {
     }
 
     navigate("/payment", {
-      state: { courseId: course._id, coursePrice: course.price },
+      state: { courseId: course._id, coursePrice: course.price, courseTitle: course.title },
     });
   };
 
@@ -181,7 +187,7 @@ const CourseDetails = () => {
                   className={`btn mt-4 ${
                     disabled
                       ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-gradient-to-r from-[#ef7706] to-[#fa9a1b] hover:from-[#fa9a1b] hover:to-[#ef7706] text-white"
+                      : "text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                   }`}
                   >
                     {text}

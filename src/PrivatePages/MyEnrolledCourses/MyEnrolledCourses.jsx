@@ -78,16 +78,16 @@ const MyEnrolledCourses = () => {
       </p>
 
       {userCourses.length > 0 ? (
-       <div className="overflow-x-auto"> <table className="mx-auto text-sm text-left text-gray-500 dark:text-gray-400 mt-8 border ">
+       <div className="overflow-x-auto"> <table className="
+        mx-auto text-sm text-left text-gray-500 dark:text-gray-400 mt-8 border ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50  dark:text-gray-400">
             <tr className="border-b-2">
               <th scope="col" className="px-6 py-3">
                 Title
               </th>
-              <th scope="col" className=" py-3">
-                Description
+              <th scope="col" className="px-6 py-3">
+                Enrolled Date
               </th>
-              
               <th scope="col" className="px-6 py-3">
                 Action
               </th>
@@ -105,10 +105,12 @@ const MyEnrolledCourses = () => {
                 >
                   {course.title}
                 </th>
-                <td className="py-4">
-                  {course.description.length > 50
-                    ? course.description.slice(0, 50) + "..."
-                    : course.description}
+                <td className="px-6 py-4">
+                  {new Date(course.date).toLocaleString("en-GB",{
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                  })}
                 </td>
                 <td className="px-6 py-4">
                   <a
