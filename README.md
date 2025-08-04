@@ -54,4 +54,4 @@
 ---
 
 ### 🔗 Live Link  
-- 🌐 [Live Site](https://nexuscore-dev.netlify.app)
+- 🌐 [Live Site](https://nexuscore-app.netlify.app)
