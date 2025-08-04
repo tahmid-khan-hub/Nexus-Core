@@ -12,7 +12,6 @@ import { useForm } from "react-hook-form";
 import app from "../../firebase/firebase_init";
 import { getAuth } from "firebase/auth";
 import RegisterWithGoogle from "../../Hooks/RegisterWithGoogle";
-import RegisterWithGitHub from "../../Hooks/RegisterWithGitHub";
 
 const Register = () => {
   useEffect(() => {
@@ -27,7 +26,6 @@ const Register = () => {
   const axiosSecure = UseAxiosSecure();
 
   const handleGoogle = RegisterWithGoogle();
-  const handleGitHub = RegisterWithGitHub();
 
   const navigate = useNavigate();
 

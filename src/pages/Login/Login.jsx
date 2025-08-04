@@ -3,8 +3,6 @@ import { Link, useLocation, useNavigate } from "react-router";
 import Lottie from "lottie-react";
 import loginLottie from "../../assets/lotties/login.json";
 import UseAuth from "../../Hooks/UseAuth";
-import GitHubSignIn from "../../Hooks/GitHubSignIn";
-import GoogleSignIn from "../../Hooks/GoogleSignIn";
 import Swal from "sweetalert2";
 import PageLoading from "../../Hooks/PageLoading";
 import Animation from "../../Hooks/Animation";
@@ -19,7 +17,6 @@ const Login = () => {
 
   const { signIn } = UseAuth();
 
-  const handleGitHub = GitHubSignIn();
   const handleGoogle = RegisterWithGoogle();
 
   const navigate = useNavigate();
