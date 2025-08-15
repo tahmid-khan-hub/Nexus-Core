@@ -2,7 +2,7 @@
 # 🎓 NexusCore
 
 ### 📝 Project Overview  
-**NexusCore** is a modern and user-friendly web application designed for students to explore available courses, enroll in them, and manage their learning journey with ease. Whether you're discovering new topics or tracking your progress, NexusCore offers a seamless educational experience.
+**NexusCore** is a modern and user-friendly web application designed for students to explore available courses, enroll in them and manage their learning journey with ease. Whether you're discovering new topics or tracking your progress, NexusCore offers a seamless educational experience.
 
 ---
 
@@ -23,10 +23,12 @@
 ---
 
 ### ✨ Key Features  
-- **📚 Browse and Discover Courses** – Explore a growing catalog of curated courses across various topics  
-- **📝 Enroll and Track Progress** – Enroll in courses and manage learning via a personalized dashboard  
-- **📋 View Enrolled Courses** – Access enrolled courses anytime and continue where you left off  
-- **📊 Course Limits & Duplicate Protection** – Backend logic prevents duplicate enrollments and controls max limits
+- 📚 Access trending and newly added courses.
+- 🔍 Discover courses by topic or personal interest.
+- 📊 Track learning progress and manage enrolled courses.
+- 🔐 Secure authentication using Firebase and Firebase JWT Token.
+- 💬 Submit feedback for courses or platform improvement.
+- 👤 Update user profile (name, image, password).
 
 ---
 
@@ -54,4 +56,4 @@
 ---
 
 ### 🔗 Live Link  
-- 🌐 [Live Site](https://nexuscore-dev.netlify.app)
+- 🌐 [Live Site](https://nexuscore-app.netlify.app)
