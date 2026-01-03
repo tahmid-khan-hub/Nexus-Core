@@ -27,6 +27,7 @@ import Settings from "../PrivatePages/Settings/Settings";
 import Feedback from "../PrivatePages/Feedback/Feedback";
 import AllFeedback from "../PrivatePages/AllFeedback/AllFeedback";
 import CoursePayment from "../PrivatePages/CoursePayment/CoursePayment";
+import AllUsers from "../PrivatePages/AllUsers/AllUsers";
 
 const Router = createBrowserRouter([
   {
@@ -152,6 +153,12 @@ const Router = createBrowserRouter([
         element: <AdminRoute>
           <AllFeedback></AllFeedback>
         </AdminRoute>
+      },
+      {
+        path: "/dashboard/AllUsers",
+        element: <AdminRoute>
+          <AllUsers></AllUsers>
+        </AdminRoute> 
       },
 
       // user settings
