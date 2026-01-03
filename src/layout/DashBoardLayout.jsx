@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet, Link, useNavigate } from "react-router";
 import { AiFillHome } from "react-icons/ai";
-import { FaUserShield, FaUserCircle, FaBookmark, FaComment, FaUser } from "react-icons/fa";
+import { FaUserShield, FaUserCircle, FaBookmark, FaComment } from "react-icons/fa";
 import { MdManageAccounts, MdLibraryAdd, MdFeedback } from "react-icons/md";
 import useUserRole from "../Hooks/useUserRole";
 import Loader from "../pages/Loader/Loader";
@@ -132,17 +132,6 @@ const DashBoardLayout = () => {
                         className="inline-block mr-1 mt-0.5"
                       />
                       <a>All Feedback</a>
-                    </div>
-                  </li>
-                </Link>
-                <Link to="/dashboard/allUsers">
-                  <li className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium rounded-[13px] shadow-md mb-1.5">
-                    <div>
-                      <FaUser
-                        size={13}
-                        className="inline-block mr-1 "
-                      />
-                      <a>All Users</a>
                     </div>
                   </li>
                 </Link>
